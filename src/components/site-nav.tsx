@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { MbaMobileNav } from "@/components/mba-mobile-nav";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 type Variant = "swe" | "mba";
@@ -46,10 +47,11 @@ export function SiteNav({ variant }: { variant: Variant }) {
               </Link>
               <Link
                 href="/"
-                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                className="hidden text-sm text-muted-foreground transition-colors hover:text-foreground sm:inline-flex"
               >
                 ← swe
               </Link>
+              <MbaMobileNav />
             </>
           ) : (
             <Link
