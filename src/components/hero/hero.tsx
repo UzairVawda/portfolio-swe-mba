@@ -8,39 +8,39 @@ import { Section } from "@/components/section";
 export function Hero() {
   return (
     <Section className="relative overflow-hidden pt-24 pb-32 sm:pt-32 sm:pb-40">
-      <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-[1.1fr_0.9fr]">
-        <div className="relative z-10 flex flex-col gap-8">
+      <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-[1fr_1fr]">
+        <div className="relative z-10 flex flex-col gap-10">
           <FadeUp>
-            <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
+            <p className="font-mono text-sm uppercase tracking-[0.2em] text-muted-foreground">
               uzair vawda · portfolio
             </p>
           </FadeUp>
 
-          <Stagger className="flex flex-col gap-5">
+          <Stagger className="flex flex-col gap-6">
             <StaggerItem>
-              <h1 className="text-balance text-5xl font-medium leading-[1.05] tracking-tight sm:text-6xl md:text-7xl">
+              <h1 className="text-balance text-6xl font-medium leading-[1.02] tracking-tight sm:text-7xl md:text-[5.5rem]">
                 Uzair Vawda.
               </h1>
             </StaggerItem>
             <StaggerItem>
-              <p className="text-balance text-2xl font-light text-muted-foreground sm:text-3xl">
+              <p className="text-balance text-3xl font-light text-muted-foreground sm:text-4xl">
                 Engineer. MBA candidate. NYC.
               </p>
             </StaggerItem>
           </Stagger>
 
           <FadeUp delay={0.4}>
-            <div className="flex items-center gap-3 pt-2">
+            <div className="flex flex-wrap items-center gap-3 pt-2">
               <Link
                 href="#projects"
-                className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-transform hover:-translate-y-px"
+                className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-base font-medium text-primary-foreground transition-transform hover:-translate-y-px"
               >
                 See work
                 <span aria-hidden>→</span>
               </Link>
               <Link
                 href="/mba"
-                className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm text-foreground transition-colors hover:border-primary hover:text-primary"
+                className="inline-flex items-center gap-2 rounded-full border border-border px-7 py-3.5 text-base text-foreground transition-colors hover:border-primary hover:text-primary"
               >
                 MBA section
                 <span aria-hidden>→</span>
@@ -50,7 +50,7 @@ export function Hero() {
         </div>
 
         <div
-          className="relative h-[320px] w-full sm:h-[420px] md:h-[480px]"
+          className="relative h-[380px] w-full sm:h-[500px] md:h-[580px]"
           aria-hidden
         >
           <HeroCanvas />

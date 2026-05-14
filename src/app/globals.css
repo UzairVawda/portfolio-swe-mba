@@ -45,7 +45,7 @@
 /*          periwinkle / columbia blue / celadon pastels.         */
 /* ------------------------------------------------------------ */
 :root {
-  --background: #ffffff;
+  --background: #f4f5fa;
   --foreground: #0c0c16;
   --card: #ffffff;
   --card-foreground: #0c0c16;
@@ -54,9 +54,9 @@
 
   --primary: #6666ff;
   --primary-foreground: #ffffff;
-  --secondary: #f1f1ff;
+  --secondary: #ebebf7;
   --secondary-foreground: #0c0c16;
-  --muted: #f6f7fb;
+  --muted: #eceef5;
   --muted-foreground: #5b5b73;
   --accent: #c9e8ff;
   --accent-foreground: #0c0c16;
