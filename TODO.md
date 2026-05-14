@@ -8,6 +8,18 @@
 
 All body copy lives in `src/content/swe.ts`. Below is what is currently a **first draft** that the user should approve, edit, or replace.
 
+### Beef up content across the SWE side
+The current page reads thin in places — body copy was drafted without deep input. Areas that need fleshing out:
+- **Work history** is the biggest gap. Each role currently has a single best-guess sentence. Each role should ideally say:
+  - What the team did and what scope/scale it operated at
+  - 1–2 concrete things shipped (project name, impact, or measurable outcome)
+  - Tech stack actually used (so the Skills section is anchored in real usage)
+- **About paragraphs** could be deeper — currently 2 short paragraphs. Add a third paragraph on the consulting-MBA pivot rationale ("why I'm doing this").
+- **JHParking** could use 1–2 more sentences on what makes it interesting beyond the elevator pitch.
+- **Education** could include a one-line "what I'm focusing on at Baruch" (e.g. data & AI specialization, consulting club involvement).
+- **Off-screen blurbs** should be real (covered separately below).
+
+
 ### About paragraphs
 > "I'm a software engineer with experience across aerospace, financial services, and legal tech. I'm currently shipping at Collins Aerospace and pursuing my MBA at Baruch's Zicklin School of Business."
 >
@@ -31,7 +43,22 @@ All body copy lives in `src/content/swe.ts`. Below is what is currently a **firs
 - Projects: "What I'm building right now."
 - Education: "Formal training, in progress."
 - About: "Building software, learning business."
+- Off-screen: "What I'm doing when I'm not at the keyboard."
 - CTA card heading: "Building a portfolio of consulting tools, one per MBA class."
+
+### Off-screen (Interests) — needs real content
+Cards currently use placeholder blurbs and lucide icons. Replace with:
+- **Real blurbs** in `src/content/swe.ts` (the `interests` array) — each one should sound like the user, not me
+- **Real pictures** instead of (or in addition to) the icons — e.g. a jiu jitsu mat photo, a sample photograph, a coffee setup, a travel shot. Requires:
+  - Adding image files to `public/interests/` (suggested folder)
+  - Updating the `Interest` type in `swe.ts` to include an `image` field
+  - Updating `src/components/sections/interests.tsx` to render an `Image` component instead of (or above) the icon badge
+
+Current draft blurbs to redline:
+- Jiu jitsu — "Training on the mats keeps me honest about losing and learning."
+- Photography — "Cameras taught me composition long before code did."
+- Coffee — "Pour-overs at home, espresso when I'm out."
+- Traveling — "Notes from new cities tend to end up shaping side projects."
 
 ### Hero CTA
 - "See work" links to `#projects`. Confirm that's the right destination.

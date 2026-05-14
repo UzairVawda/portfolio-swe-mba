@@ -7,6 +7,7 @@ import { Section } from "@/components/section";
 import { AboutSection } from "@/components/sections/about";
 import { EducationSection } from "@/components/sections/education";
 import { ExperienceSection } from "@/components/sections/experience";
+import { InterestsSection } from "@/components/sections/interests";
 import { ProjectsSection } from "@/components/sections/projects";
 import { SkillsSection } from "@/components/sections/skills";
 
@@ -25,11 +26,12 @@ export default function SwePage() {
       <SkillsSection />
       <ProjectsSection />
       <EducationSection />
+      <InterestsSection />
       <Section className="py-24">
         <FadeUp>
           <div className="flex flex-col gap-6 rounded-3xl border border-primary/30 bg-primary/5 p-10 md:p-14">
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-primary">
-              06 · What&apos;s next
+              07 · What&apos;s next
             </p>
             <h2 className="text-balance text-3xl font-medium tracking-tight sm:text-4xl">
               Building a portfolio of consulting tools, one per MBA class.

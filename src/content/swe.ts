@@ -132,3 +132,32 @@ export const certifications = [
     year: "2022",
   },
 ];
+
+export type Interest = {
+  label: string;
+  blurb: string;
+  icon: "swords" | "camera" | "coffee" | "plane";
+};
+
+export const interests: Interest[] = [
+  {
+    label: "Jiu jitsu",
+    blurb: "Training on the mats keeps me honest about losing and learning.",
+    icon: "swords",
+  },
+  {
+    label: "Photography",
+    blurb: "Cameras taught me composition long before code did.",
+    icon: "camera",
+  },
+  {
+    label: "Coffee",
+    blurb: "Pour-overs at home, espresso when I'm out.",
+    icon: "coffee",
+  },
+  {
+    label: "Traveling",
+    blurb: "Notes from new cities tend to end up shaping side projects.",
+    icon: "plane",
+  },
+];
