@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 
 import { Hero } from "@/components/hero/hero";
@@ -8,6 +9,12 @@ import { EducationSection } from "@/components/sections/education";
 import { ExperienceSection } from "@/components/sections/experience";
 import { ProjectsSection } from "@/components/sections/projects";
 import { SkillsSection } from "@/components/sections/skills";
+
+export const metadata: Metadata = {
+  title: { absolute: "Uzair Vawda — Engineer, MBA candidate" },
+  description:
+    "Software engineer and MBA candidate based in NYC. Six years across aerospace, finance, and legal tech. Currently shipping at Collins Aerospace.",
+};
 
 export default function SwePage() {
   return (

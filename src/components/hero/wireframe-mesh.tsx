@@ -4,12 +4,13 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { useEffect, useRef } from "react";
 import type { Group } from "three";
 
-function RotatingIcosahedron() {
+function RotatingIcosahedron({ reduced }: { reduced: boolean }) {
   const outer = useRef<Group>(null);
   const inner = useRef<Group>(null);
   const target = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
+    if (reduced) return;
     const handleMove = (event: PointerEvent) => {
       const x = (event.clientX / window.innerWidth) * 2 - 1;
       const y = (event.clientY / window.innerHeight) * 2 - 1;
@@ -17,10 +18,11 @@ function RotatingIcosahedron() {
     };
     window.addEventListener("pointermove", handleMove);
     return () => window.removeEventListener("pointermove", handleMove);
-  }, []);
+  }, [reduced]);
 
   useFrame((_, delta) => {
     if (!outer.current || !inner.current) return;
+    if (reduced) return;
 
     outer.current.rotation.y += delta * 0.18;
     outer.current.rotation.x += delta * 0.05;
@@ -57,14 +59,19 @@ function RotatingIcosahedron() {
 }
 
 export default function WireframeMesh() {
+  const reduced =
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
   return (
     <Canvas
       camera={{ position: [0, 0, 4], fov: 50 }}
       dpr={[1, 2]}
       gl={{ antialias: true, alpha: true }}
+      frameloop={reduced ? "demand" : "always"}
       aria-hidden
     >
-      <RotatingIcosahedron />
+      <RotatingIcosahedron reduced={reduced} />
     </Canvas>
   );
 }

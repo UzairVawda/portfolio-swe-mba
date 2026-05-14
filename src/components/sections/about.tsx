@@ -12,9 +12,8 @@ export function AboutSection() {
           <div className="relative aspect-[4/5] w-full max-w-xs overflow-hidden rounded-2xl border border-border bg-muted">
             <Image
               src="/me.jpeg"
-              alt="Uzair Vawda"
+              alt="Portrait of Uzair Vawda"
               fill
-              priority
               sizes="(max-width: 768px) 80vw, 400px"
               className="object-cover"
             />
