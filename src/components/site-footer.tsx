@@ -28,7 +28,7 @@ export function SiteFooter({ variant }: { variant: "swe" | "mba" }) {
             href={isMba ? "/" : "/mba"}
             className="transition-colors hover:text-foreground"
           >
-            {isMba ? "← swe" : "MBA →"}
+            {isMba ? "← SWE" : "MBA →"}
           </Link>
         </div>
       </div>

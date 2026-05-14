@@ -55,7 +55,7 @@ export function MbaMobileNav() {
           render={<Link href="/" />}
           className={footerLinkStyles}
         >
-          ← swe portfolio
+          ← SWE portfolio
         </SheetClose>
       </SheetContent>
     </Sheet>
