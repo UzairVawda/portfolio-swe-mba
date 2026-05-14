@@ -1,49 +1,53 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+
+import { Hero } from "@/components/hero/hero";
 import { FadeUp } from "@/components/motion/fade-up";
-import { Stagger, StaggerItem } from "@/components/motion/stagger";
 import { Section } from "@/components/section";
+import { AboutSection } from "@/components/sections/about";
+import { EducationSection } from "@/components/sections/education";
+import { ExperienceSection } from "@/components/sections/experience";
+import { ProjectsSection } from "@/components/sections/projects";
+import { SkillsSection } from "@/components/sections/skills";
+
+export const metadata: Metadata = {
+  title: { absolute: "Uzair Vawda — Engineer, MBA candidate" },
+  description:
+    "Software engineer and MBA candidate based in NYC. Six years across aerospace, finance, and legal tech. Currently shipping at Collins Aerospace.",
+};
 
 export default function SwePage() {
   return (
-    <Section className="pt-24 pb-24 sm:pt-32">
-      <div className="flex flex-col gap-10">
+    <>
+      <Hero />
+      <AboutSection />
+      <ExperienceSection />
+      <SkillsSection />
+      <ProjectsSection />
+      <EducationSection />
+      <Section className="py-24">
         <FadeUp>
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-            v0.1 · phase 1 preview
-          </p>
-        </FadeUp>
-
-        <Stagger className="flex flex-col gap-6">
-          <StaggerItem>
-            <h1 className="text-balance text-5xl font-medium tracking-tight sm:text-6xl md:text-7xl">
-              Uzair Vawda.
-            </h1>
-          </StaggerItem>
-
-          <StaggerItem>
-            <p className="max-w-2xl text-pretty text-lg text-muted-foreground sm:text-xl">
-              Software engineer. MBA candidate. Building tools, shipping ideas,
-              and{" "}
-              <span className="text-primary">documenting it all publicly</span>.
+          <div className="flex flex-col gap-6 rounded-3xl border border-primary/30 bg-primary/5 p-10 md:p-14">
+            <p className="font-mono text-xs uppercase tracking-[0.2em] text-primary">
+              06 · What&apos;s next
             </p>
-          </StaggerItem>
-
-          <StaggerItem className="flex items-center gap-3 pt-2">
-            <span className="inline-flex h-3 w-3 rounded-full bg-primary" />
-            <span className="inline-flex h-3 w-3 rounded-full bg-periwinkle" />
-            <span className="inline-flex h-3 w-3 rounded-full bg-columbia" />
-            <span className="inline-flex h-3 w-3 rounded-full bg-celadon" />
-            <span className="ml-2 font-mono text-xs text-muted-foreground">
-              palette
-            </span>
-          </StaggerItem>
-        </Stagger>
-
-        <FadeUp delay={0.4} className="pt-12">
-          <p className="font-mono text-sm text-muted-foreground">
-            Phase 1 wiring up. Hero, experience, projects in Phase 2.
-          </p>
+            <h2 className="text-balance text-3xl font-medium tracking-tight sm:text-4xl">
+              Building a portfolio of consulting tools, one per MBA class.
+            </h2>
+            <p className="max-w-2xl text-pretty text-lg text-muted-foreground">
+              The MBA section is a separate, evolving project — shippable tools
+              tied to each class, written up as case studies.
+            </p>
+            <Link
+              href="/mba"
+              className="inline-flex w-fit items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-transform hover:-translate-y-px"
+            >
+              Visit MBA section
+              <span aria-hidden>→</span>
+            </Link>
+          </div>
         </FadeUp>
-      </div>
-    </Section>
+      </Section>
+    </>
   );
 }

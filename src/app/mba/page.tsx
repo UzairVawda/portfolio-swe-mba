@@ -1,6 +1,14 @@
+import type { Metadata } from "next";
+
 import { FadeUp } from "@/components/motion/fade-up";
 import { Stagger, StaggerItem } from "@/components/motion/stagger";
 import { Section } from "@/components/section";
+
+export const metadata: Metadata = {
+  title: "MBA Portfolio",
+  description:
+    "A working portfolio of consulting tools, journal entries, and case studies — one per MBA class at Baruch's Zicklin School of Business.",
+};
 
 export default function MbaLandingPage() {
   return (
