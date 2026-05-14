@@ -9,7 +9,7 @@ export function Hero() {
   return (
     <Section className="relative overflow-hidden pt-24 pb-32 sm:pt-32 sm:pb-40">
       <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-[1fr_1fr]">
-        <div className="relative z-10 flex flex-col gap-10">
+        <div className="relative z-10 flex flex-col items-center gap-10 text-center md:items-start md:text-left">
           <FadeUp>
             <p className="font-mono text-sm uppercase tracking-[0.2em] text-muted-foreground">
               uzair vawda · portfolio
@@ -30,7 +30,7 @@ export function Hero() {
           </Stagger>
 
           <FadeUp delay={0.4}>
-            <div className="flex flex-wrap items-center gap-3 pt-2">
+            <div className="flex flex-wrap items-center justify-center gap-3 pt-2 md:justify-start">
               <Link
                 href="#projects"
                 className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-base font-medium text-primary-foreground transition-transform hover:-translate-y-px"
