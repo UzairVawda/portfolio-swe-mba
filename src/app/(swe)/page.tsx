@@ -29,7 +29,7 @@ export default function SwePage() {
       <InterestsSection />
       <Section className="py-24">
         <FadeUp>
-          <div className="flex flex-col gap-6 rounded-3xl border border-primary/30 bg-primary/5 p-10 md:p-14">
+          <div className="flex flex-col items-center gap-6 rounded-3xl border border-primary/30 bg-primary/5 p-10 text-center md:items-start md:p-14 md:text-left">
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-primary">
               07 · What&apos;s next
             </p>

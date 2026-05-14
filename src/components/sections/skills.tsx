@@ -16,7 +16,7 @@ export function SkillsSection() {
   return (
     <Section id="skills" className="py-24">
       <div className="flex flex-col gap-12">
-        <FadeUp className="flex flex-col gap-3">
+        <FadeUp className="flex flex-col items-center gap-3 text-center md:items-start md:text-left">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
             03 · Skills
           </p>
@@ -29,12 +29,12 @@ export function SkillsSection() {
           {groups.map(([group, items], index) => (
             <StaggerItem
               key={group}
-              className="flex flex-col gap-4 rounded-2xl border border-border bg-card p-6 transition-colors hover:border-primary/40"
+              className="flex flex-col items-center gap-4 rounded-2xl border border-border bg-card p-6 text-center transition-colors hover:border-primary/40 md:items-start md:text-left"
             >
               <h3 className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
                 {group}
               </h3>
-              <ul className="flex flex-wrap gap-2">
+              <ul className="flex flex-wrap justify-center gap-2 md:justify-start">
                 {items.map((item) => (
                   <li
                     key={item}

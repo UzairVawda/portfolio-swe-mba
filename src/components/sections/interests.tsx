@@ -23,7 +23,7 @@ export function InterestsSection() {
   return (
     <Section id="off-screen" className="py-24">
       <div className="flex flex-col gap-12">
-        <FadeUp className="flex flex-col gap-3">
+        <FadeUp className="flex flex-col items-center gap-3 text-center md:items-start md:text-left">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
             06 · Off-screen
           </p>
@@ -38,14 +38,14 @@ export function InterestsSection() {
             return (
               <StaggerItem
                 key={interest.label}
-                className="group flex flex-col gap-6 rounded-3xl border border-border bg-card p-8 transition-colors hover:border-primary/40 md:p-10"
+                className="group flex flex-col items-center gap-6 rounded-3xl border border-border bg-card p-8 text-center transition-colors hover:border-primary/40 md:items-start md:p-10 md:text-left"
               >
                 <span
                   className={`inline-flex h-14 w-14 items-center justify-center rounded-full ${surfaces[index % surfaces.length]}`}
                 >
                   <Icon className="h-6 w-6" aria-hidden />
                 </span>
-                <div className="flex flex-col gap-3">
+                <div className="flex flex-col items-center gap-3 md:items-start">
                   <h3 className="text-2xl font-medium tracking-tight transition-colors group-hover:text-primary">
                     {interest.label}
                   </h3>
