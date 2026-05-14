@@ -4,15 +4,15 @@ export function SiteFooter({ variant }: { variant: "swe" | "mba" }) {
   const isMba = variant === "mba";
 
   return (
-    <footer className="mt-auto w-full border-t border-border/60">
-      <div className="mx-auto flex w-full max-w-6xl flex-col items-start justify-between gap-4 px-6 py-10 text-sm text-muted-foreground sm:flex-row sm:items-center sm:px-8 md:px-12 lg:px-16">
+    <footer className="mt-auto w-full border-t border-border/60 px-6 sm:px-8 md:px-12 lg:px-16">
+      <div className="mx-auto flex w-full max-w-6xl flex-col items-start justify-between gap-4 py-10 text-sm text-muted-foreground sm:flex-row sm:items-center">
         <p className="font-mono">© {new Date().getFullYear()} Uzair Vawda</p>
         <div className="flex items-center gap-6">
           <Link
             href="https://github.com/UzairVawda"
             target="_blank"
             rel="noreferrer noopener"
-            className="hover:text-foreground transition-colors"
+            className="transition-colors hover:text-foreground"
           >
             GitHub
           </Link>
@@ -20,15 +20,15 @@ export function SiteFooter({ variant }: { variant: "swe" | "mba" }) {
             href="https://www.linkedin.com/in/uzair-vawda/"
             target="_blank"
             rel="noreferrer noopener"
-            className="hover:text-foreground transition-colors"
+            className="transition-colors hover:text-foreground"
           >
             LinkedIn
           </Link>
           <Link
             href={isMba ? "/" : "/mba"}
-            className="hover:text-foreground transition-colors"
+            className="transition-colors hover:text-foreground"
           >
-            {isMba ? "swe portfolio" : "mba section"}
+            {isMba ? "← swe" : "MBA →"}
           </Link>
         </div>
       </div>
