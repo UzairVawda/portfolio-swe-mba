@@ -7,7 +7,7 @@ export function ExperienceSection() {
   return (
     <Section id="experience" className="py-24">
       <div className="flex flex-col gap-12">
-        <FadeUp className="flex flex-col gap-3">
+        <FadeUp className="flex flex-col items-center gap-3 text-center md:items-start md:text-left">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
             02 · Experience
           </p>
@@ -22,7 +22,7 @@ export function ExperienceSection() {
               key={`${role.company}-${role.title}`}
               className="group grid grid-cols-1 gap-3 border-t border-border py-8 md:grid-cols-[180px_1fr] md:gap-8"
             >
-              <div className="flex flex-col">
+              <div className="flex flex-col items-center md:items-start">
                 <span className="font-mono text-xs text-muted-foreground">
                   {role.start} — {role.end}
                 </span>
@@ -31,8 +31,8 @@ export function ExperienceSection() {
                 </span>
               </div>
 
-              <div className="flex flex-col gap-2">
-                <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+              <div className="flex flex-col items-center gap-2 text-center md:items-start md:text-left">
+                <div className="flex flex-wrap items-baseline justify-center gap-x-3 gap-y-1 md:justify-start">
                   <h3 className="text-lg font-medium tracking-tight transition-colors group-hover:text-primary">
                     {role.title}
                   </h3>

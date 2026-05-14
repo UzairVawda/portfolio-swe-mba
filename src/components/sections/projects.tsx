@@ -9,7 +9,7 @@ export function ProjectsSection() {
   return (
     <Section id="projects" className="py-24">
       <div className="flex flex-col gap-12">
-        <FadeUp className="flex flex-col gap-3">
+        <FadeUp className="flex flex-col items-center gap-3 text-center md:items-start md:text-left">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
             04 · Projects
           </p>
@@ -22,10 +22,10 @@ export function ProjectsSection() {
           {projects.map((project) => (
             <StaggerItem
               key={project.name}
-              className="group flex flex-col gap-6 rounded-3xl border border-border bg-card p-8 transition-colors hover:border-primary/40 md:p-12"
+              className="group flex flex-col items-center gap-6 rounded-3xl border border-border bg-card p-8 text-center transition-colors hover:border-primary/40 md:items-start md:p-12 md:text-left"
             >
-              <div className="flex flex-wrap items-baseline justify-between gap-4">
-                <div className="flex flex-col gap-1">
+              <div className="flex w-full flex-col items-center gap-4 md:flex-row md:flex-wrap md:items-baseline md:justify-between">
+                <div className="flex flex-col items-center gap-1 md:items-start">
                   <h3 className="text-2xl font-medium tracking-tight transition-colors group-hover:text-primary sm:text-3xl">
                     {project.name}
                   </h3>
@@ -53,7 +53,7 @@ export function ProjectsSection() {
                 {project.description}
               </p>
 
-              <ul className="flex flex-wrap gap-2">
+              <ul className="flex flex-wrap justify-center gap-2 md:justify-start">
                 {project.stack.map((tech) => (
                   <li
                     key={tech}

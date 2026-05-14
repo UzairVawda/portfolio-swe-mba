@@ -7,7 +7,7 @@ export function EducationSection() {
   return (
     <Section id="education" className="py-24">
       <div className="flex flex-col gap-12">
-        <FadeUp className="flex flex-col gap-3">
+        <FadeUp className="flex flex-col items-center gap-3 text-center md:items-start md:text-left">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
             05 · Education &amp; Certifications
           </p>
@@ -17,7 +17,7 @@ export function EducationSection() {
         </FadeUp>
 
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-          <Stagger className="flex flex-col gap-6">
+          <Stagger className="flex flex-col items-center gap-6 text-center md:items-start md:text-left">
             <StaggerItem>
               <h3 className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
                 Schools
@@ -26,7 +26,7 @@ export function EducationSection() {
             {education.map((entry) => (
               <StaggerItem
                 key={entry.school}
-                className="flex flex-col gap-1 border-t border-border pt-6"
+                className="flex w-full flex-col items-center gap-1 border-t border-border pt-6 text-center md:items-start md:text-left"
               >
                 <p className="text-sm text-muted-foreground">{entry.school}</p>
                 <h4 className="text-lg font-medium tracking-tight">
@@ -39,7 +39,7 @@ export function EducationSection() {
             ))}
           </Stagger>
 
-          <Stagger className="flex flex-col gap-6">
+          <Stagger className="flex flex-col items-center gap-6 text-center md:items-start md:text-left">
             <StaggerItem>
               <h3 className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
                 Certifications
@@ -48,7 +48,7 @@ export function EducationSection() {
             {certifications.map((cert) => (
               <StaggerItem
                 key={cert.name}
-                className="flex flex-col gap-1 border-t border-border pt-6"
+                className="flex w-full flex-col items-center gap-1 border-t border-border pt-6 text-center md:items-start md:text-left"
               >
                 <p className="text-sm text-muted-foreground">{cert.issuer}</p>
                 <h4 className="text-lg font-medium tracking-tight">
