@@ -5,7 +5,7 @@ import { useTheme } from "next-themes";
 
 import { Button } from "@/components/ui/button";
 
-export function ThemeToggle() {
+export function ThemeToggle({ onAfterToggle }: { onAfterToggle?: () => void }) {
   const { setTheme } = useTheme();
 
   return (
@@ -16,6 +16,7 @@ export function ThemeToggle() {
       onClick={() => {
         const isDark = document.documentElement.classList.contains("dark");
         setTheme(isDark ? "light" : "dark");
+        onAfterToggle?.();
       }}
     >
       <Sun className="h-4 w-4 scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
