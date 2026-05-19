@@ -3,22 +3,14 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { contactSchema, type ContactInput } from "@/lib/validation/contact";
 
-const schema = z.object({
-  name: z.string().min(1, "Required"),
-  email: z.string().email("Enter a valid email"),
-  role: z.string().optional(),
-  reason: z.string().optional(),
-  message: z.string().min(1, "Required"),
-});
-
-type FormValues = z.infer<typeof schema>;
+type FormValues = ContactInput;
 
 type SubmissionState =
   | { status: "idle" }
@@ -35,26 +27,61 @@ export function ContactForm() {
     reset,
     formState: { errors },
   } = useForm<FormValues>({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(contactSchema),
     defaultValues: {
       name: "",
       email: "",
       role: "",
       reason: "",
       message: "",
+      source: "mba",
     },
   });
 
   const onSubmit = handleSubmit(async (values) => {
     setState({ status: "submitting" });
-    // Phase 4 wires this to /api/contact backed by Supabase + Resend.
-    // For now we simulate a successful submission so the UI can be reviewed.
-    await new Promise((resolve) => setTimeout(resolve, 600));
-    if (process.env.NODE_ENV === "development") {
-      console.log("[contact:phase-3 placeholder]", values);
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+
+      if (response.ok) {
+        setState({ status: "success" });
+        reset();
+        return;
+      }
+
+      const payload = await response.json().catch(() => ({}));
+
+      if (response.status === 429) {
+        setState({
+          status: "error",
+          message:
+            payload.message ?? "Too many submissions. Try again in a minute.",
+        });
+        return;
+      }
+
+      if (response.status === 400) {
+        setState({
+          status: "error",
+          message: "Something in the form didn't validate. Check the fields.",
+        });
+        return;
+      }
+
+      setState({
+        status: "error",
+        message: "Server hiccup. Please try again in a moment.",
+      });
+    } catch {
+      setState({
+        status: "error",
+        message: "Network error. Check your connection and try again.",
+      });
     }
-    setState({ status: "success" });
-    reset();
   });
 
   if (state.status === "success") {
@@ -64,8 +91,7 @@ export function ContactForm() {
           Thanks — message received.
         </h3>
         <p className="mt-2 text-base text-muted-foreground">
-          (Form is in skeleton mode until Phase 4 wires the backend. Real
-          delivery via Resend lands in the next phase.)
+          I&apos;ll see this in my inbox shortly. Talk soon.
         </p>
         <Button
           variant="ghost"
