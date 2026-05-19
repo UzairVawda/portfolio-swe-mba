@@ -72,9 +72,33 @@ Current draft blurbs to redline:
 
 ---
 
+## Phase 3 — MBA section content to redline
+
+All MBA copy lives in `src/content/mba.ts`. Drafted by Claude — replace anything that doesn't sound like you.
+
+### Landing (`/mba`)
+- Headline: "A working portfolio of consulting tools built one per class."
+- Subhead: "Software engineer, MBA candidate. Each class produces a shippable tool — published here as it ships."
+
+### Section pages (`/mba/tools`, `/mba/journal`, `/mba/speaking`)
+Each has an eyebrow + headline + subhead + empty-state body. Current drafts:
+- **Tools** — "One shippable tool per class." / empty state mentions CIS 9000.
+- **Journal** — "Synthesis, not summary." / empty state explains writing starts with first class.
+- **Speaking** — "Talks, workshops, panels." / empty state says posted after each event.
+
+### `/mba/about`
+- Three bio paragraphs (engineer background → site explanation → consulting target). All drafted; redline.
+- Three section-overview card descriptions (Tools / Journal / Speaking).
+- Contact form headline ("Get in touch.") + description.
+
+### Resume PDF
+- Drop the actual file at `public/resume.pdf` so the `/mba/about` Resume link resolves. Until then it 404s.
+
+---
+
 ## Deferred to later phases
 
 - **OG images / rich SEO metadata** — Phase 7 dedicated section. Currently only basic titles + descriptions.
-- **Mobile nav for MBA section** — Tools/Journal/Speaking/About links are hidden under `sm:` breakpoint. Mobile users on `/mba` can only get to `← swe`. Revisit in Phase 3 when building out MBA section.
-- **Resume PDF** — needs uploading. Linked from MBA About page.
 - **Profile photo crop** — me.jpeg is 5 MB. Consider optimizing or replacing.
+- **Real interests photos** (covered above under Off-screen) — replace lucide icons with real images.
+- **Robust rate limiting** — Phase 4 ships a simple time-based rate limit (using Supabase as the store). If abuse becomes a real concern post-launch, swap to Upstash Ratelimit (free tier, well-tested edge-friendly library).
