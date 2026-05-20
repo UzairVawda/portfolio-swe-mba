@@ -1,0 +1,52 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "09:00"
+      timezone: America/New_York
+    open-pull-requests-limit: 5
+    groups:
+      next:
+        patterns:
+          - "next"
+          - "eslint-config-next"
+          - "@next/*"
+      react:
+        patterns:
+          - "react"
+          - "react-dom"
+          - "@types/react*"
+      three:
+        patterns:
+          - "three"
+          - "@react-three/*"
+          - "@types/three"
+      ui:
+        patterns:
+          - "@base-ui/*"
+          - "lucide-react"
+          - "motion"
+      backend:
+        patterns:
+          - "@supabase/*"
+          - "resend"
+          - "zod"
+          - "react-hook-form"
+          - "@hookform/*"
+      types:
+        patterns:
+          - "@types/*"
+      dev:
+        patterns:
+          - "eslint*"
+          - "typescript"
+          - "tailwindcss"
+          - "@tailwindcss/*"
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 3
