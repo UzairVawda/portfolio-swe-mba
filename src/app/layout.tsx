@@ -48,6 +48,24 @@ export const viewport: Viewport = {
   ],
 };
 
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Uzair Vawda",
+  url: siteUrl,
+  jobTitle: "Software Engineer",
+  description:
+    "Software engineer and MBA candidate building tools and shipping ideas in NYC.",
+  sameAs: [
+    "https://www.linkedin.com/in/uzair-vawda/",
+    "https://github.com/UzairVawda",
+  ],
+  alumniOf: {
+    "@type": "CollegeOrUniversity",
+    name: "Drexel University · College of Computing and Informatics",
+  },
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -60,6 +78,10 @@ export default function RootLayout({
       className={`${satoshi.variable} ${jetbrainsMono.variable} ${newsreader.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
