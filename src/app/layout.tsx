@@ -60,9 +60,27 @@ const personJsonLd = {
     "https://www.linkedin.com/in/uzair-vawda/",
     "https://github.com/UzairVawda",
   ],
-  alumniOf: {
-    "@type": "CollegeOrUniversity",
-    name: "Drexel University · College of Computing and Informatics",
+  alumniOf: [
+    {
+      "@type": "CollegeOrUniversity",
+      name: "Baruch College · Zicklin School of Business",
+      sameAs: "https://zicklin.baruch.cuny.edu/",
+    },
+    {
+      "@type": "CollegeOrUniversity",
+      name: "Drexel University · College of Computing and Informatics",
+      sameAs: "https://drexel.edu/cci/",
+    },
+  ],
+  worksFor: {
+    "@type": "Organization",
+    name: "Collins Aerospace",
+  },
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "New York",
+    addressRegion: "NY",
+    addressCountry: "US",
   },
 };
 
