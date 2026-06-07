@@ -1,8 +1,28 @@
 "use client";
 
 import { Canvas, useFrame } from "@react-three/fiber";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useSyncExternalStore } from "react";
 import type { Group, Mesh } from "three";
+
+const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
+
+// Subscribe to the reduced-motion media query through useSyncExternalStore so
+// the server snapshot (false) and the first client render agree, then React
+// updates to the real preference after hydration — no mismatch, no lint
+// complaint about setting state inside an effect.
+function subscribeReducedMotion(callback: () => void) {
+  const query = window.matchMedia(REDUCED_MOTION_QUERY);
+  query.addEventListener("change", callback);
+  return () => query.removeEventListener("change", callback);
+}
+
+function usePrefersReducedMotion() {
+  return useSyncExternalStore(
+    subscribeReducedMotion,
+    () => window.matchMedia(REDUCED_MOTION_QUERY).matches,
+    () => false,
+  );
+}
 
 function NestedIcosahedra({ reduced }: { reduced: boolean }) {
   const outer = useRef<Group>(null);
@@ -69,9 +89,7 @@ function NestedIcosahedra({ reduced }: { reduced: boolean }) {
 }
 
 export default function WireframeMesh() {
-  const reduced =
-    typeof window !== "undefined" &&
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const reduced = usePrefersReducedMotion();
 
   return (
     <Canvas
