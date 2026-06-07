@@ -14,8 +14,8 @@ export const metadata: Metadata = {
 
 export default function MbaLandingPage() {
   return (
-    <Section className="pt-24 pb-32 sm:pt-32 sm:pb-40">
-      <div className="flex flex-col items-center gap-12 text-center md:items-start md:text-left">
+    <Section className="flex flex-1 flex-col justify-center py-12">
+      <div className="flex flex-col items-center gap-10 text-center md:items-start md:text-left">
         <FadeUp className="flex items-baseline gap-4">
           <span className="font-serif text-5xl font-light text-primary tabular-nums">
             {landing.number}
@@ -32,7 +32,7 @@ export default function MbaLandingPage() {
             </h1>
           </StaggerItem>
           <StaggerItem>
-            <p className="max-w-2xl text-pretty text-lg leading-relaxed text-muted-foreground sm:text-xl">
+            <p className="max-w-2xl text-pretty text-xl font-light leading-relaxed text-muted-foreground sm:text-2xl">
               {landing.subhead}
             </p>
           </StaggerItem>

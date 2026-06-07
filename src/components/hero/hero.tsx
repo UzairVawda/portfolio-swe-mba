@@ -7,23 +7,23 @@ import { Section } from "@/components/section";
 
 export function Hero() {
   return (
-    <Section className="relative overflow-hidden pt-24 pb-32 sm:pt-32 sm:pb-40">
+    <Section className="relative flex min-h-[calc(100svh-4rem)] flex-col justify-center overflow-hidden py-12">
       <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-[1fr_1fr]">
         <div className="relative z-10 flex flex-col items-center gap-10 text-center md:items-start md:text-left">
           <FadeUp>
-            <p className="font-mono text-sm uppercase tracking-[0.2em] text-muted-foreground">
+            <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
               uzair vawda · portfolio
             </p>
           </FadeUp>
 
           <Stagger className="flex flex-col gap-6">
             <StaggerItem>
-              <h1 className="text-balance text-6xl font-medium leading-[1.02] tracking-tight sm:text-7xl md:text-[5.5rem]">
+              <h1 className="text-balance text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl md:text-7xl">
                 Uzair Vawda.
               </h1>
             </StaggerItem>
             <StaggerItem>
-              <p className="text-balance text-3xl font-light text-muted-foreground sm:text-4xl">
+              <p className="text-balance text-xl font-light text-muted-foreground sm:text-2xl">
                 Engineer. MBA candidate. NYC.
               </p>
             </StaggerItem>

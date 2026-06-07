@@ -12,7 +12,7 @@ export default function MbaLayout({
       className="flex min-h-full flex-1 flex-col bg-background text-foreground"
     >
       <SiteNav variant="mba" />
-      <main className="flex-1">{children}</main>
+      <main className="flex flex-1 flex-col">{children}</main>
       <SiteFooter variant="mba" />
     </div>
   );
