@@ -76,7 +76,12 @@ export default function MbaAboutPage() {
             </p>
           </FadeUp>
           <Stagger className="flex flex-wrap items-center justify-center gap-3 md:justify-start">
-            {about.links.map((link) => (
+            {about.links.map((link) => {
+              // External links and the resume PDF open in a new tab so the
+              // visitor never navigates away from the portfolio.
+              const opensNewTab =
+                link.href.startsWith("http") || link.href.endsWith(".pdf");
+              return (
               <StaggerItem
                 key={link.href}
                 as="span"
@@ -84,19 +89,16 @@ export default function MbaAboutPage() {
               >
                 <Link
                   href={link.href}
-                  target={link.href.startsWith("http") ? "_blank" : undefined}
-                  rel={
-                    link.href.startsWith("http")
-                      ? "noreferrer noopener"
-                      : undefined
-                  }
+                  target={opensNewTab ? "_blank" : undefined}
+                  rel={opensNewTab ? "noreferrer noopener" : undefined}
                   className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm text-foreground transition-colors hover:border-primary hover:text-primary"
                 >
                   {link.label}
                   <span aria-hidden>↗</span>
                 </Link>
               </StaggerItem>
-            ))}
+              );
+            })}
           </Stagger>
         </div>
       </Section>
