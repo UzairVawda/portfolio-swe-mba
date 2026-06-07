@@ -42,6 +42,12 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  images: {
+    // Serve AVIF (smallest) with a WebP fallback. next/image picks the
+    // best format the requesting browser supports and resizes to the
+    // displayed dimensions, so the profile photo ships as ~20-40KB.
+    formats: ["image/avif", "image/webp"],
+  },
   async headers() {
     return [
       {
