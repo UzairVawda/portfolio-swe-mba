@@ -107,24 +107,16 @@ Each has an eyebrow + headline + subhead + empty-state body. Current drafts:
 
 ## Known issues
 
-### Contact form returns 500 in production (open, 2026-05-30)
+### ~~Contact form returns 500 in production~~ — RESOLVED 2026-06-07
 
-Live endpoint `POST /api/contact` returns HTTP 500 with an **empty body** in production. The route handler is reachable (400 paths for invalid JSON and Zod validation failure both work cleanly), so the throw is happening after validation and outside any try/catch. That points at one of the `requireEnv()` calls in `hashIp()` or `getServiceSupabase()`.
+Fixed in commit `43c5923` and verified live (`POST /api/contact` → `200 {"ok":true}`, both admin notification and visitor auto-reply delivered to inbox).
 
-State of the world:
-- ✅ Supabase migration applied — `public.contact_submissions` exists with RLS enabled.
-- ✅ `RATE_LIMIT_SECRET` added to Vercel (Production + Preview, marked Sensitive) and a redeploy was triggered.
-- ❌ After redeploy, probe still returns empty-body 500.
+Root cause was a **malformed `NEXT_PUBLIC_SUPABASE_URL`** (trailing slash/whitespace) producing a PostgREST `PGRST125 "Invalid path"` crash that surfaced as an empty-body 500. The three-part fix:
+- Sanitize the Supabase URL — trim whitespace + strip trailing slash before `createClient` (`src/lib/supabase/server.ts`).
+- Wrap `requireEnv()` / `getServiceSupabase()` in try/catch so a missing env now returns a diagnostic JSON 500 instead of an opaque empty body (`src/app/api/contact/route.ts`).
+- Added the visitor auto-reply via `Promise.allSettled` so both emails attempt delivery independently.
 
-Next steps when picking this back up:
-1. Verify in Vercel → Settings → Environment Variables that `RATE_LIMIT_SECRET` actually saved and is attached to Production.
-2. Verify a *new* deployment built — Redeploy with build cache **disabled** (cached builds reuse the old env snapshot).
-3. Open Vercel → Logs (Observability → Runtime Logs), fire one more probe, and read the exception message. It'll name the missing env var directly.
-4. Other plausible culprits if `RATE_LIMIT_SECRET` is fine: `NEXT_PUBLIC_SUPABASE_URL` or `SUPABASE_SERVICE_ROLE_KEY` missing on the deployed environment.
-
-Hardening worth doing once unblocked: wrap the early `hashIp()` + `getServiceSupabase()` calls in a try/catch so a missing env returns a structured JSON 500 instead of an empty one — much easier to diagnose next time.
-
-Diagnostic probe:
+Re-verify any time with the diagnostic probe:
 ```bash
 curl -s -o /tmp/r.json -w "HTTP %{http_code}\n" -X POST \
   https://portfolio-swe-mba.vercel.app/api/contact \
