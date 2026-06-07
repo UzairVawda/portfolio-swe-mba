@@ -22,6 +22,12 @@ export function SiteNav({ variant }: { variant: Variant }) {
           {isMba ? (
             <>
               <Link
+                href="/mba/about"
+                className="hidden text-sm text-muted-foreground transition-colors hover:text-foreground sm:inline-flex"
+              >
+                About
+              </Link>
+              <Link
                 href="/mba/tools"
                 className="hidden text-sm text-muted-foreground transition-colors hover:text-foreground sm:inline-flex"
               >
@@ -38,12 +44,6 @@ export function SiteNav({ variant }: { variant: Variant }) {
                 className="hidden text-sm text-muted-foreground transition-colors hover:text-foreground sm:inline-flex"
               >
                 Speaking
-              </Link>
-              <Link
-                href="/mba/about"
-                className="hidden text-sm text-muted-foreground transition-colors hover:text-foreground sm:inline-flex"
-              >
-                About
               </Link>
               <Link
                 href="/"

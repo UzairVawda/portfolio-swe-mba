@@ -10,10 +10,10 @@ export const landing = {
 };
 
 export const navItems = [
+  { href: "/mba/about", label: "About" },
   { href: "/mba/tools", label: "Tools" },
   { href: "/mba/journal", label: "Journal" },
   { href: "/mba/speaking", label: "Speaking" },
-  { href: "/mba/about", label: "About" },
 ];
 
 export const tools = {
