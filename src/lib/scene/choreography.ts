@@ -14,10 +14,19 @@ const KEYFRAMES: { at: number; shape: ShapeId }[] = [
   { at: 1, shape: "dispersed" },
 ];
 
-const TWO_PI = Math.PI * 2;
-
 function clamp01(value: number): number {
   return Math.min(1, Math.max(0, value));
+}
+
+// Ken Perlin's smootherstep: zero first AND second derivative at both ends, so
+// shape morphs ease in and settle out instead of starting/stopping abruptly.
+// Symmetric about 0.5 (smootherstep(0.5) === 0.5), which keeps segment midpoints
+// landing exactly halfway.
+function smootherstep(t: number): number {
+  const x = clamp01(t);
+  // Clamp the result too: the polynomial can round a hair past 1.0 in floating
+  // point near x=1, and callers rely on the [0,1] range.
+  return clamp01(x * x * x * (x * (x * 6 - 15) + 10));
 }
 
 export function scrollToState(progress: number): SceneState {
@@ -30,13 +39,16 @@ export function scrollToState(progress: number): SceneState {
   const a = KEYFRAMES[i];
   const b = KEYFRAMES[i + 1];
   const span = b.at - a.at;
-  const blend = span > 0 ? clamp01((p - a.at) / span) : 0;
+  const rawBlend = span > 0 ? clamp01((p - a.at) / span) : 0;
 
   return {
     fromShape: a.shape,
     toShape: b.shape,
-    blend,
-    rotationY: p * TWO_PI,
-    dispersion: p,
+    // Eased so each shape-to-shape transition glides rather than ramps linearly.
+    blend: smootherstep(rawBlend),
+    // A gentle 1.5 turns across the whole page — present but never busy.
+    rotationY: p * Math.PI * 1.5,
+    // Eased so the cloud holds its form, then blooms outward late in the scroll.
+    dispersion: smootherstep(p),
   };
 }

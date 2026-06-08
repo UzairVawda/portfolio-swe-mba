@@ -8,6 +8,16 @@ import { Section } from "@/components/section";
 export function Hero() {
   return (
     <Section className="relative flex min-h-[calc(100svh-4rem)] flex-col justify-center overflow-hidden py-12">
+      {/* A soft, theme-aware scrim that seats the headline over the particle
+          field — keeps the copy crisp while the cloud glows around it. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 60% 48% at 50% 46%, color-mix(in srgb, var(--background) 82%, transparent) 0%, color-mix(in srgb, var(--background) 45%, transparent) 42%, transparent 70%)",
+        }}
+      />
       <div className="relative z-10 flex flex-col items-center gap-10 text-center">
         <FadeUp>
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">

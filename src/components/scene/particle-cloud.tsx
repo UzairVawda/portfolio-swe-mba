@@ -1,8 +1,8 @@
 "use client";
 
 import { useFrame } from "@react-three/fiber";
-import { useMemo, useRef, type RefObject } from "react";
-import { AdditiveBlending, type Points as ThreePoints } from "three";
+import { useEffect, useMemo, useRef, type RefObject } from "react";
+import { AdditiveBlending, CanvasTexture, type Points as ThreePoints } from "three";
 
 import { scrollToState, type ShapeId } from "@/lib/scene/choreography";
 import {
@@ -18,8 +18,34 @@ type Props = {
   reduced: boolean;
 };
 
+// A soft radial sprite so each particle reads as a gentle glow rather than a
+// hard square — far easier on the eye behind body text, and more premium.
+function createSoftSprite(): CanvasTexture {
+  const size = 64;
+  const canvas = document.createElement("canvas");
+  canvas.width = canvas.height = size;
+  const ctx = canvas.getContext("2d")!;
+  const g = ctx.createRadialGradient(
+    size / 2,
+    size / 2,
+    0,
+    size / 2,
+    size / 2,
+    size / 2,
+  );
+  g.addColorStop(0, "rgba(255,255,255,1)");
+  g.addColorStop(0.35, "rgba(255,255,255,0.55)");
+  g.addColorStop(1, "rgba(255,255,255,0)");
+  ctx.fillStyle = g;
+  ctx.fillRect(0, 0, size, size);
+  return new CanvasTexture(canvas);
+}
+
 export function ParticleCloud({ count, scrollRef, pointerRef, reduced }: Props) {
   const pointsRef = useRef<ThreePoints>(null);
+
+  const sprite = useMemo(() => createSoftSprite(), []);
+  useEffect(() => () => sprite.dispose(), [sprite]);
 
   const { positions, targets } = useMemo(() => {
     const icosahedron = icosahedronPoints(count);
@@ -64,11 +90,13 @@ export function ParticleCloud({ count, scrollRef, pointerRef, reduced }: Props) 
         <bufferAttribute attach="attributes-position" args={[positions, 3]} />
       </bufferGeometry>
       <pointsMaterial
-        size={0.02}
+        size={0.05}
         sizeAttenuation
+        map={sprite}
+        alphaMap={sprite}
         transparent
-        opacity={0.25}
-        color="#8b8bff"
+        opacity={0.5}
+        color="#9b9bff"
         blending={AdditiveBlending}
         depthWrite={false}
       />
