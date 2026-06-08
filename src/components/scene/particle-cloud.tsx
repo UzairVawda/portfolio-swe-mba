@@ -32,7 +32,7 @@ export function ParticleCloud({ count, scrollRef, pointerRef, reduced }: Props) 
     return { positions: Float32Array.from(icosahedron), targets };
   }, [count]);
 
-  useFrame(() => {
+  useFrame((_state, delta) => {
     const points = pointsRef.current;
     if (!points) return;
 
@@ -40,7 +40,7 @@ export function ParticleCloud({ count, scrollRef, pointerRef, reduced }: Props) 
     const from = targets[state.fromShape];
     const to = targets[state.toShape];
     const live = points.geometry.attributes.position.array as Float32Array;
-    const ease = reduced ? 1 : 0.08;
+    const ease = reduced ? 1 : 1 - Math.pow(1 - 0.08, delta * 60);
 
     for (let i = 0; i < live.length; i++) {
       const target = from[i] + (to[i] - from[i]) * state.blend;
@@ -48,12 +48,14 @@ export function ParticleCloud({ count, scrollRef, pointerRef, reduced }: Props) 
     }
     points.geometry.attributes.position.needsUpdate = true;
 
+    // Y is scroll-driven (authoritative); X lerps toward pointer tilt.
     points.rotation.y = state.rotationY;
     points.scale.setScalar(1 + state.dispersion * 0.3);
 
     const pointer = pointerRef.current;
-    points.rotation.x += (pointer.y * 0.2 - points.rotation.x) * 0.05;
-    points.position.x += (pointer.x * 0.3 - points.position.x) * 0.05;
+    const pointerEase = 1 - Math.pow(0.95, delta * 60);
+    points.rotation.x += (pointer.y * 0.2 - points.rotation.x) * pointerEase;
+    points.position.x += (pointer.x * 0.3 - points.position.x) * pointerEase;
   });
 
   return (
