@@ -36,4 +36,22 @@ test.describe("route smoke tests", () => {
     const body = await response!.text();
     expect(body).toMatch(/Disallow: \/api\//);
   });
+
+  test("SWE page renders the particle canvas without console errors", async ({
+    page,
+  }) => {
+    const errors: string[] = [];
+    page.on("console", (msg) => {
+      if (msg.type() === "error") errors.push(msg.text());
+    });
+
+    await page.goto("/");
+    await expect(page.locator("canvas")).toBeVisible();
+
+    // Scroll the full page to exercise the scroll-driven animation.
+    await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+    await page.waitForTimeout(500);
+
+    expect(errors).toEqual([]);
+  });
 });
