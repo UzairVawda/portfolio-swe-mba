@@ -15,7 +15,7 @@ export function Hero() {
         className="pointer-events-none absolute inset-0 z-0"
         style={{
           background:
-            "radial-gradient(ellipse 60% 48% at 50% 46%, color-mix(in srgb, var(--background) 82%, transparent) 0%, color-mix(in srgb, var(--background) 45%, transparent) 42%, transparent 70%)",
+            "radial-gradient(ellipse 52% 60% at 50% 50%, color-mix(in srgb, var(--background) 92%, transparent) 0%, color-mix(in srgb, var(--background) 78%, transparent) 38%, color-mix(in srgb, var(--background) 30%, transparent) 60%, transparent 78%)",
         }}
       />
       <div className="relative z-10 flex flex-col items-center gap-10 text-center">
