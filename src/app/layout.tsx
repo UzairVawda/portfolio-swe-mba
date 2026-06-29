@@ -112,7 +112,9 @@ export default function RootLayout({
         >
           {children}
         </ThemeProvider>
-        <Analytics />
+        {/* Only on Vercel: the insights script is served by Vercel's edge, so
+            mounting it elsewhere (local prod, CI, self-host) just 404s. */}
+        {process.env.VERCEL ? <Analytics /> : null}
       </body>
     </html>
   );
