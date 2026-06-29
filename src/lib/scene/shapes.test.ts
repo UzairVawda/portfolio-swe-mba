@@ -1,6 +1,11 @@
 import { describe, expect, it } from "vitest";
 
-import { dispersedPoints, icosahedronPoints, spherePoints } from "./shapes";
+import {
+  dispersedPoints,
+  icosahedronEdges,
+  icosahedronPoints,
+  spherePoints,
+} from "./shapes";
 
 function radius(arr: Float32Array, i: number): number {
   const x = arr[i * 3];
@@ -29,6 +34,25 @@ describe("icosahedronPoints", () => {
 
   it("handles n=0", () => {
     expect(icosahedronPoints(0)).toHaveLength(0);
+  });
+});
+
+describe("icosahedronEdges", () => {
+  it("returns one segment per edge: 30 edges * 2 verts * 3 = 180 values", () => {
+    expect(icosahedronEdges()).toHaveLength(180);
+  });
+
+  it("places every endpoint on the unit sphere", () => {
+    const edges = icosahedronEdges();
+    for (let i = 0; i < edges.length / 3; i++) {
+      expect(radius(edges, i)).toBeCloseTo(1, 5);
+    }
+  });
+
+  it("is deterministic", () => {
+    expect(Array.from(icosahedronEdges())).toEqual(
+      Array.from(icosahedronEdges()),
+    );
   });
 });
 

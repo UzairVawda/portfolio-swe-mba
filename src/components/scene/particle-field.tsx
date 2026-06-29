@@ -48,7 +48,7 @@ export function ParticleField() {
     <div className="pointer-events-none fixed inset-0 -z-10" aria-hidden>
       <Canvas
         frameloop={frameloop}
-        dpr={[1, 1.5]}
+        dpr={[1, 2]}
         camera={{ position: [0, 0, 4], fov: 60 }}
         gl={{ antialias: false, alpha: true }}
       >

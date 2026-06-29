@@ -45,6 +45,24 @@ export function icosahedronPoints(n: number): Float32Array {
   return out;
 }
 
+// The icosahedron's 30 edges as line-segment endpoints (a, b, a, b, ...), so a
+// <lineSegments> renders the crisp wireframe the dots are sampled along.
+export function icosahedronEdges(): Float32Array {
+  const out = new Float32Array(EDGES.length * 2 * 3);
+  let o = 0;
+  for (const [a, b] of EDGES) {
+    const va = VERTICES[a];
+    const vb = VERTICES[b];
+    out[o++] = va[0];
+    out[o++] = va[1];
+    out[o++] = va[2];
+    out[o++] = vb[0];
+    out[o++] = vb[1];
+    out[o++] = vb[2];
+  }
+  return out;
+}
+
 // Even distribution on the unit sphere via the Fibonacci lattice.
 export function spherePoints(n: number): Float32Array {
   const out = new Float32Array(n * 3);

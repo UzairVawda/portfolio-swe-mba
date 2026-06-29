@@ -6,11 +6,20 @@ export interface SceneState {
   blend: number; // 0..1 within the current segment
   rotationY: number; // radians
   dispersion: number; // 0..1, drives an outward scale
+  lineOpacity: number; // 1 at the top, fading to 0 as the wireframe breaks up
+  dotOpacity: number; // 0 at the top, rising to 1 as the dots take over
 }
+
+// Scroll fraction over which the solid wireframe granulates into the dots. The
+// shape is held as the icosahedron across this window (see KEYFRAMES) so the
+// dots land exactly on the fading lines.
+const BREAKDOWN_END = 0.25;
 
 const KEYFRAMES: { at: number; shape: ShapeId }[] = [
   { at: 0, shape: "icosahedron" },
-  { at: 0.5, shape: "sphere" },
+  // Hold the icosahedron until the line->dot crossfade finishes.
+  { at: BREAKDOWN_END, shape: "icosahedron" },
+  { at: 0.6, shape: "sphere" },
   { at: 1, shape: "dispersed" },
 ];
 
@@ -41,6 +50,9 @@ export function scrollToState(progress: number): SceneState {
   const span = b.at - a.at;
   const rawBlend = span > 0 ? clamp01((p - a.at) / span) : 0;
 
+  // Crossfade the wireframe into the dots across the breakdown window.
+  const breakdown = smootherstep(clamp01(p / BREAKDOWN_END));
+
   return {
     fromShape: a.shape,
     toShape: b.shape,
@@ -50,5 +62,7 @@ export function scrollToState(progress: number): SceneState {
     rotationY: p * Math.PI * 1.5,
     // Eased so the cloud holds its form, then blooms outward late in the scroll.
     dispersion: smootherstep(p),
+    lineOpacity: 1 - breakdown,
+    dotOpacity: breakdown,
   };
 }
