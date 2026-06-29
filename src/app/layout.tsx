@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Analytics } from "@vercel/analytics/next";
 
 import { ThemeProvider } from "@/components/theme-provider";
 import { inter, jetbrainsMono, newsreader, satoshi } from "@/lib/fonts";
@@ -95,7 +96,10 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${satoshi.variable} ${jetbrainsMono.variable} ${newsreader.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-background text-foreground">
+      <body
+        suppressHydrationWarning
+        className="min-h-full flex flex-col bg-background text-foreground"
+      >
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
@@ -108,6 +112,9 @@ export default function RootLayout({
         >
           {children}
         </ThemeProvider>
+        {/* Only on Vercel: the insights script is served by Vercel's edge, so
+            mounting it elsewhere (local prod, CI, self-host) just 404s. */}
+        {process.env.VERCEL ? <Analytics /> : null}
       </body>
     </html>
   );

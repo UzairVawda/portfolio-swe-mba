@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import type { ReactNode } from "react";
 
 type Props = {
@@ -27,12 +27,11 @@ export function FadeUp({
   className,
   as = "div",
 }: Props) {
-  const prefersReducedMotion = useReducedMotion();
   const Component = components[as];
 
   return (
     <Component
-      initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
+      initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-10% 0px" }}
       transition={{

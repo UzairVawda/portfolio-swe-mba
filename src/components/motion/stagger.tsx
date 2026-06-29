@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import type { ReactNode } from "react";
 
 type StaggerProps = {
@@ -16,8 +16,6 @@ export function Stagger({
   delayChildren = 0.1,
   staggerChildren = 0.08,
 }: StaggerProps) {
-  const prefersReducedMotion = useReducedMotion();
-
   return (
     <motion.div
       initial="hidden"
@@ -25,9 +23,7 @@ export function Stagger({
       viewport={{ once: true, margin: "-10% 0px" }}
       variants={{
         hidden: {},
-        show: prefersReducedMotion
-          ? {}
-          : { transition: { delayChildren, staggerChildren } },
+        show: { transition: { delayChildren, staggerChildren } },
       }}
       className={className}
     >
