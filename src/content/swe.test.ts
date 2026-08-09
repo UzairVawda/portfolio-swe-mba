@@ -1,6 +1,14 @@
 import { describe, expect, it } from "vitest";
 
-import { about, archive, conceptProjects, experience, experienceIntro, projects } from "./swe";
+import {
+  about,
+  archive,
+  conceptProjects,
+  experience,
+  experienceIntro,
+  projects,
+  skills,
+} from "./swe";
 
 // Figures the site must never carry — employer-internal financials.
 const FORBIDDEN = [/\$\s?25\s?K/i, /\$\s?66\s?K/i];
@@ -100,5 +108,20 @@ describe("archive", () => {
       expect(item.description.trim()).not.toBe("");
       expect(item.stack.trim()).not.toBe("");
     }
+  });
+});
+
+describe("skills", () => {
+  it("is grouped by discipline, not by technology layer", () => {
+    expect(Object.keys(skills)).toEqual([
+      "Engineering & Platform",
+      "AI & Data",
+      "Product Management",
+      "Strategy & Advisory",
+    ]);
+  });
+
+  it("names AI work explicitly", () => {
+    expect(skills["AI & Data"]).toContain("AI-assisted development");
   });
 });

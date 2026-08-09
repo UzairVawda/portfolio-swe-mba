@@ -103,22 +103,63 @@ export const experience: Role[] = [
   },
 ];
 
-export const skills = {
-  Languages: ["TypeScript", "JavaScript", "Python", "C#", "HTML", "CSS", "LESS", "SASS"],
-  Frameworks: [
+export const skillsIntro = {
+  eyebrow: "05 · Skills",
+  heading: "What I bring to the table.",
+};
+
+export const skills: Record<string, string[]> = {
+  "Engineering & Platform": [
+    "TypeScript",
+    "JavaScript",
+    "Python",
+    "C#",
+    "SQL",
     "React",
+    "Next.js",
     "Vue",
+    "Angular",
     "Node",
     "Express",
-    "Vuetify",
-    "Vuex",
-    "Pinia",
-    "jQuery",
-    "Django",
-    "Bootstrap",
+    "GraphQL",
+    "Design systems",
+    "PostgreSQL",
+    "Firebase",
+    "MongoDB",
+    "Stripe",
+    "CI/CD",
   ],
-  Tools: ["Visual Studio", "SSMS", "SQL Workbench", "Tableau", "npm", "yarn"],
-  Databases: ["Firebase", "MySQL", "MongoDB", "MariaDB", "SQLite"],
+  "AI & Data": [
+    "AI-assisted development",
+    "Agentic workflows",
+    "LLMs",
+    "Vision-language models",
+    "Prompt engineering",
+    "Evaluation & benchmarking",
+    "RAG",
+    "Tableau",
+    "Data visualization",
+  ],
+  "Product Management": [
+    "Roadmapping",
+    "PRD authoring",
+    "MVP scoping",
+    "User research",
+    "Marketplace monetization",
+    "Unit economics",
+    "Trust & safety",
+    "KPIs & A/B testing",
+    "Agile / Scrum",
+  ],
+  "Strategy & Advisory": [
+    "Technology & product strategy",
+    "Business case development",
+    "Cost optimization",
+    "Market & competitive analysis",
+    "Go-to-market",
+    "Change management",
+    "Stakeholder management",
+  ],
 };
 
 export type Project = {

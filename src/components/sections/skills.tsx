@@ -1,7 +1,7 @@
 import { FadeUp } from "@/components/motion/fade-up";
 import { Stagger, StaggerItem } from "@/components/motion/stagger";
 import { Section } from "@/components/section";
-import { skills } from "@/content/swe";
+import { skills, skillsIntro } from "@/content/swe";
 
 const palette = [
   "bg-primary/15 text-foreground dark:bg-primary/20",
@@ -18,10 +18,10 @@ export function SkillsSection() {
       <div className="flex flex-col gap-12">
         <FadeUp className="flex flex-col items-center gap-3 text-center md:items-start md:text-left">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-            03 · Skills
+            {skillsIntro.eyebrow}
           </p>
           <h2 className="text-balance text-3xl font-medium tracking-tight sm:text-4xl">
-            The current toolkit.
+            {skillsIntro.heading}
           </h2>
         </FadeUp>
 
