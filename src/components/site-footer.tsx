@@ -9,6 +9,13 @@ export function SiteFooter({ variant }: { variant: "swe" | "mba" }) {
         <p className="font-mono">© {new Date().getFullYear()} Uzair Vawda</p>
         <div className="flex items-center gap-6">
           <Link
+            href="/resume.pdf"
+            download="Uzair-Vawda-CV.pdf"
+            className="transition-colors hover:text-foreground"
+          >
+            Resume
+          </Link>
+          <Link
             href="https://github.com/UzairVawda"
             target="_blank"
             rel="noreferrer noopener"

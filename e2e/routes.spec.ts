@@ -54,4 +54,17 @@ test.describe("route smoke tests", () => {
 
     expect(errors).toEqual([]);
   });
+
+  test("CV is served and linked from the SWE page", async ({ page, context }) => {
+    // Check that the PDF is served and has the correct content-type
+    const pdfResponse = await context.request.head("/resume.pdf");
+    expect(pdfResponse.ok()).toBe(true);
+    expect(pdfResponse.headers()["content-type"]).toMatch(/pdf/);
+
+    await page.goto("/");
+    const links = page.locator('a[href="/resume.pdf"]');
+    // Hero button, nav link, footer link.
+    await expect(links).toHaveCount(3);
+    await expect(links.first()).toHaveAttribute("download", "Uzair-Vawda-CV.pdf");
+  });
 });
