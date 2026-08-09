@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { about, experience } from "./swe";
+import { about, experience, experienceIntro } from "./swe";
 
 // Figures the site must never carry — employer-internal financials.
 const FORBIDDEN = [/\$\s?25\s?K/i, /\$\s?66\s?K/i];
@@ -8,7 +8,12 @@ const FORBIDDEN = [/\$\s?25\s?K/i, /\$\s?66\s?K/i];
 function allCopy(): string {
   return [
     ...about.paragraphs,
-    ...experience.flatMap((role) => [role.description ?? "", role.title]),
+    experienceIntro,
+    ...experience.flatMap((role) => [
+      role.description ?? "",
+      role.title,
+      ...role.highlights,
+    ]),
   ].join("\n");
 }
 
@@ -30,5 +35,26 @@ describe("swe content", () => {
       expect(role.company.trim()).not.toBe("");
       expect(role.title.trim()).not.toBe("");
     }
+  });
+});
+
+describe("experience", () => {
+  it("covers every employer from the CV", () => {
+    const companies = experience.map((role) => role.company);
+    expect(companies).toContain("Collins Aerospace");
+    expect(companies).toContain("J.P. Morgan Chase & Co.");
+    expect(companies).toContain("Dechert LLP");
+    expect(companies).toContain("MIST");
+  });
+
+  it("gives every role at least two highlights", () => {
+    for (const role of experience) {
+      expect(role.highlights.length).toBeGreaterThanOrEqual(2);
+    }
+  });
+
+  it("marks the Drexel co-op placements", () => {
+    const coops = experience.filter((role) => role.note === "Drexel co-op");
+    expect(coops).toHaveLength(2);
   });
 });

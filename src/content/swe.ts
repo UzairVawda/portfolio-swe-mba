@@ -8,54 +8,98 @@ export const about = {
   ],
 };
 
+export const experienceIntro =
+  "Five-plus years across aerospace, finance, and legal tech.";
+
 export type Role = {
   company: string;
   title: string;
   start: string;
   end: string;
   description: string;
+  highlights: string[];
+  note?: string;
 };
 
 export const experience: Role[] = [
   {
     company: "Collins Aerospace",
-    title: "Software Developer",
+    title: "Software Engineer",
     start: "Nov 2022",
     end: "Present",
     description:
-      "Building internal tooling and product features for aerospace systems.",
+      "Design systems, AI tooling, and platform work for aerospace engineering teams.",
+    highlights: [
+      "Built and shipped an internal React and TypeScript design system — 50+ accessible, themeable components on Figma's Simple Design System, published to the internal npm registry with Storybook, a live component dashboard, and a documented release pipeline. Open to every developer in the org and adopted by 5+ projects.",
+      "Built Poolside, an in-house AI agent that learns the design system's patterns and generates components on demand — cutting component creation time by up to 80% and retiring the paid tooling we had been leaning on. Five custom, project-specific components have shipped through it, and it is rolling out to new teams.",
+      "Built Skyler, an Angular configuration interface for a radar sensor platform: live telemetry visualizations — array tilt, azimuth compass, pitch and roll attitude indicators, MapLibre GL mapping — plus full scan-mission management across STARE, PPI, RHI, and raster patterns.",
+      "Led a platform-wide TypeScript migration and the move to modern CSS with Tailwind, improving maintainability and developer experience.",
+      "Owned end-to-end platform work — performance, testing infrastructure, observability, and CI/CD — alongside React and GraphQL application development.",
+    ],
   },
   {
     company: "Collins Aerospace",
-    title: "Infrastructure Project Manager · Leadership Program",
+    title: "Infrastructure Project Manager · Leadership Development Program",
     start: "Mar 2022",
     end: "Oct 2022",
     description:
-      "Drove infrastructure rollout projects across multiple business units as part of the leadership rotation.",
+      "Ran infrastructure delivery across business units during the second rotation.",
+    highlights: [
+      "Managed a portfolio of 6 infrastructure projects across lifecycle stages, delivering 2 to completion while balancing competing stakeholders.",
+      "Introduced Scrum practices that lifted team velocity and cross-functional collaboration.",
+      "Standardized company-wide PM artifacts — project charter, RACI matrix — that were adopted well beyond my own team.",
+    ],
   },
   {
     company: "Collins Aerospace",
-    title: "Applications Licensing Specialist · Leadership Program",
+    title: "Applications Licensing Specialist · Leadership Development Program",
     start: "Jul 2021",
     end: "Feb 2022",
     description:
-      "Managed enterprise application licensing and vendor relationships during the first rotation of the leadership program.",
+      "Owned enterprise application licensing during the first rotation.",
+    highlights: [
+      "Drove a software license rationalization that cut license count 18% year over year.",
+      "Consolidated 75+ applications across 6 servers, reducing redundancy and improving accessibility.",
+      "Built a React and Python license-tracking tool giving stakeholders real-time visibility into server status.",
+    ],
   },
   {
-    company: "JP Morgan Chase & Co.",
-    title: "Front End Experience Developer",
+    company: "J.P. Morgan Chase & Co.",
+    title: "Front-End Experience Developer",
     start: "Apr 2020",
     end: "Oct 2020",
     description:
-      "Built internal banking experiences with React across the firm's wealth management platform.",
+      "Shared front-end components for the firm's public-facing experiences.",
+    note: "Drexel co-op",
+    highlights: [
+      "Built reusable JavaScript and HTML5 components deployed across multiple sites, establishing shared front-end patterns.",
+      "Delivered responsive, maintainable code against stakeholder requirements, using BitBucket and SonarQube for version control and code quality.",
+    ],
   },
   {
     company: "Dechert LLP",
     title: "IT Applications Developer",
     start: "Apr 2019",
     end: "Oct 2019",
+    description: "Reporting automation and analytics for internal legal teams.",
+    note: "Drexel co-op",
+    highlights: [
+      "Automated reporting and ETL workflows in SQL and Python for internal clients.",
+      "Built Tableau dashboards surfacing application usage, performance, and adoption patterns.",
+    ],
+  },
+  {
+    company: "MIST",
+    title: "Finance Coordinator · Muslim Interscholastic Tournament",
+    start: "2017",
+    end: "2021",
     description:
-      "Developed internal legal-tech applications used by attorneys and IT staff across the firm.",
+      "Budget ownership and live event production across four tournament cycles.",
+    highlights: [
+      "Owned the tournament budget across four cycles, managing spend against sponsorship revenue and growing the budget 5–20% year over year.",
+      "Secured and managed corporate sponsors including PwC — owning outreach, deliverables, and the relationship.",
+      "Ran live interscholastic competitions end to end: run-of-show, speaker and judge coordination, venue and vendor management, volunteer staffing, and day-of execution across concurrent tracks.",
+    ],
   },
 ];
 
