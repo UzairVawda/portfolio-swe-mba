@@ -108,6 +108,11 @@ export const skillsIntro = {
   heading: "What I bring to the table.",
 };
 
+export const educationIntro = {
+  eyebrow: "06 · Education & Certifications",
+  heading: "Formal training, in progress.",
+};
+
 export const skills: Record<string, string[]> = {
   "Engineering & Platform": [
     "TypeScript",
@@ -253,22 +258,24 @@ export const education: EducationEntry[] = [
   {
     school: "Baruch College · Zicklin School of Business",
     program: "Master of Business Administration",
-    detail: "In progress",
+    detail:
+      "Concentrating in Artificial Intelligence & Product Development · expected June 2028",
   },
   {
     school: "Drexel University · College of Computing and Informatics",
     program: "B.S. Software Engineering",
-    detail: "Graduated",
+    detail: "3.5 GPA · co-op program · 2021",
   },
 ];
 
 export const certifications = [
-  { name: "Certified Scrum Master", issuer: "Scrum Alliance", year: "2022" },
   {
-    name: "Certified Scrum Product Owner",
-    issuer: "Scrum Alliance",
-    year: "2022",
+    name: "Project Management Professional (PMP)",
+    issuer: "Project Management Institute",
+    year: "Expected Dec 2026",
   },
+  { name: "Certified Scrum Product Owner", issuer: "Scrum Alliance", year: "2022" },
+  { name: "Certified Scrum Master", issuer: "Scrum Alliance", year: "2022" },
   {
     name: "100 Days of Front-End Development",
     issuer: "Udemy",

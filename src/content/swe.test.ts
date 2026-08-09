@@ -3,7 +3,9 @@ import { describe, expect, it } from "vitest";
 import {
   about,
   archive,
+  certifications,
   conceptProjects,
+  education,
   experience,
   experienceIntro,
   projects,
@@ -123,5 +125,19 @@ describe("skills", () => {
 
   it("names AI work explicitly", () => {
     expect(skills["AI & Data"]).toContain("AI-assisted development");
+  });
+});
+
+describe("education", () => {
+  it("names the MBA concentration and the expected date", () => {
+    const mba = education.find((e) => e.school.includes("Baruch"));
+    expect(mba?.detail).toMatch(/Artificial Intelligence & Product Development/);
+    expect(mba?.detail).toMatch(/2028/);
+  });
+
+  it("includes the PMP in progress", () => {
+    expect(certifications.map((c) => c.name)).toContain(
+      "Project Management Professional (PMP)",
+    );
   });
 });
