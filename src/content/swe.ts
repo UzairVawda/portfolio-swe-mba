@@ -108,11 +108,6 @@ export const skillsIntro = {
   heading: "What I bring to the table.",
 };
 
-export const educationIntro = {
-  eyebrow: "06 · Education & Certifications",
-  heading: "Formal training, in progress.",
-};
-
 export const skills: Record<string, string[]> = {
   "Engineering & Platform": [
     "TypeScript",
@@ -252,6 +247,11 @@ export type EducationEntry = {
   school: string;
   program: string;
   detail: string;
+};
+
+export const educationIntro = {
+  eyebrow: "06 · Education & Certifications",
+  heading: "Formal training, in progress.",
 };
 
 export const education: EducationEntry[] = [
