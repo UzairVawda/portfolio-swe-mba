@@ -5,6 +5,7 @@ import { Hero } from "@/components/hero/hero";
 import { FadeUp } from "@/components/motion/fade-up";
 import { Section } from "@/components/section";
 import { AboutSection } from "@/components/sections/about";
+import { ArchiveSection } from "@/components/sections/archive";
 import { EducationSection } from "@/components/sections/education";
 import { ExperienceSection } from "@/components/sections/experience";
 import { InterestsSection } from "@/components/sections/interests";
@@ -25,6 +26,7 @@ export default function SwePage() {
       <ExperienceSection />
       <SkillsSection />
       <ProjectsSection />
+      <ArchiveSection />
       <EducationSection />
       <InterestsSection />
       <Section className="py-24">

@@ -235,6 +235,94 @@ export const certifications = [
   },
 ];
 
+export type ArchiveGroup = {
+  group: string;
+  items: { name: string; description: string; stack: string }[];
+};
+
+export const archive: ArchiveGroup[] = [
+  {
+    group: "Marketplaces & Products",
+    items: [
+      {
+        name: "ParkForLess",
+        description:
+          "The first run at peer-to-peer parking, and the direct precursor to JHParking.",
+        stack: "React · Firebase · Leaflet",
+      },
+      {
+        name: "718SNKRS",
+        description:
+          "A sneaker storefront with real auth, sessions, and checkout.",
+        stack: "Express · MongoDB · Stripe",
+      },
+      {
+        name: "Reddit Clone",
+        description:
+          "A full Reddit-style app — posts, votes, communities, the whole thing.",
+        stack: "Next.js · TypeScript · Chakra UI · Firebase · Recoil",
+      },
+    ],
+  },
+  {
+    group: "Web & Full-Stack",
+    items: [
+      {
+        name: "DragonFeed",
+        description: "A campus events and news aggregator for Drexel.",
+        stack: "Academic project",
+      },
+      {
+        name: "Curriculum App",
+        description: "A course and curriculum planning tool, built for INFO 420.",
+        stack: "Vue · Node",
+      },
+      {
+        name: "Project Tracker",
+        description: "Project tracking with live updates and a clean board view.",
+        stack: "Vue · Firebase · Vuetify",
+      },
+      {
+        name: "ExpressBlog",
+        description: "A blogging platform with authentication and drafts.",
+        stack: "Express · MongoDB · EJS",
+      },
+      {
+        name: "ChatApp",
+        description: "Real-time chat over sockets.",
+        stack: "MERN",
+      },
+      {
+        name: "Dynamic Site / Hosting",
+        description: "A server-rendered dynamic site, deployed and self-hosted.",
+        stack: "Express · EJS · MongoDB",
+      },
+      {
+        name: "Web Portfolio",
+        description: "Earlier versions of this site.",
+        stack: "uzairvawda.me",
+      },
+    ],
+  },
+  {
+    group: "Automation & Data",
+    items: [
+      {
+        name: "Send a Script",
+        description:
+          "Python automation that delivers movie scripts over iMessage, Messenger, and WhatsApp.",
+        stack: "Python",
+      },
+      {
+        name: "Investment Tracker",
+        description:
+          "Trade history, monthly rollups, and metrics over my own investing data.",
+        stack: "Python · Visualization",
+      },
+    ],
+  },
+];
+
 export type Interest = {
   label: string;
   blurb: string;

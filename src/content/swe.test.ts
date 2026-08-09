@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { about, conceptProjects, experience, experienceIntro, projects } from "./swe";
+import { about, archive, conceptProjects, experience, experienceIntro, projects } from "./swe";
 
 // Figures the site must never carry — employer-internal financials.
 const FORBIDDEN = [/\$\s?25\s?K/i, /\$\s?66\s?K/i];
@@ -81,5 +81,24 @@ describe("projects", () => {
       "MBA-Engineered",
       "Connect.",
     ]);
+  });
+});
+
+describe("archive", () => {
+  it("groups earlier work into the three CV categories", () => {
+    expect(archive.map((g) => g.group)).toEqual([
+      "Marketplaces & Products",
+      "Web & Full-Stack",
+      "Automation & Data",
+    ]);
+  });
+
+  it("gives every archived project a description and a stack", () => {
+    const items = archive.flatMap((g) => g.items);
+    expect(items.length).toBe(12);
+    for (const item of items) {
+      expect(item.description.trim()).not.toBe("");
+      expect(item.stack.trim()).not.toBe("");
+    }
   });
 });
