@@ -125,22 +125,80 @@ export type Project = {
   name: string;
   role: string;
   period: string;
+  status: string;
   description: string;
   stack: string[];
+  helpWanted: string;
   links: { label: string; href: string }[];
+};
+
+export type ConceptProject = {
+  name: string;
+  status: string;
+  description: string;
+  stack: string[];
 };
 
 export const projects: Project[] = [
   {
     name: "JHParking",
-    role: "Full Stack Developer",
+    role: "Founder · Full-Stack",
     period: "Jun 2025 — Present",
+    status: "Piloting · 7 beta users",
     description:
-      "A peer-to-peer marketplace for renting parking spots. Owners list driveway and garage availability; drivers book and pay through the app. The live booking layer runs on Firestore, payments on Stripe.",
+      "A peer-to-peer parking marketplace. People with a driveway or an empty spot list it; drivers book and pay by the hour. React and Tailwind on the front, Firestore running the live booking layer, Stripe handling payments. It is deliberately scoped as a focused local solution rather than an everywhere-app, and it is in the hands of seven beta users right now. This is the second run at the idea — the first was ParkForLess, which I shelved and came back to because I still thought it was right.",
     stack: ["React", "TailwindCSS", "Stripe", "Firestore"],
-    links: [
-      { label: "Site", href: "https://jhparking.app" },
-    ],
+    helpWanted:
+      "I would happily talk to anyone who has built a two-sided marketplace — especially about cold-starting the supply side.",
+    links: [{ label: "Site", href: "https://jhparking.app" }],
+  },
+  {
+    name: "MatAI",
+    role: "Founder · Product & Engineering",
+    period: "Jul 2026 — Present",
+    status: "In development",
+    description:
+      "An AI system that watches jiu jitsu footage and hands back a timestamped map of the match: what position you were in and when, where submissions were attempted, and what to work on. The hard part is that conventional tracking falls apart here — in grappling two athletes overlap almost completely and trackers permanently swap their identities. So instead of tracking two bodies, it classifies the position they are in together. Closed guard describes a relationship, not a person. Roles bind to athletes through appearance descriptors captured once, up front, and scramble and unclear are first-class labels so the model can decline to guess rather than confabulate.",
+    stack: ["Python", "FastAPI", "ffmpeg", "Claude API", "SQLite"],
+    helpWanted:
+      "I would love to hear from anyone working on video understanding or evaluation design — and from anyone willing to let me test against their footage.",
+    links: [],
+  },
+  {
+    name: "CoachMe",
+    role: "Founder · Product & Technical Design",
+    period: "In development",
+    status: "Design stage · 5 coaches committed",
+    description:
+      "A marketplace where competitive jiu jitsu athletes buy video review from vetted high-level coaches, with feedback anchored to the footage itself — notes pinned to exact timestamps, voiceover recorded against the timeline, drawings on paused frames. The money layer runs on Stripe Connect using separate charges and transfers rather than destination charges, specifically so funds can sit in escrow between purchase and acceptance; destination charges settle immediately and leave nothing to hold, which would make the delivery guarantee unenforceable. Five coaches are committed. No athletes yet — that is the next problem.",
+    stack: ["Next.js", "Expo", "Postgres", "Stripe Connect", "Mux", "Inngest"],
+    helpWanted:
+      "Looking for athletes to test with, and for anyone who has run trust-and-safety or dispute flows on a marketplace.",
+    links: [],
+  },
+];
+
+export const conceptProjects: ConceptProject[] = [
+  {
+    name: "PageKeeper",
+    status: "Concept · full PRD",
+    description:
+      "A reading-habit app — streaks, goals, gentle friend accountability, a reading journal. Specced end to end, including the security and compliance architecture and an intentionally un-manipulative monetization model.",
+    stack: ["React Native", "Firebase"],
+  },
+  {
+    name: "MBA-Engineered",
+    status: "Ongoing",
+    description:
+      "One small consulting tool per MBA class — an IT maturity assessment, a market-sizing dashboard, a Porter's Five Forces analyzer, an Ask My MBA retrieval app. The premise is that advising on a deliverable and building it should not be different people.",
+    stack: ["Next.js", "RAG"],
+  },
+  {
+    name: "Connect.",
+    status: "Concept · prototype",
+    description:
+      "An all-in-one platform pairing companies with influencers to optimize reach. Early product and business framing, built as a Vue prototype.",
+    stack: ["Vue"],
   },
 ];
 

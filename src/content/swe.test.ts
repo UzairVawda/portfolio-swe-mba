@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { about, experience, experienceIntro } from "./swe";
+import { about, conceptProjects, experience, experienceIntro, projects } from "./swe";
 
 // Figures the site must never carry — employer-internal financials.
 const FORBIDDEN = [/\$\s?25\s?K/i, /\$\s?66\s?K/i];
@@ -56,5 +56,30 @@ describe("experience", () => {
   it("marks the Drexel co-op placements", () => {
     const coops = experience.filter((role) => role.note === "Drexel co-op");
     expect(coops).toHaveLength(2);
+  });
+});
+
+describe("projects", () => {
+  it("features the three active ventures", () => {
+    expect(projects.map((p) => p.name)).toEqual([
+      "JHParking",
+      "MatAI",
+      "CoachMe",
+    ]);
+  });
+
+  it("labels every project with a status and an invitation", () => {
+    for (const project of projects) {
+      expect(project.status.trim()).not.toBe("");
+      expect(project.helpWanted.trim()).not.toBe("");
+    }
+  });
+
+  it("keeps the earlier concepts too", () => {
+    expect(conceptProjects.map((p) => p.name)).toEqual([
+      "PageKeeper",
+      "MBA-Engineered",
+      "Connect.",
+    ]);
   });
 });
