@@ -1,4 +1,4 @@
-import { Camera, Coffee, Languages, Plane, Swords } from "lucide-react";
+import { Camera, Coffee, Plane, Swords } from "lucide-react";
 
 import { FadeUp } from "@/components/motion/fade-up";
 import { Stagger, StaggerItem } from "@/components/motion/stagger";
@@ -10,7 +10,6 @@ const iconMap: Record<Interest["icon"], typeof Camera> = {
   camera: Camera,
   coffee: Coffee,
   plane: Plane,
-  languages: Languages,
 };
 
 const surfaces = [

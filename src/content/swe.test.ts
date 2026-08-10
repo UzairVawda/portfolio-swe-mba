@@ -214,13 +214,12 @@ describe("about and interests", () => {
     expect(about.cvLine.label.trim()).not.toBe("");
   });
 
-  it("keeps all five off-screen cards", () => {
+  it("keeps all four off-screen cards", () => {
     expect(interests.map((i) => i.icon)).toEqual([
       "swords",
       "camera",
       "coffee",
       "plane",
-      "languages",
     ]);
   });
 

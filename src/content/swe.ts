@@ -42,7 +42,7 @@ export const experience: Role[] = [
     description:
       "Design systems, AI tooling, and platform work for aerospace engineering teams.",
     highlights: [
-      "Built and shipped an internal React and TypeScript design system — 50+ accessible, themeable components on Figma's Simple Design System, published to the internal npm registry with Storybook, a live component dashboard, and a documented release pipeline. Open to every developer in the org and adopted by 5+ projects. Worked with design to integrate the package into Figma itself, so a design emits code snippets built from its components and developers copy and paste the UI — there are always tweaks to make, but it cuts the time to build a screen by up to 90%.",
+      "Built and shipped an internal React and TypeScript design system — 50+ accessible, themeable components on Figma's Simple Design System, published to the internal npm registry with Storybook, a live component dashboard, and a documented release pipeline. Open to every developer in the org and adopted by 5+ projects. Worked with design to integrate the package into Figma itself, so a design emits code snippets built from its components and developers copy and paste the UI — there are always tweaks to make, but where a component drops in untouched, mostly the non-interactive ones, it cuts the time to build a screen by up to 90%.",
       "Built Poolside, an in-house AI agent that learns the design system's patterns and generates components on demand — cutting component creation time by up to 80% and retiring the paid tooling we had been leaning on. Five custom, project-specific components have shipped through it, and it is rolling out to new teams.",
       "Built Skyler, an Angular configuration interface for a radar sensor platform: live telemetry visualizations — array tilt, azimuth compass, pitch and roll attitude indicators, MapLibre GL mapping — plus full scan-mission management across STARE, PPI, RHI, and raster patterns.",
       "Led a platform-wide TypeScript migration and the move to modern CSS with Tailwind, improving maintainability and developer experience.",
@@ -405,7 +405,7 @@ export const interestsIntro = {
 export type Interest = {
   label: string;
   blurb: string;
-  icon: "swords" | "camera" | "coffee" | "plane" | "languages";
+  icon: "swords" | "camera" | "coffee" | "plane";
 };
 
 export const interests: Interest[] = [
@@ -431,12 +431,6 @@ export const interests: Interest[] = [
     blurb:
       "Notes from new cities have a habit of turning into side projects a few months later.",
     icon: "plane",
-  },
-  {
-    label: "Languages",
-    blurb:
-      "English, Urdu, and Gujarati at home; Spanish well enough to get into trouble and most of the way out.",
-    icon: "languages",
   },
 ];
 

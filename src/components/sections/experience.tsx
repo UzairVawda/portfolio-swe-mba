@@ -5,7 +5,7 @@ import { experience, experienceIntro } from "@/content/swe";
 
 export function ExperienceSection() {
   return (
-    <Section id="experience" className="py-24">
+    <Section id="experience" className="py-24" scrim>
       <div className="flex flex-col gap-12">
         <FadeUp className="flex flex-col items-center gap-3 text-center md:items-start md:text-left">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
