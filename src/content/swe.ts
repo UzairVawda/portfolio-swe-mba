@@ -7,8 +7,8 @@ export const aboutIntro = {
 
 export const about = {
   paragraphs: [
-    "Most of what I build starts with something I kept running into. JHParking is a peer-to-peer parking marketplace — I took a first run at it years ago as ParkForLess, shelved it, and came back because I still thought the idea was right. MatAI and CoachMe both came out of the jiu jitsu gym. The pattern is roughly: notice the friction, sit with it longer than is reasonable, then build the thing.",
-    "By day I'm a software engineer at Collins Aerospace. Most of my time there has gone into a design system that a handful of teams now build on, and — more recently — an AI agent that writes components against it. That second part has changed how I work more than anything else in the last few years.",
+    "JHParking started out of sheer frustration. During COVID more people on my block bought cars while the number of street spots stayed exactly where it was, and the choice became parking up to a mile from home or circling the same blocks for up to an hour at peak times. What it does today is let a friends group share where they parked and when they are leaving; the paid marketplace is where it is going. I had taken a run at this years ago as ParkForLess and put it down; the idea kept looking right, so I picked it back up. MatAI and CoachMe both came out of the jiu jitsu gym.",
+    "By day I'm a software engineer at Collins Aerospace. Most of my time there has gone into a design system, which exists because so much of UI development is building the same generic components over and over, each one re-themed and restyled in company colors. A handful of teams now build on it, and — more recently — an AI agent writes components against it. That second part has changed how I work more than anything else in the last few years.",
     "Evenings are an MBA at Baruch's Zicklin School, concentrating in AI and product development. The point isn't to stop engineering. It's to be the person who can write the business case and then go build the thing it argues for.",
   ],
   cvLine: {
@@ -40,7 +40,7 @@ export const experience: Role[] = [
     description:
       "Design systems, AI tooling, and platform work for aerospace engineering teams.",
     highlights: [
-      "Built and shipped an internal React and TypeScript design system — 50+ accessible, themeable components on Figma's Simple Design System, published to the internal npm registry with Storybook, a live component dashboard, and a documented release pipeline. Open to every developer in the org and adopted by 5+ projects.",
+      "Built and shipped an internal React and TypeScript design system — 50+ accessible, themeable components on Figma's Simple Design System, published to the internal npm registry with Storybook, a live component dashboard, and a documented release pipeline. Open to every developer in the org and adopted by 5+ projects. Worked with design to integrate the package into Figma itself, so a design emits code snippets built from its components and developers copy and paste the UI — there are always tweaks to make, but it cuts the time to build a screen by up to 90%.",
       "Built Poolside, an in-house AI agent that learns the design system's patterns and generates components on demand — cutting component creation time by up to 80% and retiring the paid tooling we had been leaning on. Five custom, project-specific components have shipped through it, and it is rolling out to new teams.",
       "Built Skyler, an Angular configuration interface for a radar sensor platform: live telemetry visualizations — array tilt, azimuth compass, pitch and roll attitude indicators, MapLibre GL mapping — plus full scan-mission management across STARE, PPI, RHI, and raster patterns.",
       "Led a platform-wide TypeScript migration and the move to modern CSS with Tailwind, improving maintainability and developer experience.",
@@ -197,7 +197,7 @@ export const projects: Project[] = [
     period: "Jun 2025 — Present",
     status: "Piloting · 7 beta users",
     description:
-      "A peer-to-peer parking marketplace. People with a driveway or an empty spot list it; drivers book and pay by the hour. React and Tailwind on the front, Firestore running the live booking layer, Stripe handling payments. It is deliberately scoped as a focused local solution rather than an everywhere-app, and it is in the hands of seven beta users right now. This is the second run at the idea — the first was ParkForLess, which I shelved and came back to because I still thought it was right.",
+      "It started on my own block during COVID, when more neighbors bought cars and the number of street spots did not move. What exists today is the sharing layer: you post where you parked and when you are leaving to a friends group, and an integrated chat lets little neighborhood communities form around it. That is what the seven beta users are on. Where it is heading is the paid peer-to-peer marketplace — people with a driveway or an empty spot list it, drivers book and pay by the hour — and Stripe is wired in for that layer. React and Tailwind on the front, Firestore running the live layer. It is deliberately scoped as a focused local solution rather than an everywhere-app. This is the second run at the idea — the first was ParkForLess, which I shelved and came back to because I still thought it was right.",
     stack: ["React", "TailwindCSS", "Stripe", "Firestore"],
     helpWanted:
       "I would happily talk to anyone who has built a two-sided marketplace — especially about cold-starting the supply side.",
@@ -209,7 +209,7 @@ export const projects: Project[] = [
     period: "Jul 2026 — Present",
     status: "In development",
     description:
-      "An AI system that watches jiu jitsu footage and hands back a timestamped map of the match: what position you were in and when, where submissions were attempted, and what to work on. The hard part is that conventional tracking falls apart here — in grappling two athletes overlap almost completely and trackers permanently swap their identities. So instead of tracking two bodies, it classifies the position they are in together. Closed guard describes a relationship, not a person. Roles bind to athletes through appearance descriptors captured once, up front, and scramble and unclear are first-class labels so the model can decline to guess rather than confabulate.",
+      "A passion project that came from two directions at once: I hit a point where reviewing my own film stopped being useful without help, and it is also just an interesting piece of software to build. It is an AI system that watches jiu jitsu footage and hands back a timestamped map of the match: what position you were in and when, where submissions were attempted, and what to work on. The hard part is that conventional tracking falls apart here — in grappling two athletes overlap almost completely and trackers permanently swap their identities. So instead of tracking two bodies, it classifies the position they are in together. Closed guard describes a relationship, not a person. Roles bind to athletes through appearance descriptors captured once, up front, and scramble and unclear are first-class labels so the model can decline to guess rather than confabulate.",
     stack: ["Python", "FastAPI", "ffmpeg", "Claude API", "SQLite"],
     helpWanted:
       "I would love to hear from anyone working on video understanding or evaluation design — and from anyone willing to let me test against their footage.",
@@ -221,7 +221,7 @@ export const projects: Project[] = [
     period: "In development",
     status: "Design stage · 5 coaches committed",
     description:
-      "A marketplace where competitive jiu jitsu athletes buy video review from vetted high-level coaches, with feedback anchored to the footage itself — notes pinned to exact timestamps, voiceover recorded against the timeline, drawings on paused frames. The money layer runs on Stripe Connect using separate charges and transfers rather than destination charges, specifically so funds can sit in escrow between purchase and acceptance; destination charges settle immediately and leave nothing to hold, which would make the delivery guarantee unenforceable. Five coaches are committed. No athletes yet — that is the next problem.",
+      "Some of the best black belts in the world have no platform to teach from, and no straightforward way to earn from what they know. That came up in conversations at the gym, and I kept landing on the same gap on my own. CoachMe is an attempt at one: a marketplace where competitive jiu jitsu athletes buy video review from independently verified high-level coaches, with feedback anchored to the footage itself — notes pinned to exact timestamps, voiceover recorded against the timeline, drawings on paused frames. The money layer runs on Stripe Connect using separate charges and transfers rather than destination charges, specifically so funds can sit in escrow between purchase and acceptance; destination charges settle immediately and leave nothing to hold, which would make the delivery guarantee unenforceable. Five coaches are committed. No athletes yet — that is the next problem.",
     stack: ["Next.js", "Expo", "Postgres", "Stripe Connect", "Mux", "Inngest"],
     helpWanted:
       "Looking for athletes to test with, and for anyone who has run trust-and-safety or dispute flows on a marketplace.",
@@ -396,7 +396,7 @@ export const interests: Interest[] = [
   {
     label: "Jiu jitsu",
     blurb:
-      "The mats keep me honest about losing and learning. Two of my three side projects came out of this room, which tells you roughly how much of my head it occupies.",
+      "Three years in, a blue belt under Ryan Quinn out of Queens Jiu Jitsu, and a semi-active competitor. I play guard, which is not typical for a big man, and most of what I enjoy is cross-training and learning new moves. What keeps me coming back is the detailed yet aggressive nature of it.",
     icon: "swords",
   },
   {
