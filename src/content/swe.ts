@@ -444,4 +444,4 @@ export const mbaTeaser = {
 // dollar-figure and tenure guard tests in swe.test.ts can scan it — the
 // string previously lived inline in page.tsx, outside their reach.
 export const metaDescription =
-  "Software engineer and MBA candidate in NYC. Design systems and AI tooling at Collins Aerospace; a parking marketplace and two jiu jitsu products on the side. Five-plus years across aerospace, finance, and legal tech.";
+  "Software engineer and MBA candidate in NYC. Design systems and AI tooling at Collins Aerospace; a neighborhood parking app for friends and two jiu jitsu products on the side. Five-plus years across aerospace, finance, and legal tech.";
