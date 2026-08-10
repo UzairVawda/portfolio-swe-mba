@@ -69,7 +69,7 @@ export function ProjectsSection() {
 
               <p className="max-w-3xl text-pretty text-sm leading-relaxed text-muted-foreground/90">
                 <span className="font-medium text-foreground">
-                  Want in?{" "}
+                  {projectsIntro.helpWantedLabel}
                 </span>
                 {project.helpWanted}
               </p>

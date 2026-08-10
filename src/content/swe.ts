@@ -196,6 +196,7 @@ export const projectsIntro = {
   eyebrow: "03 · Projects",
   heading: "Everything I'm building, at whatever stage it's at.",
   conceptsLabel: "Earlier concepts",
+  helpWantedLabel: "Want in? ",
 };
 
 export const projects: Project[] = [

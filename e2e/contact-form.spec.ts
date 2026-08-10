@@ -24,7 +24,10 @@ test.describe("MBA contact form", () => {
   });
 
   test("shows success state when API responds 200", async ({ page }) => {
+    let submitted: Record<string, unknown> = {};
+
     await page.route("**/api/contact", async (route) => {
+      submitted = route.request().postDataJSON();
       await route.fulfill({
         status: 200,
         contentType: "application/json",
@@ -42,6 +45,7 @@ test.describe("MBA contact form", () => {
     await expect(
       page.getByRole("heading", { name: /Thanks — message received\./i }),
     ).toBeVisible();
+    expect(submitted.source).toBe("mba");
   });
 
   test("surfaces rate-limit response", async ({ page }) => {

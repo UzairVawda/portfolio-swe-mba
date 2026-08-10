@@ -22,7 +22,7 @@ export function ContactForm({
   source = "mba",
 }: {
   source?: "portfolio" | "mba";
-} = {}) {
+}) {
   const [state, setState] = useState<SubmissionState>({ status: "idle" });
 
   const {

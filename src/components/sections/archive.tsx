@@ -25,7 +25,10 @@ export function ArchiveSection() {
         </FadeUp>
 
         <FadeUp delay={0.1}>
-          <Accordion className="rounded-3xl border border-border bg-card px-6 py-2 md:px-8">
+          <Accordion
+            hiddenUntilFound
+            className="rounded-3xl border border-border bg-card px-6 py-2 md:px-8"
+          >
             {archive.map((group) => (
               <AccordionItem key={group.group} value={group.group}>
                 <AccordionTrigger className="py-5 text-base font-medium">
@@ -41,9 +44,9 @@ export function ArchiveSection() {
                         key={item.name}
                         className="flex flex-col gap-1 border-l-2 border-border pl-4"
                       >
-                        <h3 className="text-sm font-medium tracking-tight">
+                        <h4 className="text-sm font-medium tracking-tight">
                           {item.name}
-                        </h3>
+                        </h4>
                         <p className="text-sm leading-relaxed text-muted-foreground">
                           {item.description}
                         </p>

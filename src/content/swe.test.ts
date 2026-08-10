@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 
+import * as sweContent from "./swe";
 import {
   about,
   aboutIntro,
@@ -15,7 +16,6 @@ import {
   interests,
   interestsIntro,
   mbaTeaser,
-  metaDescription,
   projects,
   projectsIntro,
   skills,
@@ -39,34 +39,20 @@ function collectStrings(value: unknown, out: string[] = []): string[] {
   return out;
 }
 
-// Every prose-bearing export in this file. Covering the export itself
-// (rather than hand-picked fields) means new fields on any of these are
-// swept in automatically — only wholly new exports need to be added here.
+// Every prose-bearing export in this file, swept in structurally rather than
+// hand-listed. `sweContent` is the module namespace object, so walking its
+// values covers every current export automatically and — critically — every
+// export added in the future too. Type-only exports (Role, Project, etc.)
+// vanish at runtime and simply don't appear here, which is fine.
 function allCopy(): string {
   return collectStrings([
-    aboutIntro,
-    about,
-    experienceIntro,
-    experience,
-    skillsIntro,
+    Object.values(sweContent),
     // `skills` is a Record<discipline, string[]>, so the group names live
-    // as object keys rather than values — collectStrings only walks
-    // values, so the discipline names are pulled in explicitly here.
+    // as object keys rather than values. collectStrings only walks values,
+    // and Object.values(sweContent) above only pulls in `skills`'s own
+    // *values*, so the discipline names would otherwise be silently
+    // dropped — keep this explicit provision so that coverage survives.
     Object.keys(skills),
-    skills,
-    projectsIntro,
-    projects,
-    conceptProjects,
-    educationIntro,
-    education,
-    certifications,
-    archiveIntro,
-    archive,
-    interestsIntro,
-    interests,
-    contact,
-    mbaTeaser,
-    metaDescription,
   ]).join("\n");
 }
 
