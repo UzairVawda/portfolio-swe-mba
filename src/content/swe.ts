@@ -433,3 +433,16 @@ export const contact = {
     "Recruiting, collaboration, or a plain hello all land in the same inbox, and I read every message.",
   ],
 };
+
+export const mbaTeaser = {
+  eyebrow: "09 · What's next",
+  heading: "Building a portfolio of consulting tools, one per MBA class.",
+  body: "The MBA section is a separate, evolving project — shippable tools tied to each class, written up as case studies.",
+  cta: "Visit MBA section",
+};
+
+// Page-level <meta description> for the SWE page. Kept in content so the
+// dollar-figure and tenure guard tests in swe.test.ts can scan it — the
+// string previously lived inline in page.tsx, outside their reach.
+export const metaDescription =
+  "Software engineer and MBA candidate in NYC. Design systems and AI tooling at Collins Aerospace; a parking marketplace and two jiu jitsu products on the side. Five-plus years across aerospace, finance, and legal tech.";

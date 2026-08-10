@@ -13,6 +13,8 @@ import {
   experienceIntro,
   interests,
   interestsIntro,
+  mbaTeaser,
+  metaDescription,
   projects,
   skills,
   skillsIntro,
@@ -59,6 +61,8 @@ function allCopy(): string {
     interestsIntro,
     interests,
     contact,
+    mbaTeaser,
+    metaDescription,
   ]).join("\n");
 }
 
