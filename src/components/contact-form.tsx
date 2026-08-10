@@ -18,7 +18,11 @@ type SubmissionState =
   | { status: "success" }
   | { status: "error"; message: string };
 
-export function ContactForm() {
+export function ContactForm({
+  source = "mba",
+}: {
+  source?: "portfolio" | "mba";
+} = {}) {
   const [state, setState] = useState<SubmissionState>({ status: "idle" });
 
   const {
@@ -34,7 +38,7 @@ export function ContactForm() {
       role: "",
       reason: "",
       message: "",
-      source: "mba",
+      source,
     },
   });
 

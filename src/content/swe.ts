@@ -424,3 +424,12 @@ export const interests: Interest[] = [
     icon: "languages",
   },
 ];
+
+export const contact = {
+  eyebrow: "08 · Let's talk",
+  headline: "Any of this sound interesting?",
+  paragraphs: [
+    "Every project up there is open. If you want to write code on one, poke holes in the idea, test an early build, or just talk it through over coffee — I'd genuinely like to hear from you.",
+    "Recruiting, collaboration, or a plain hello all land in the same inbox, and I read every message.",
+  ],
+};

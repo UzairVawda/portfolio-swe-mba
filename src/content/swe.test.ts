@@ -6,28 +6,60 @@ import {
   archive,
   certifications,
   conceptProjects,
+  contact,
   education,
+  educationIntro,
   experience,
   experienceIntro,
   interests,
   interestsIntro,
   projects,
   skills,
+  skillsIntro,
 } from "./swe";
 
 // Figures the site must never carry — employer-internal financials.
 const FORBIDDEN = [/\$\s?25\s?K/i, /\$\s?66\s?K/i];
 
+// Recursively collects every string leaf out of a content value (objects,
+// arrays, and nested combinations of both) so the guard tests below see
+// every piece of prose in this file without having to hand-list each field.
+function collectStrings(value: unknown, out: string[] = []): string[] {
+  if (typeof value === "string") {
+    out.push(value);
+  } else if (Array.isArray(value)) {
+    for (const item of value) collectStrings(item, out);
+  } else if (value && typeof value === "object") {
+    for (const item of Object.values(value)) collectStrings(item, out);
+  }
+  return out;
+}
+
+// Every prose-bearing export in this file. Covering the export itself
+// (rather than hand-picked fields) means new fields on any of these are
+// swept in automatically — only wholly new exports need to be added here.
 function allCopy(): string {
-  return [
-    ...about.paragraphs,
+  return collectStrings([
+    aboutIntro,
+    about,
     experienceIntro,
-    ...experience.flatMap((role) => [
-      role.description ?? "",
-      role.title,
-      ...role.highlights,
-    ]),
-  ].join("\n");
+    experience,
+    skillsIntro,
+    // `skills` is a Record<discipline, string[]>, so the group names live
+    // as object keys rather than values — collectStrings only walks
+    // values, so the discipline names are pulled in explicitly here.
+    Object.keys(skills),
+    skills,
+    projects,
+    conceptProjects,
+    educationIntro,
+    education,
+    certifications,
+    archive,
+    interestsIntro,
+    interests,
+    contact,
+  ]).join("\n");
 }
 
 describe("swe content", () => {
@@ -48,6 +80,15 @@ describe("swe content", () => {
       expect(role.company.trim()).not.toBe("");
       expect(role.title.trim()).not.toBe("");
     }
+  });
+
+  it("sweeps in copy the old, narrower scan missed", () => {
+    // Guards against a future narrowing of allCopy() back down to only
+    // about/experience — these strings are distinctive to archive and
+    // projects respectively, which the original helper never read.
+    const copy = allCopy();
+    expect(copy).toContain("718SNKRS");
+    expect(copy).toContain("cold-starting the supply side");
   });
 });
 

@@ -67,3 +67,33 @@ test.describe("MBA contact form", () => {
     await expect(page.getByText(/last minute/i)).toBeVisible();
   });
 });
+
+test.describe("portfolio contact form", () => {
+  test("renders on the SWE page and submits with the portfolio source", async ({
+    page,
+  }) => {
+    let submitted: Record<string, unknown> = {};
+
+    await page.route("**/api/contact", async (route) => {
+      submitted = route.request().postDataJSON();
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({ ok: true }),
+      });
+    });
+
+    await page.goto("/");
+    await page.locator("#contact").scrollIntoViewIfNeeded();
+
+    await page.getByLabel("Name *").fill("Test User");
+    await page.getByLabel("Email *").fill("test@example.com");
+    await page.getByLabel(/^Message/).fill("Interested in MatAI.");
+    await page.getByRole("button", { name: /Send message/i }).click();
+
+    await expect(
+      page.getByRole("heading", { name: /Thanks — message received\./i }),
+    ).toBeVisible();
+    expect(submitted.source).toBe("portfolio");
+  });
+});

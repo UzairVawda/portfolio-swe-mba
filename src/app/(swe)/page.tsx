@@ -6,6 +6,7 @@ import { FadeUp } from "@/components/motion/fade-up";
 import { Section } from "@/components/section";
 import { AboutSection } from "@/components/sections/about";
 import { ArchiveSection } from "@/components/sections/archive";
+import { ContactSection } from "@/components/sections/contact";
 import { EducationSection } from "@/components/sections/education";
 import { ExperienceSection } from "@/components/sections/experience";
 import { InterestsSection } from "@/components/sections/interests";
@@ -29,6 +30,7 @@ export default function SwePage() {
       <ArchiveSection />
       <EducationSection />
       <InterestsSection />
+      <ContactSection />
       <Section className="py-24">
         <FadeUp>
           <div className="flex flex-col items-center gap-6 rounded-3xl border border-primary/30 bg-primary/5 p-10 text-center md:items-start md:p-14 md:text-left">
