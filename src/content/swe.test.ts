@@ -4,6 +4,7 @@ import {
   about,
   aboutIntro,
   archive,
+  archiveIntro,
   certifications,
   conceptProjects,
   contact,
@@ -16,6 +17,7 @@ import {
   mbaTeaser,
   metaDescription,
   projects,
+  projectsIntro,
   skills,
   skillsIntro,
 } from "./swe";
@@ -52,11 +54,13 @@ function allCopy(): string {
     // values, so the discipline names are pulled in explicitly here.
     Object.keys(skills),
     skills,
+    projectsIntro,
     projects,
     conceptProjects,
     educationIntro,
     education,
     certifications,
+    archiveIntro,
     archive,
     interestsIntro,
     interests,
@@ -84,6 +88,35 @@ describe("swe content", () => {
       expect(role.company.trim()).not.toBe("");
       expect(role.title.trim()).not.toBe("");
     }
+  });
+
+  it("numbers every section eyebrow 01 through 09 in page order with no gaps or duplicates", () => {
+    // The page renders nine numbered blocks in this order. This has broken
+    // once already during this plan, so lock the sequence rather than just
+    // the individual strings.
+    const eyebrows = [
+      aboutIntro.eyebrow,
+      experienceIntro.eyebrow,
+      projectsIntro.eyebrow,
+      archiveIntro.eyebrow,
+      skillsIntro.eyebrow,
+      educationIntro.eyebrow,
+      interestsIntro.eyebrow,
+      contact.eyebrow,
+      mbaTeaser.eyebrow,
+    ];
+    const numbers = eyebrows.map((eyebrow) => eyebrow.match(/^(\d{2}) · /)?.[1]);
+    expect(numbers).toEqual([
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+    ]);
   });
 
   it("sweeps in copy the old, narrower scan missed", () => {

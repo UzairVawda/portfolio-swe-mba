@@ -9,10 +9,10 @@ export function ExperienceSection() {
       <div className="flex flex-col gap-12">
         <FadeUp className="flex flex-col items-center gap-3 text-center md:items-start md:text-left">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-            02 · Experience
+            {experienceIntro.eyebrow}
           </p>
           <h2 className="text-balance text-3xl font-medium tracking-tight sm:text-4xl">
-            {experienceIntro}
+            {experienceIntro.heading}
           </h2>
         </FadeUp>
 

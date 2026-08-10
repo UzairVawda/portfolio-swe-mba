@@ -3,7 +3,7 @@ import Link from "next/link";
 import { FadeUp } from "@/components/motion/fade-up";
 import { Stagger, StaggerItem } from "@/components/motion/stagger";
 import { Section } from "@/components/section";
-import { conceptProjects, projects } from "@/content/swe";
+import { conceptProjects, projects, projectsIntro } from "@/content/swe";
 
 export function ProjectsSection() {
   return (
@@ -11,10 +11,10 @@ export function ProjectsSection() {
       <div className="flex flex-col gap-12">
         <FadeUp className="flex flex-col items-center gap-3 text-center md:items-start md:text-left">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-            03 · Projects
+            {projectsIntro.eyebrow}
           </p>
           <h2 className="text-balance text-3xl font-medium tracking-tight sm:text-4xl">
-            Everything I&apos;m building, at whatever stage it&apos;s at.
+            {projectsIntro.heading}
           </h2>
         </FadeUp>
 
@@ -80,7 +80,7 @@ export function ProjectsSection() {
         <div className="flex flex-col gap-6">
           <FadeUp>
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-              Earlier concepts
+              {projectsIntro.conceptsLabel}
             </p>
           </FadeUp>
           <Stagger className="grid grid-cols-1 gap-4 md:grid-cols-3">

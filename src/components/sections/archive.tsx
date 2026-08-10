@@ -6,7 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { archive } from "@/content/swe";
+import { archive, archiveIntro } from "@/content/swe";
 
 export function ArchiveSection() {
   return (
@@ -14,14 +14,13 @@ export function ArchiveSection() {
       <div className="flex flex-col gap-12">
         <FadeUp className="flex flex-col items-center gap-3 text-center md:items-start md:text-left">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-            04 · Archive
+            {archiveIntro.eyebrow}
           </p>
           <h2 className="text-balance text-3xl font-medium tracking-tight sm:text-4xl">
-            Everything before that.
+            {archiveIntro.heading}
           </h2>
           <p className="max-w-2xl text-pretty text-base text-muted-foreground">
-            Coursework, prototypes, and things I built to find out whether I
-            could. Most of them taught me something that showed up later.
+            {archiveIntro.intro}
           </p>
         </FadeUp>
 

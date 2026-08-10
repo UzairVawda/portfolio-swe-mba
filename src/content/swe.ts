@@ -18,8 +18,10 @@ export const about = {
   },
 };
 
-export const experienceIntro =
-  "Five-plus years across aerospace, finance, and legal tech.";
+export const experienceIntro = {
+  eyebrow: "02 · Experience",
+  heading: "Five-plus years across aerospace, finance, and legal tech.",
+};
 
 export type Role = {
   company: string;
@@ -190,6 +192,12 @@ export type ConceptProject = {
   stack: string[];
 };
 
+export const projectsIntro = {
+  eyebrow: "03 · Projects",
+  heading: "Everything I'm building, at whatever stage it's at.",
+  conceptsLabel: "Earlier concepts",
+};
+
 export const projects: Project[] = [
   {
     name: "JHParking",
@@ -296,6 +304,13 @@ export const certifications = [
 export type ArchiveGroup = {
   group: string;
   items: { name: string; description: string; stack: string }[];
+};
+
+export const archiveIntro = {
+  eyebrow: "04 · Archive",
+  heading: "Everything before that.",
+  intro:
+    "Coursework, prototypes, and things I built to find out whether I could. Most of them taught me something that showed up later.",
 };
 
 export const archive: ArchiveGroup[] = [
