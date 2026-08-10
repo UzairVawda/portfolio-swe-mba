@@ -175,3 +175,27 @@
     }
   }
 }
+
+@layer components {
+  /* Text-dense sections sit directly over the fixed particle canvas, which
+     competes with the copy — worst on the dimmest text. `.section-scrim`
+     nudges muted copy toward the foreground; `.section-scrim-layer` is the
+     wash of page background that goes between the canvas and the text. Both
+     read from the theme tokens, so they follow light, dark, and sepia. */
+  .section-scrim {
+    --color-muted-foreground: color-mix(
+      in oklab,
+      var(--muted-foreground) 65%,
+      var(--foreground)
+    );
+  }
+
+  .section-scrim-layer {
+    background: radial-gradient(
+      ellipse 85% 70% at 50% 50%,
+      var(--background) 0%,
+      color-mix(in oklab, var(--background) 88%, transparent) 45%,
+      color-mix(in oklab, var(--background) 0%, transparent) 100%
+    );
+  }
+}

@@ -54,4 +54,46 @@ test.describe("route smoke tests", () => {
 
     expect(errors).toEqual([]);
   });
+
+  test("section eyebrows render in DOM order 01 through 09", async ({
+    page,
+  }) => {
+    await page.goto("/");
+
+    // Section eyebrows read "NN · Label" (e.g. "01 · About"). That prefix
+    // pattern is a more robust anchor than the shared eyebrow styling
+    // class, which also decorates non-eyebrow labels ("Earlier concepts",
+    // "Want in?", "Schools", "Certifications") that would otherwise be
+    // swept up by a class-based selector.
+    const eyebrows = await page
+      .locator("p")
+      .filter({ hasText: /^\d{2} · / })
+      .allTextContents();
+
+    const numbers = eyebrows.map((text) => text.match(/^(\d{2}) · /)?.[1]);
+    expect(numbers).toEqual([
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+    ]);
+  });
+
+  test("CV is served and linked from the SWE page", async ({ page, context }) => {
+    // Check that the PDF is served and has the correct content-type
+    const pdfResponse = await context.request.head("/resume.pdf");
+    expect(pdfResponse.ok()).toBe(true);
+    expect(pdfResponse.headers()["content-type"]).toMatch(/pdf/);
+
+    await page.goto("/");
+    const links = page.locator('a[href="/resume.pdf"]');
+    // Hero button, nav link, About inline link, footer link.
+    await expect(links).toHaveCount(4);
+    await expect(links.first()).toHaveAttribute("download", "Uzair-Vawda-CV.pdf");
+  });
 });

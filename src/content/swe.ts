@@ -1,11 +1,26 @@
 // Single source of truth for the SWE portfolio content.
-// Body copy here is a first draft — redline anything that doesn't sound like you.
+
+export const aboutIntro = {
+  eyebrow: "01 · About",
+  heading: "I build things, then figure out what they're worth.",
+};
 
 export const about = {
   paragraphs: [
-    "I'm a software engineer with experience across aerospace, financial services, and legal tech. I'm currently shipping at Collins Aerospace and pursuing my MBA at Baruch's Zicklin School of Business.",
-    "The plan: pair an engineering foundation with the business instincts that turn good code into useful products. On the side I build JHParking, train jiu jitsu, and live in NYC.",
+    "JHParking started out of sheer frustration. During COVID more people on my block bought cars while the number of street spots stayed exactly where it was, and the choice became parking up to a mile from home or circling the same blocks for up to an hour at peak times. What it does today is let a friends group share where they parked and when they are leaving; the paid marketplace is where it is going. I had taken a run at this years ago as ParkForLess and put it down; the idea kept looking right, so I picked it back up. MatAI and CoachMe both came out of the jiu jitsu gym.",
+    "By day I'm a software engineer at Collins Aerospace. Most of my time there has gone into a design system, which exists because so much of UI development is building the same generic components over and over, each one re-themed and restyled in company colors. A handful of teams now build on it, and — more recently — an AI agent writes components against it. That second part has changed how I work more than anything else in the last few years.",
+    "Evenings are an MBA at Baruch's Zicklin School, concentrating in AI and product development. The point isn't to stop engineering. It's to be the person who can write the business case and then go build the thing it argues for.",
   ],
+  cvLine: {
+    before: "I'm in NYC. If you want the long version, ",
+    label: "my CV has it",
+    after: " — otherwise, keep scrolling.",
+  },
+};
+
+export const experienceIntro = {
+  eyebrow: "02 · Experience",
+  heading: "Five-plus years across aerospace, finance, and legal tech.",
 };
 
 export type Role = {
@@ -14,89 +29,236 @@ export type Role = {
   start: string;
   end: string;
   description: string;
+  highlights: string[];
+  note?: string;
 };
 
 export const experience: Role[] = [
   {
     company: "Collins Aerospace",
-    title: "Software Developer",
+    title: "Software Engineer",
     start: "Nov 2022",
     end: "Present",
     description:
-      "Building internal tooling and product features for aerospace systems.",
+      "Design systems, AI tooling, and platform work for aerospace engineering teams.",
+    highlights: [
+      "Built and shipped an internal React and TypeScript design system — 50+ accessible, themeable components on Figma's Simple Design System, published to the internal npm registry with Storybook, a live component dashboard, and a documented release pipeline. Open to every developer in the org and adopted by 5+ projects. Worked with design to integrate the package into Figma itself, so a design emits code snippets built from its components and developers copy and paste the UI — there are always tweaks to make, but where a component drops in untouched, mostly the non-interactive ones, it cuts the time to build a screen by up to 90%.",
+      "Built Poolside, an in-house AI agent that learns the design system's patterns and generates components on demand — cutting component creation time by up to 80% and retiring the paid tooling we had been leaning on. Five custom, project-specific components have shipped through it, and it is rolling out to new teams.",
+      "Built Skyler, an Angular configuration interface for a radar sensor platform: live telemetry visualizations — array tilt, azimuth compass, pitch and roll attitude indicators, MapLibre GL mapping — plus full scan-mission management across STARE, PPI, RHI, and raster patterns.",
+      "Led a platform-wide TypeScript migration and the move to modern CSS with Tailwind, improving maintainability and developer experience.",
+      "Owned end-to-end platform work — performance, testing infrastructure, observability, and CI/CD — alongside React and GraphQL application development.",
+    ],
   },
   {
     company: "Collins Aerospace",
-    title: "Infrastructure Project Manager · Leadership Program",
+    title: "Infrastructure Project Manager · Leadership Development Program",
     start: "Mar 2022",
     end: "Oct 2022",
     description:
-      "Drove infrastructure rollout projects across multiple business units as part of the leadership rotation.",
+      "Ran infrastructure delivery across business units during the second rotation.",
+    highlights: [
+      "Managed a portfolio of 6 infrastructure projects across lifecycle stages, delivering 2 to completion while balancing competing stakeholders.",
+      "Introduced Scrum practices that lifted team velocity and cross-functional collaboration.",
+      "Standardized company-wide PM artifacts — project charter, RACI matrix — that were adopted well beyond my own team.",
+    ],
   },
   {
     company: "Collins Aerospace",
-    title: "Applications Licensing Specialist · Leadership Program",
+    title: "Applications Licensing Specialist · Leadership Development Program",
     start: "Jul 2021",
     end: "Feb 2022",
     description:
-      "Managed enterprise application licensing and vendor relationships during the first rotation of the leadership program.",
+      "Owned enterprise application licensing during the first rotation.",
+    highlights: [
+      "Drove a software license rationalization that cut license count 18% year over year.",
+      "Consolidated 75+ applications across 6 servers, reducing redundancy and improving accessibility.",
+      "Built a React and Python license-tracking tool giving stakeholders real-time visibility into server status.",
+    ],
   },
   {
-    company: "JP Morgan Chase & Co.",
-    title: "Front End Experience Developer",
+    company: "J.P. Morgan Chase & Co.",
+    title: "Front-End Experience Developer",
     start: "Apr 2020",
     end: "Oct 2020",
     description:
-      "Built internal banking experiences with React across the firm's wealth management platform.",
+      "Shared front-end components for the firm's public-facing experiences.",
+    note: "Drexel co-op",
+    highlights: [
+      "Built reusable JavaScript and HTML5 components deployed across multiple sites, establishing shared front-end patterns.",
+      "Delivered responsive, maintainable code against stakeholder requirements, using BitBucket and SonarQube for version control and code quality.",
+    ],
   },
   {
     company: "Dechert LLP",
     title: "IT Applications Developer",
     start: "Apr 2019",
     end: "Oct 2019",
+    description: "Reporting automation and analytics for internal legal teams.",
+    note: "Drexel co-op",
+    highlights: [
+      "Automated reporting and ETL workflows in SQL and Python for internal clients.",
+      "Built Tableau dashboards surfacing application usage, performance, and adoption patterns.",
+    ],
+  },
+  {
+    company: "MIST",
+    title: "Finance Coordinator · Muslim Interscholastic Tournament",
+    start: "2017",
+    end: "2021",
     description:
-      "Developed internal legal-tech applications used by attorneys and IT staff across the firm.",
+      "Budget ownership and live event production across four tournament cycles.",
+    highlights: [
+      "Owned the tournament budget across four cycles, managing spend against sponsorship revenue and growing the budget 5–20% year over year.",
+      "Secured and managed corporate sponsors including PwC — owning outreach, deliverables, and the relationship.",
+      "Ran live interscholastic competitions end to end: run-of-show, speaker and judge coordination, venue and vendor management, volunteer staffing, and day-of execution across concurrent tracks.",
+    ],
   },
 ];
 
-export const skills = {
-  Languages: ["TypeScript", "JavaScript", "Python", "C#", "HTML", "CSS", "LESS", "SASS"],
-  Frameworks: [
+export const skillsIntro = {
+  eyebrow: "05 · Skills",
+  heading: "What I bring to the table.",
+};
+
+export const skills: Record<string, string[]> = {
+  "Engineering & Platform": [
+    "TypeScript",
+    "JavaScript",
+    "Python",
+    "C#",
+    "SQL",
     "React",
+    "Next.js",
     "Vue",
+    "Angular",
     "Node",
     "Express",
-    "Vuetify",
-    "Vuex",
-    "Pinia",
-    "jQuery",
-    "Django",
-    "Bootstrap",
+    "GraphQL",
+    "Design systems",
+    "PostgreSQL",
+    "Firebase",
+    "MongoDB",
+    "Stripe",
+    "CI/CD",
   ],
-  Tools: ["Visual Studio", "SSMS", "SQL Workbench", "Tableau", "npm", "yarn"],
-  Databases: ["Firebase", "MySQL", "MongoDB", "MariaDB", "SQLite"],
+  "AI & Data": [
+    "AI-assisted development",
+    "Agentic workflows",
+    "LLMs",
+    "Vision-language models",
+    "Prompt engineering",
+    "Evaluation & benchmarking",
+    "RAG",
+    "Tableau",
+    "Data visualization",
+  ],
+  "Product Management": [
+    "Roadmapping",
+    "PRD authoring",
+    "MVP scoping",
+    "User research",
+    "Marketplace monetization",
+    "Unit economics",
+    "Trust & safety",
+    "KPIs & A/B testing",
+    "Agile / Scrum",
+  ],
+  "Strategy & Advisory": [
+    "Technology & product strategy",
+    "Business case development",
+    "Cost optimization",
+    "Market & competitive analysis",
+    "Go-to-market",
+    "Change management",
+    "Stakeholder management",
+  ],
 };
 
 export type Project = {
   name: string;
   role: string;
   period: string;
+  status: string;
   description: string;
   stack: string[];
+  helpWanted: string;
   links: { label: string; href: string }[];
+};
+
+export type ConceptProject = {
+  name: string;
+  status: string;
+  description: string;
+  stack: string[];
+};
+
+export const projectsIntro = {
+  eyebrow: "03 · Projects",
+  heading: "Everything I'm building, at whatever stage it's at.",
+  conceptsLabel: "Earlier concepts",
+  helpWantedLabel: "Want in? ",
 };
 
 export const projects: Project[] = [
   {
     name: "JHParking",
-    role: "Full Stack Developer",
+    role: "Founder · Full-Stack",
     period: "Jun 2025 — Present",
+    status: "Piloting · 7 beta users",
     description:
-      "A peer-to-peer marketplace for renting parking spots. Owners list driveway and garage availability; drivers book and pay through the app. The live booking layer runs on Firestore, payments on Stripe.",
+      "It started on my own block during COVID, when more neighbors bought cars and the number of street spots did not move. What exists today is the sharing layer: you post where you parked and when you are leaving to a friends group, and an integrated chat lets little neighborhood communities form around it. That is what the seven beta users are on. Where it is heading is the paid peer-to-peer marketplace — people with a driveway or an empty spot list it, drivers book and pay by the hour — and Stripe is wired in for that layer. React and Tailwind on the front, Firestore running the live layer. It is deliberately scoped as a focused local solution rather than an everywhere-app. This is the second run at the idea — the first was ParkForLess, which I shelved and came back to because I still thought it was right.",
     stack: ["React", "TailwindCSS", "Stripe", "Firestore"],
-    links: [
-      { label: "Site", href: "https://jhparking.app" },
-    ],
+    helpWanted:
+      "I would happily talk to anyone who has built a two-sided marketplace — especially about cold-starting the supply side.",
+    links: [{ label: "Site", href: "https://jhparking.app" }],
+  },
+  {
+    name: "MatAI",
+    role: "Founder · Product & Engineering",
+    period: "Jul 2026 — Present",
+    status: "In development",
+    description:
+      "A passion project that came from two directions at once: I hit a point where reviewing my own film stopped being useful without help, and it is also just an interesting piece of software to build. It is an AI system that watches jiu jitsu footage and hands back a timestamped map of the match: what position you were in and when, where submissions were attempted, and what to work on. The hard part is that conventional tracking falls apart here — in grappling two athletes overlap almost completely and trackers permanently swap their identities. So instead of tracking two bodies, it classifies the position they are in together. Closed guard describes a relationship, not a person. Roles bind to athletes through appearance descriptors captured once, up front, and scramble and unclear are first-class labels so the model can decline to guess rather than confabulate.",
+    stack: ["Python", "FastAPI", "ffmpeg", "Claude API", "SQLite"],
+    helpWanted:
+      "I would love to hear from anyone working on video understanding or evaluation design — and from anyone willing to let me test against their footage.",
+    links: [],
+  },
+  {
+    name: "CoachMe",
+    role: "Founder · Product & Technical Design",
+    period: "In development",
+    status: "Design stage · 5 coaches committed",
+    description:
+      "Some of the best black belts in the world have no platform to teach from, and no straightforward way to earn from what they know. That came up in conversations at the gym, and I kept landing on the same gap on my own. CoachMe is an attempt at one: a marketplace where competitive jiu jitsu athletes buy video review from independently verified high-level coaches, with feedback anchored to the footage itself — notes pinned to exact timestamps, voiceover recorded against the timeline, drawings on paused frames. The money layer runs on Stripe Connect using separate charges and transfers rather than destination charges, specifically so funds can sit in escrow between purchase and acceptance; destination charges settle immediately and leave nothing to hold, which would make the delivery guarantee unenforceable. Five coaches are committed. No athletes yet — that is the next problem.",
+    stack: ["Next.js", "Expo", "Postgres", "Stripe Connect", "Mux", "Inngest"],
+    helpWanted:
+      "Looking for athletes to test with, and for anyone who has run trust-and-safety or dispute flows on a marketplace.",
+    links: [],
+  },
+];
+
+export const conceptProjects: ConceptProject[] = [
+  {
+    name: "PageKeeper",
+    status: "Concept · full PRD",
+    description:
+      "A reading-habit app — streaks, goals, gentle friend accountability, a reading journal. Specced end to end, including the security and compliance architecture and an intentionally un-manipulative monetization model.",
+    stack: ["React Native", "Firebase"],
+  },
+  {
+    name: "MBA-Engineered",
+    status: "Ongoing",
+    description:
+      "One small consulting tool per MBA class — an IT maturity assessment, a market-sizing dashboard, a Porter's Five Forces analyzer, an Ask My MBA retrieval app. The premise is that advising on a deliverable and building it should not be different people.",
+    stack: ["Next.js", "RAG"],
+  },
+  {
+    name: "Connect.",
+    status: "Concept · prototype",
+    description:
+      "An all-in-one platform pairing companies with influencers to optimize reach. Early product and business framing, built as a Vue prototype.",
+    stack: ["Vue"],
   },
 ];
 
@@ -106,32 +268,139 @@ export type EducationEntry = {
   detail: string;
 };
 
+export const educationIntro = {
+  eyebrow: "06 · Education & Certifications",
+  heading: "Formal training, in progress.",
+};
+
 export const education: EducationEntry[] = [
   {
     school: "Baruch College · Zicklin School of Business",
     program: "Master of Business Administration",
-    detail: "In progress",
+    detail:
+      "Concentrating in Artificial Intelligence & Product Development · expected June 2028",
   },
   {
     school: "Drexel University · College of Computing and Informatics",
     program: "B.S. Software Engineering",
-    detail: "Graduated",
+    detail: "3.5 GPA · co-op program · 2021",
   },
 ];
 
 export const certifications = [
-  { name: "Certified Scrum Master", issuer: "Scrum Alliance", year: "2022" },
   {
-    name: "Certified Scrum Product Owner",
-    issuer: "Scrum Alliance",
-    year: "2022",
+    name: "Project Management Professional (PMP)",
+    issuer: "Project Management Institute",
+    year: "Expected Dec 2026",
   },
+  { name: "Certified Scrum Product Owner", issuer: "Scrum Alliance", year: "2022" },
+  { name: "Certified Scrum Master", issuer: "Scrum Alliance", year: "2022" },
   {
     name: "100 Days of Front-End Development",
     issuer: "Udemy",
     year: "2022",
   },
 ];
+
+export type ArchiveGroup = {
+  group: string;
+  items: { name: string; description: string; stack: string }[];
+};
+
+export const archiveIntro = {
+  eyebrow: "04 · Archive",
+  heading: "Everything before that.",
+  intro:
+    "Coursework, prototypes, and things I built to find out whether I could. Most of them taught me something that showed up later.",
+};
+
+export const archive: ArchiveGroup[] = [
+  {
+    group: "Marketplaces & Products",
+    items: [
+      {
+        name: "ParkForLess",
+        description:
+          "The first run at peer-to-peer parking, and the direct precursor to JHParking.",
+        stack: "React · Firebase · Leaflet",
+      },
+      {
+        name: "718SNKRS",
+        description:
+          "A sneaker storefront with real auth, sessions, and checkout.",
+        stack: "Express · MongoDB · Stripe",
+      },
+      {
+        name: "Reddit Clone",
+        description:
+          "A full Reddit-style app — posts, votes, communities, the whole thing.",
+        stack: "Next.js · TypeScript · Chakra UI · Firebase · Recoil",
+      },
+    ],
+  },
+  {
+    group: "Web & Full-Stack",
+    items: [
+      {
+        name: "DragonFeed",
+        description: "A campus events and news aggregator for Drexel.",
+        stack: "Academic project",
+      },
+      {
+        name: "Curriculum App",
+        description: "A course and curriculum planning tool, built for INFO 420.",
+        stack: "Vue · Node",
+      },
+      {
+        name: "Project Tracker",
+        description: "Project tracking with live updates and a clean board view.",
+        stack: "Vue · Firebase · Vuetify",
+      },
+      {
+        name: "ExpressBlog",
+        description: "A blogging platform with authentication and drafts.",
+        stack: "Express · MongoDB · EJS",
+      },
+      {
+        name: "ChatApp",
+        description: "Real-time chat over sockets.",
+        stack: "MERN",
+      },
+      {
+        name: "Dynamic Site / Hosting",
+        description: "A server-rendered dynamic site, deployed and self-hosted.",
+        stack: "Express · EJS · MongoDB",
+      },
+      {
+        name: "Web Portfolio",
+        description: "Earlier versions of this site.",
+        stack: "uzairvawda.me",
+      },
+    ],
+  },
+  {
+    group: "Automation & Data",
+    items: [
+      {
+        name: "Send a Script",
+        description:
+          "Python automation that delivers movie scripts over iMessage, Messenger, and WhatsApp.",
+        stack: "Python",
+      },
+      {
+        name: "Investment Tracker",
+        description:
+          "Trade history, monthly rollups, and metrics over my own investing data.",
+        stack: "Python · Visualization",
+      },
+    ],
+  },
+];
+
+export const interestsIntro = {
+  eyebrow: "07 · Off-screen",
+  heading: "What I'm doing when I'm not at the keyboard.",
+};
 
 export type Interest = {
   label: string;
@@ -142,22 +411,47 @@ export type Interest = {
 export const interests: Interest[] = [
   {
     label: "Jiu jitsu",
-    blurb: "Training on the mats keeps me honest about losing and learning.",
+    blurb:
+      "Three years in, a blue belt under Ryan Quinn out of Queens Jiu Jitsu, and a semi-active competitor. I play guard, which is not typical for a big man, and most of what I enjoy is cross-training and learning new moves. What keeps me coming back is the detailed yet aggressive nature of it.",
     icon: "swords",
   },
   {
     label: "Photography",
-    blurb: "Cameras taught me composition long before code did.",
+    blurb:
+      "Cameras taught me composition long before code did — what to leave out, mostly.",
     icon: "camera",
   },
   {
     label: "Coffee",
-    blurb: "Pour-overs at home, espresso when I'm out.",
+    blurb: "Pour-overs at home, espresso when I'm out, opinions either way.",
     icon: "coffee",
   },
   {
     label: "Traveling",
-    blurb: "Notes from new cities tend to end up shaping side projects.",
+    blurb:
+      "Notes from new cities have a habit of turning into side projects a few months later.",
     icon: "plane",
   },
 ];
+
+export const contact = {
+  eyebrow: "08 · Let's talk",
+  headline: "Any of this sound interesting?",
+  paragraphs: [
+    "Every project up there is open. If you want to write code on one, poke holes in the idea, test an early build, or just talk it through over coffee — I'd genuinely like to hear from you.",
+    "Recruiting, collaboration, or a plain hello all land in the same inbox, and I read every message.",
+  ],
+};
+
+export const mbaTeaser = {
+  eyebrow: "09 · What's next",
+  heading: "Building a portfolio of consulting tools, one per MBA class.",
+  body: "The MBA section is a separate, evolving project — shippable tools tied to each class, written up as case studies.",
+  cta: "Visit MBA section",
+};
+
+// Page-level <meta description> for the SWE page. Kept in content so the
+// dollar-figure and tenure guard tests in swe.test.ts can scan it — the
+// string previously lived inline in page.tsx, outside their reach.
+export const metaDescription =
+  "Software engineer and MBA candidate in NYC. Design systems and AI tooling at Collins Aerospace; a neighborhood parking app for friends and two jiu jitsu products on the side. Five-plus years across aerospace, finance, and legal tech.";

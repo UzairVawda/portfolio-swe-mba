@@ -1,18 +1,18 @@
 import { FadeUp } from "@/components/motion/fade-up";
 import { Stagger, StaggerItem } from "@/components/motion/stagger";
 import { Section } from "@/components/section";
-import { experience } from "@/content/swe";
+import { experience, experienceIntro } from "@/content/swe";
 
 export function ExperienceSection() {
   return (
-    <Section id="experience" className="py-24">
+    <Section id="experience" className="py-24" scrim>
       <div className="flex flex-col gap-12">
         <FadeUp className="flex flex-col items-center gap-3 text-center md:items-start md:text-left">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-            02 · Experience
+            {experienceIntro.eyebrow}
           </p>
           <h2 className="text-balance text-3xl font-medium tracking-tight sm:text-4xl">
-            Six years across aerospace, finance, and legal tech.
+            {experienceIntro.heading}
           </h2>
         </FadeUp>
 
@@ -44,6 +44,21 @@ export function ExperienceSection() {
                 <p className="max-w-2xl text-pretty text-base text-muted-foreground">
                   {role.description}
                 </p>
+                {role.note ? (
+                  <span className="rounded-full bg-muted px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
+                    {role.note}
+                  </span>
+                ) : null}
+                <ul className="mt-2 flex max-w-2xl flex-col gap-2.5 text-left">
+                  {role.highlights.map((highlight) => (
+                    <li
+                      key={highlight}
+                      className="relative pl-5 text-pretty text-sm leading-relaxed text-muted-foreground before:absolute before:left-0 before:top-2.5 before:h-1 before:w-1 before:rounded-full before:bg-primary/60"
+                    >
+                      {highlight}
+                    </li>
+                  ))}
+                </ul>
               </div>
             </StaggerItem>
           ))}

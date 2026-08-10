@@ -48,6 +48,14 @@ export function Hero() {
               <span aria-hidden>→</span>
             </Link>
             <Link
+              href="/resume.pdf"
+              download="Uzair-Vawda-CV.pdf"
+              className="inline-flex items-center gap-2 rounded-full border border-border px-7 py-3.5 text-base text-foreground transition-colors hover:border-primary hover:text-primary"
+            >
+              Resume
+              <span aria-hidden>↓</span>
+            </Link>
+            <Link
               href="/mba"
               className="inline-flex items-center gap-2 rounded-full border border-border px-7 py-3.5 text-base text-foreground transition-colors hover:border-primary hover:text-primary"
             >

@@ -19,6 +19,13 @@ export function SiteNav({ variant }: { variant: Variant }) {
         </Link>
 
         <div className="flex items-center gap-2 sm:gap-6">
+          <Link
+            href="/resume.pdf"
+            download="Uzair-Vawda-CV.pdf"
+            className="hidden text-sm text-muted-foreground transition-colors hover:text-foreground sm:inline-flex"
+          >
+            Resume
+          </Link>
           {isMba ? (
             <>
               <Link

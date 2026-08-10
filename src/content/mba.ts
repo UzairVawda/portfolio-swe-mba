@@ -1,4 +1,4 @@
-// MBA section copy. Drafted by Claude — redline anything that doesn't sound like you.
+// MBA section copy.
 
 export const landing = {
   number: "01",
@@ -6,7 +6,7 @@ export const landing = {
   headline:
     "A working portfolio of consulting tools built one per class.",
   subhead:
-    "Software engineer, MBA candidate. Each class produces a shippable tool — published here as it ships.",
+    "Software engineer, MBA candidate. Each class produces something shippable — published here as it ships, not before.",
 };
 
 export const navItems = [
@@ -24,7 +24,7 @@ export const tools = {
     "Each MBA class produces a small consulting tool published here. The first ships once the program begins — until then this page is intentionally empty.",
   emptyState: {
     title: "No tools yet.",
-    body: "The first one lands at the end of CIS 9000 — IT Strategy. Bookmark this page or get in touch and I'll send you the launch.",
+    body: "The first one lands at the end of CIS 9000 — IT Strategy. Bookmark this page, or get in touch and I'll send you the launch.",
   },
 };
 
@@ -36,7 +36,7 @@ export const journal = {
     "Short weekly posts on what I'm learning and where it changes how I think about consulting and engineering.",
   emptyState: {
     title: "No posts yet.",
-    body: "Writing begins alongside the first class. Until then, the contact form on /about is the best way to reach me.",
+    body: "Writing starts alongside the first class. Until then the contact form below is the best way to reach me — I read every message.",
   },
 };
 
@@ -48,7 +48,7 @@ export const speaking = {
     "Documentation of workshops led, case competitions, and panels participated in throughout the MBA.",
   emptyState: {
     title: "No events yet.",
-    body: "Each event is documented here after it happens — never beforehand.",
+    body: "Each one gets written up here after it happens, never before.",
   },
 };
 
@@ -57,9 +57,9 @@ export const about = {
   eyebrow: "About",
   headline: "Who I am and how to reach me.",
   bio: [
-    "I'm Uzair — a software engineer with experience across aerospace, finance, and legal tech, pursuing my MBA at Baruch's Zicklin School of Business.",
-    "This site is split in two. The main portfolio at uzairvawda.me is the engineering work. This section is the MBA pivot: tools shipped per class, weekly synthesis writing, workshops and case competitions, and the connections that fall out of all of it.",
-    "I'm targeting consulting roles where the work is technical and the clients are real. If that overlaps with what you do, message below.",
+    "I'm Uzair — a software engineer at Collins Aerospace, working mostly on design systems and the AI tooling that builds against them, and an MBA candidate at Baruch's Zicklin School concentrating in AI and product development.",
+    "This site is split in two. The main portfolio at uzairvawda.me is the engineering work and the things I'm building on the side. This section is the MBA half: a small consulting tool shipped per class, weekly writing on what's actually landing, and whatever workshops and competitions come out of it.",
+    "The thing I'm after is the overlap — building AI-era products and being able to argue for them in business terms, rather than handing that part to someone else. If that's the kind of work you do, say hello below.",
   ],
   overview: [
     {
