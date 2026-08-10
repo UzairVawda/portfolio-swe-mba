@@ -1,5 +1,4 @@
 // Single source of truth for the SWE portfolio content.
-// Body copy here is a first draft — redline anything that doesn't sound like you.
 
 export const aboutIntro = {
   eyebrow: "01 · About",
