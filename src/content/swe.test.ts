@@ -2,12 +2,15 @@ import { describe, expect, it } from "vitest";
 
 import {
   about,
+  aboutIntro,
   archive,
   certifications,
   conceptProjects,
   education,
   experience,
   experienceIntro,
+  interests,
+  interestsIntro,
   projects,
   skills,
 } from "./swe";
@@ -139,5 +142,29 @@ describe("education", () => {
     expect(certifications.map((c) => c.name)).toContain(
       "Project Management Professional (PMP)",
     );
+  });
+});
+
+describe("about and interests", () => {
+  it("offers the CV inline", () => {
+    expect(about.cvLine.label.trim()).not.toBe("");
+  });
+
+  it("keeps all five off-screen cards", () => {
+    expect(interests.map((i) => i.icon)).toEqual([
+      "swords",
+      "camera",
+      "coffee",
+      "plane",
+      "languages",
+    ]);
+  });
+
+  it("gives the about section its eyebrow and heading", () => {
+    expect(aboutIntro.eyebrow).toBe("01 · About");
+  });
+
+  it("gives the off-screen section its eyebrow and heading", () => {
+    expect(interestsIntro.eyebrow).toBe("07 · Off-screen");
   });
 });

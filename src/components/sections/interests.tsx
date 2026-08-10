@@ -1,15 +1,16 @@
-import { Camera, Coffee, Plane, Swords } from "lucide-react";
+import { Camera, Coffee, Languages, Plane, Swords } from "lucide-react";
 
 import { FadeUp } from "@/components/motion/fade-up";
 import { Stagger, StaggerItem } from "@/components/motion/stagger";
 import { Section } from "@/components/section";
-import { interests, type Interest } from "@/content/swe";
+import { interests, interestsIntro, type Interest } from "@/content/swe";
 
 const iconMap: Record<Interest["icon"], typeof Camera> = {
   swords: Swords,
   camera: Camera,
   coffee: Coffee,
   plane: Plane,
+  languages: Languages,
 };
 
 const surfaces = [
@@ -25,10 +26,10 @@ export function InterestsSection() {
       <div className="flex flex-col gap-12">
         <FadeUp className="flex flex-col items-center gap-3 text-center md:items-start md:text-left">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-            06 · Off-screen
+            {interestsIntro.eyebrow}
           </p>
           <h2 className="text-balance text-3xl font-medium tracking-tight sm:text-4xl">
-            What I&apos;m doing when I&apos;m not at the keyboard.
+            {interestsIntro.heading}
           </h2>
         </FadeUp>
 

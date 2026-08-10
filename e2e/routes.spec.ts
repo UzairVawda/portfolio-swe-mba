@@ -63,8 +63,8 @@ test.describe("route smoke tests", () => {
 
     await page.goto("/");
     const links = page.locator('a[href="/resume.pdf"]');
-    // Hero button, nav link, footer link.
-    await expect(links).toHaveCount(3);
+    // Hero button, nav link, About inline link, footer link.
+    await expect(links).toHaveCount(4);
     await expect(links.first()).toHaveAttribute("download", "Uzair-Vawda-CV.pdf");
   });
 });

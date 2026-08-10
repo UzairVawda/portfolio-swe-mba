@@ -1,11 +1,22 @@
 // Single source of truth for the SWE portfolio content.
 // Body copy here is a first draft — redline anything that doesn't sound like you.
 
+export const aboutIntro = {
+  eyebrow: "01 · About",
+  heading: "I build things, then figure out what they're worth.",
+};
+
 export const about = {
   paragraphs: [
-    "I'm a software engineer with experience across aerospace, financial services, and legal tech. I'm currently shipping at Collins Aerospace and pursuing my MBA at Baruch's Zicklin School of Business.",
-    "The plan: pair an engineering foundation with the business instincts that turn good code into useful products. On the side I build JHParking, train jiu jitsu, and live in NYC.",
+    "Most of what I build starts with something I kept running into. JHParking is a peer-to-peer parking marketplace — I took a first run at it years ago as ParkForLess, shelved it, and came back because I still thought the idea was right. MatAI and CoachMe both came out of the jiu jitsu gym. The pattern is roughly: notice the friction, sit with it longer than is reasonable, then build the thing.",
+    "By day I'm a software engineer at Collins Aerospace. Most of my time there has gone into a design system that a handful of teams now build on, and — more recently — an AI agent that writes components against it. That second part has changed how I work more than anything else in the last few years.",
+    "Evenings are an MBA at Baruch's Zicklin School, concentrating in AI and product development. The point isn't to stop engineering. It's to be the person who can write the business case and then go build the thing it argues for.",
   ],
+  cvLine: {
+    before: "I'm in NYC. If you want the long version, ",
+    label: "my CV has it",
+    after: " — otherwise, keep scrolling.",
+  },
 };
 
 export const experienceIntro =
@@ -371,31 +382,45 @@ export const archive: ArchiveGroup[] = [
   },
 ];
 
+export const interestsIntro = {
+  eyebrow: "07 · Off-screen",
+  heading: "What I'm doing when I'm not at the keyboard.",
+};
+
 export type Interest = {
   label: string;
   blurb: string;
-  icon: "swords" | "camera" | "coffee" | "plane";
+  icon: "swords" | "camera" | "coffee" | "plane" | "languages";
 };
 
 export const interests: Interest[] = [
   {
     label: "Jiu jitsu",
-    blurb: "Training on the mats keeps me honest about losing and learning.",
+    blurb:
+      "The mats keep me honest about losing and learning. Two of my three side projects came out of this room, which tells you roughly how much of my head it occupies.",
     icon: "swords",
   },
   {
     label: "Photography",
-    blurb: "Cameras taught me composition long before code did.",
+    blurb:
+      "Cameras taught me composition long before code did — what to leave out, mostly.",
     icon: "camera",
   },
   {
     label: "Coffee",
-    blurb: "Pour-overs at home, espresso when I'm out.",
+    blurb: "Pour-overs at home, espresso when I'm out, opinions either way.",
     icon: "coffee",
   },
   {
     label: "Traveling",
-    blurb: "Notes from new cities tend to end up shaping side projects.",
+    blurb:
+      "Notes from new cities have a habit of turning into side projects a few months later.",
     icon: "plane",
+  },
+  {
+    label: "Languages",
+    blurb:
+      "English, Urdu, and Gujarati at home; Spanish well enough to get into trouble and most of the way out.",
+    icon: "languages",
   },
 ];

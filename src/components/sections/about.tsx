@@ -1,8 +1,9 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import { FadeUp } from "@/components/motion/fade-up";
 import { Section } from "@/components/section";
-import { about } from "@/content/swe";
+import { about, aboutIntro } from "@/content/swe";
 
 export function AboutSection() {
   return (
@@ -23,13 +24,13 @@ export function AboutSection() {
         <div className="flex flex-col items-center gap-6 text-center md:items-start md:text-left">
           <FadeUp>
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-              01 · About
+              {aboutIntro.eyebrow}
             </p>
           </FadeUp>
 
           <FadeUp delay={0.1}>
             <h2 className="text-balance text-3xl font-medium tracking-tight sm:text-4xl">
-              Building software, learning business.
+              {aboutIntro.heading}
             </h2>
           </FadeUp>
 
@@ -42,6 +43,20 @@ export function AboutSection() {
               </FadeUp>
             ))}
           </div>
+
+          <FadeUp delay={0.35}>
+            <p className="text-pretty text-lg leading-relaxed text-muted-foreground">
+              {about.cvLine.before}
+              <Link
+                href="/resume.pdf"
+                download="Uzair-Vawda-CV.pdf"
+                className="text-foreground underline underline-offset-4 transition-colors hover:text-primary"
+              >
+                {about.cvLine.label}
+              </Link>
+              {about.cvLine.after}
+            </p>
+          </FadeUp>
         </div>
       </div>
     </Section>
