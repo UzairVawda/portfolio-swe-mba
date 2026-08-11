@@ -26,11 +26,11 @@ One site. Three zones, each with a different motion treatment.
 | Work | Projects, concepts, archive | **The Index** — numbered rows that expand in place |
 
 The **MBA track summary** is a section on the main page, not the MBA content itself: a
-short statement of what the track is, the most recent journal entry, and links into
-`/journal`, `/speaking`, and `/tools`. The posts themselves live at those routes, because a
-weekly journal needs individual URLs to be shareable and to accumulate search value. This
-is the one place the single-page model is deliberately broken, and the reason is content
-cadence rather than design preference.
+short statement of what the track is, the latest three or four items, and links into
+`/tools` and `/speaking`. The items themselves live at those routes because each one needs
+a shareable URL — they get posted to LinkedIn individually. This is the one place the
+single-page model is deliberately broken, and the reason is shareability rather than
+design preference.
 
 ### Governing rule
 
@@ -128,48 +128,80 @@ the rest of the second palette.
 
 ## Content model
 
-### Journal — MDX
+**No MDX.** With the journal dropped, nothing on this site is article-shaped. Tools and
+speaking are card-shaped — image, blurb, link — which fits the existing typed
+`src/content/` pattern exactly. This avoids `@next/mdx`, `@mdx-js/loader`,
+`@mdx-js/react`, `@types/mdx`, a `pageExtensions` config change, and a root
+`mdx-components.tsx`. Four dependencies and two config surfaces that buy nothing here.
 
-Weekly cadence starting this month, photo-bearing. MDX earns its place here specifically
-because posts carry images; a TypeScript module would mean hand-writing JSX per photo.
+### The collection type
 
-Requires `@next/mdx`, `@mdx-js/loader`, `@mdx-js/react`, `@types/mdx` — **none currently
-installed** — plus `pageExtensions` in `next.config.ts` and a root `src/mdx-components.tsx`.
+One shape, two data sources:
 
-Two version-specific constraints confirmed against the bundled v16.3 docs:
+```ts
+type TrackItem = {
+  slug: string;              // the shareable URL segment
+  title: string;
+  date: string;              // ISO
+  blurb: string;             // 1-3 sentences
+  image?: { src: StaticImageData; alt: string };
+  link?: { label: string; href: string };
+};
+```
 
-- `useMDXComponents()` **takes no arguments** in this version. The older signature that
-  accepted and spread incoming components is gone; most online examples are wrong.
-- MDX has **no frontmatter support**. Posts export `export const metadata = {...}` as a
-  named export alongside the default component.
+Images are **static imports**, which give Next intrinsic dimensions and a blur placeholder
+for free and avoid the `next/image` missing-dimensions error that catches plain string
+sources.
 
-Images: static imports (`import photo from './panel.jpg'`) for anything that matters,
-giving intrinsic dimensions and a blur placeholder. A styled plain `<img>` fallback
-handles incidental markdown images, because `next/image` throws without dimensions.
+### Volume
 
-### Other MBA sections
-
-All four stay, with real cadence:
-
-| Section | Cadence | Shape |
+| Section | Expected over 2 years | Shape |
 | --- | --- | --- |
-| Journal | weekly | MDX collection, index + post routes |
-| Speaking | monthly | photo-led entries, same collection pattern |
-| Tools | one per class, end of semester | entries with links |
+| Tools | 16–20 | card + permalink |
+| Speaking | 25–35 | card + permalink, photo-led |
 | About | — | **merged into the single site About** |
+
+~45 items across two galleries. At that size a gallery reads as accumulated evidence
+rather than clutter, which is the argument for keeping this on one site rather than
+splitting it out.
 
 The MBA About merges. A unified site should not introduce its author twice; the
 engineer-plus-MBA combination is the thing worth stating once, well.
 
+### Item pages
+
+A `/tools/[slug]` or `/speaking/[slug]` page is **the card, enlarged**: image, blurb,
+link, date, and a route back to the gallery. Nothing longer. This is all LinkedIn consumes,
+and it keeps publishing an item to a few lines of data rather than a writing task.
+
+`generateStaticParams` prerenders every item; `dynamicParams = false` 404s anything not in
+the collection.
+
+### Open Graph images
+
+Each item needs a good LinkedIn preview, since that is the stated distribution channel.
+
+- **Speaking** items use their event photo directly.
+- **Anything without a photo** — most tools — falls back to a generated card: the item
+  title set on the pine palette via `ImageResponse`.
+
+Implemented as `opengraph-image.tsx` inside each `[slug]` segment. **Version constraint:**
+in Next 16 the image-generating function receives `params` as a **Promise** and must await
+it. The existing root `opengraph-image.tsx` escapes this only because it takes no props.
+
 ## Routes
 
 ```
-/                      hero + narrative + work index + contact
-/journal               journal index
-/journal/[slug]        post
-/speaking              speaking index
-/tools                 tools index
+/                      hero + narrative + work index + MBA summary + contact
+/tools                 gallery
+/tools/[slug]          card, enlarged            shareable
+/speaking              gallery
+/speaking/[slug]       card, enlarged            shareable
 ```
+
+**Navigation is flat:** Work · Tools · Speaking · About · Contact, all peers. No MBA hub
+and no dropdown — the MBA work sits alongside the engineering work rather than nested
+under it, which is the whole point of unifying.
 
 Redirects via `async redirects()` in `next.config.ts` with `permanent: true` (issues 308,
 which preserves request method and link equity). Config redirects run before the
@@ -179,9 +211,9 @@ filesystem, so no page renders at all:
 | --- | --- |
 | `/mba` | `/` |
 | `/mba/about` | `/#about` |
-| `/mba/journal` | `/journal` |
-| `/mba/speaking` | `/speaking` |
 | `/mba/tools` | `/tools` |
+| `/mba/speaking` | `/speaking` |
+| `/mba/journal` | `/` |
 
 **Route strings are currently duplicated across seven places** — `navItems`,
 `about.overview[].route`, hardcoded links in `site-nav.tsx`, `sitemap.ts`, the
@@ -244,7 +276,7 @@ One branch, five reviewable PRs, merged to `main` only when the whole thing hold
 | 2 | Overture hero — session gate, skip, unmount, reduced-motion path, theme-aware scene |
 | 3 | Work index — expanding rows replacing the project cards |
 | 4 | Scroll-score reveals across narrative sections |
-| 5 | MDX journal, speaking, tools; route moves and redirects; OG image repaint |
+| 5 | Tools + speaking galleries and item routes, per-item OG images, route moves and redirects, root OG repaint |
 
 Stage 1 is deliberately unglamorous and deliberately first: it makes every later stage
 cheap to verify.
@@ -257,8 +289,15 @@ cheap to verify.
    the overture is the first thing to cut — it is deliberately built to be removable.
 2. **The eyebrow ladder is asserted in two places** and locks section order. Renumbering is
    a three-file change. Handled in stage 1.
-3. **Journal cadence is a commitment.** A journal with three posts and a four-month gap is
-   worse than no journal. If weekly proves unrealistic, the honest move is to drop the
-   stated cadence, not to let it visibly lapse.
-4. **MDX adds four dependencies** to a project that currently has none for content. Worth
-   it for photos; not worth it if posts turn out to be text-only.
+3. **Empty galleries on day one.** Tools and speaking both start at zero, and an empty
+   gallery is exactly the problem the current MBA section has. Each ships with an honest
+   empty state that states the cadence and when the first item lands — and neither route
+   is linked from the main nav until it has at least one item in it. A nav entry leading
+   to nothing is worse than no nav entry.
+4. **Cadence is a commitment.** ~10 tools and ~15 speaking items a year is the stated
+   plan. If it slips, the honest move is to drop the stated cadence from the copy rather
+   than let a visible gap accumulate. Nothing on the site should promise a rhythm it
+   isn't keeping.
+5. **The journal was dropped, not deferred.** Re-adding it later means reintroducing MDX
+   or writing prose into typed modules. That's a real cost — worth paying only if you find
+   you actually want to write, not on the assumption that you might.
