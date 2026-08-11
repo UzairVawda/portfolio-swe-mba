@@ -13,6 +13,7 @@ import { InterestsSection } from "@/components/sections/interests";
 import { ProjectsSection } from "@/components/sections/projects";
 import { SkillsSection } from "@/components/sections/skills";
 import { mbaTeaser, metaDescription } from "@/content/swe";
+import { legacyRoutes } from "@/lib/routes";
 
 export const metadata: Metadata = {
   title: { absolute: "Uzair Vawda — Engineer, MBA candidate" },
@@ -44,7 +45,7 @@ export default function SwePage() {
               {mbaTeaser.body}
             </p>
             <Link
-              href="/mba"
+              href={legacyRoutes.mbaHome}
               className="inline-flex w-fit items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-transform hover:-translate-y-px"
             >
               {mbaTeaser.cta}

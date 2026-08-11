@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { MbaMobileNav } from "@/components/mba-mobile-nav";
 import { ThemeToggleWithHint } from "@/components/theme-toggle-with-hint";
+import { RESUME_DOWNLOAD_NAME, legacyRoutes, routes } from "@/lib/routes";
 
 type Variant = "swe" | "mba";
 
@@ -12,7 +13,7 @@ export function SiteNav({ variant }: { variant: Variant }) {
     <header className="sticky top-0 z-40 w-full border-b border-border/60 bg-background/80 px-6 backdrop-blur sm:px-8 md:px-12 lg:px-16">
       <nav className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between">
         <Link
-          href={isMba ? "/mba" : "/"}
+          href={isMba ? legacyRoutes.mbaHome : routes.home}
           className="font-mono text-sm tracking-tight text-foreground transition-colors hover:text-primary"
         >
           {isMba ? "./uzair/mba" : "./uzair"}
@@ -20,8 +21,8 @@ export function SiteNav({ variant }: { variant: Variant }) {
 
         <div className="flex items-center gap-2 sm:gap-6">
           <Link
-            href="/resume.pdf"
-            download="Uzair-Vawda-CV.pdf"
+            href={routes.resume}
+            download={RESUME_DOWNLOAD_NAME}
             className="hidden text-sm text-muted-foreground transition-colors hover:text-foreground sm:inline-flex"
           >
             Resume
@@ -29,31 +30,31 @@ export function SiteNav({ variant }: { variant: Variant }) {
           {isMba ? (
             <>
               <Link
-                href="/mba/about"
+                href={legacyRoutes.mbaAbout}
                 className="hidden text-sm text-muted-foreground transition-colors hover:text-foreground sm:inline-flex"
               >
                 About
               </Link>
               <Link
-                href="/mba/tools"
+                href={legacyRoutes.mbaTools}
                 className="hidden text-sm text-muted-foreground transition-colors hover:text-foreground sm:inline-flex"
               >
                 Tools
               </Link>
               <Link
-                href="/mba/journal"
+                href={legacyRoutes.mbaJournal}
                 className="hidden text-sm text-muted-foreground transition-colors hover:text-foreground sm:inline-flex"
               >
                 Journal
               </Link>
               <Link
-                href="/mba/speaking"
+                href={legacyRoutes.mbaSpeaking}
                 className="hidden text-sm text-muted-foreground transition-colors hover:text-foreground sm:inline-flex"
               >
                 Speaking
               </Link>
               <Link
-                href="/"
+                href={routes.home}
                 className="hidden text-sm text-muted-foreground transition-colors hover:text-foreground sm:inline-flex"
               >
                 ← SWE
@@ -62,7 +63,7 @@ export function SiteNav({ variant }: { variant: Variant }) {
             </>
           ) : (
             <Link
-              href="/mba"
+              href={legacyRoutes.mbaHome}
               className="text-sm text-muted-foreground transition-colors hover:text-foreground"
             >
               MBA →

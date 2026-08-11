@@ -5,6 +5,7 @@ import { FadeUp } from "@/components/motion/fade-up";
 import { Stagger, StaggerItem } from "@/components/motion/stagger";
 import { Section } from "@/components/section";
 import { landing } from "@/content/mba";
+import { legacyRoutes } from "@/lib/routes";
 
 export const metadata: Metadata = {
   title: "MBA Portfolio",
@@ -43,14 +44,14 @@ export default function MbaLandingPage() {
           className="flex flex-wrap items-center justify-center gap-3 pt-2 md:justify-start"
         >
           <Link
-            href="/mba/about"
+            href={legacyRoutes.mbaAbout}
             className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-base font-medium text-primary-foreground transition-transform hover:-translate-y-px"
           >
             About
             <span aria-hidden>→</span>
           </Link>
           <Link
-            href="/mba/tools"
+            href={legacyRoutes.mbaTools}
             className="inline-flex items-center gap-2 rounded-full border border-border px-7 py-3.5 text-base text-foreground transition-colors hover:border-primary hover:text-primary"
           >
             Tools

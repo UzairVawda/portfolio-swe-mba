@@ -4,6 +4,7 @@ import Link from "next/link";
 import { FadeUp } from "@/components/motion/fade-up";
 import { Stagger, StaggerItem } from "@/components/motion/stagger";
 import { Section } from "@/components/section";
+import { RESUME_DOWNLOAD_NAME, legacyRoutes, routes } from "@/lib/routes";
 
 export function Hero() {
   return (
@@ -48,15 +49,15 @@ export function Hero() {
               <span aria-hidden>→</span>
             </Link>
             <Link
-              href="/resume.pdf"
-              download="Uzair-Vawda-CV.pdf"
+              href={routes.resume}
+              download={RESUME_DOWNLOAD_NAME}
               className="inline-flex items-center gap-2 rounded-full border border-border px-7 py-3.5 text-base text-foreground transition-colors hover:border-primary hover:text-primary"
             >
               Resume
               <span aria-hidden>↓</span>
             </Link>
             <Link
-              href="/mba"
+              href={legacyRoutes.mbaHome}
               className="inline-flex items-center gap-2 rounded-full border border-border px-7 py-3.5 text-base text-foreground transition-colors hover:border-primary hover:text-primary"
             >
               MBA section

@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import { RESUME_DOWNLOAD_NAME, legacyRoutes, routes } from "@/lib/routes";
+
 export function SiteFooter({ variant }: { variant: "swe" | "mba" }) {
   const isMba = variant === "mba";
 
@@ -9,8 +11,8 @@ export function SiteFooter({ variant }: { variant: "swe" | "mba" }) {
         <p className="font-mono">© {new Date().getFullYear()} Uzair Vawda</p>
         <div className="flex items-center gap-6">
           <Link
-            href="/resume.pdf"
-            download="Uzair-Vawda-CV.pdf"
+            href={routes.resume}
+            download={RESUME_DOWNLOAD_NAME}
             className="transition-colors hover:text-foreground"
           >
             Resume
@@ -32,7 +34,7 @@ export function SiteFooter({ variant }: { variant: "swe" | "mba" }) {
             LinkedIn
           </Link>
           <Link
-            href={isMba ? "/" : "/mba"}
+            href={isMba ? routes.home : legacyRoutes.mbaHome}
             className="transition-colors hover:text-foreground"
           >
             {isMba ? "← SWE" : "MBA →"}

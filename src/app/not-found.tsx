@@ -5,6 +5,7 @@ import { FadeUp } from "@/components/motion/fade-up";
 import { Section } from "@/components/section";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteNav } from "@/components/site-nav";
+import { legacyRoutes, routes } from "@/lib/routes";
 
 export const metadata: Metadata = {
   title: "404 — Not found",
@@ -38,14 +39,14 @@ export default function NotFound() {
               className="flex flex-wrap items-center justify-center gap-3 pt-2"
             >
               <Link
-                href="/"
+                href={routes.home}
                 className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-transform hover:-translate-y-px"
               >
                 Home
                 <span aria-hidden>→</span>
               </Link>
               <Link
-                href="/mba"
+                href={legacyRoutes.mbaHome}
                 className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm text-foreground transition-colors hover:border-primary hover:text-primary"
               >
                 MBA section

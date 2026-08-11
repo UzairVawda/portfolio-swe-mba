@@ -1,5 +1,7 @@
 // MBA section copy.
 
+import { legacyRoutes, routes } from "@/lib/routes";
+
 export const landing = {
   number: "01",
   eyebrow: "MBA Portfolio",
@@ -10,10 +12,10 @@ export const landing = {
 };
 
 export const navItems = [
-  { href: "/mba/about", label: "About" },
-  { href: "/mba/tools", label: "Tools" },
-  { href: "/mba/journal", label: "Journal" },
-  { href: "/mba/speaking", label: "Speaking" },
+  { href: legacyRoutes.mbaAbout, label: "About" },
+  { href: legacyRoutes.mbaTools, label: "Tools" },
+  { href: legacyRoutes.mbaJournal, label: "Journal" },
+  { href: legacyRoutes.mbaSpeaking, label: "Speaking" },
 ];
 
 export const tools = {
@@ -63,17 +65,17 @@ export const about = {
   ],
   overview: [
     {
-      route: "/mba/tools",
+      route: legacyRoutes.mbaTools,
       label: "Tools",
       description: "Shippable consulting tools — one per class.",
     },
     {
-      route: "/mba/journal",
+      route: legacyRoutes.mbaJournal,
       label: "Journal",
       description: "Weekly synthesis on what I'm learning.",
     },
     {
-      route: "/mba/speaking",
+      route: legacyRoutes.mbaSpeaking,
       label: "Speaking",
       description: "Talks, workshops, panels — after the fact.",
     },
@@ -81,7 +83,7 @@ export const about = {
   links: [
     { label: "LinkedIn", href: "https://www.linkedin.com/in/uzair-vawda/" },
     { label: "GitHub", href: "https://github.com/UzairVawda" },
-    { label: "Resume (PDF)", href: "/resume.pdf" },
+    { label: "Resume (PDF)", href: routes.resume },
   ],
   contact: {
     headline: "Get in touch.",

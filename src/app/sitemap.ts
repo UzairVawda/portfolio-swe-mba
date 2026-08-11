@@ -1,23 +1,22 @@
 import type { MetadataRoute } from "next";
 
+import { legacyRoutes, routes } from "@/lib/routes";
+
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://uzairvawda.me";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-  const routes = [
-    "/",
-    "/mba",
-    "/mba/tools",
-    "/mba/journal",
-    "/mba/speaking",
-    "/mba/about",
-  ];
+  const sitemapRoutes: string[] = [routes.home, ...Object.values(legacyRoutes)];
 
-  return routes.map((route) => ({
-    url: `${siteUrl}${route === "/" ? "" : route}`,
+  return sitemapRoutes.map((route) => ({
+    url: `${siteUrl}${route === routes.home ? "" : route}`,
     lastModified: now,
-    changeFrequency: route === "/" || route === "/mba" ? "monthly" : "yearly",
-    priority: route === "/" ? 1 : route === "/mba" ? 0.9 : 0.7,
+    changeFrequency:
+      route === routes.home || route === legacyRoutes.mbaHome
+        ? "monthly"
+        : "yearly",
+    priority:
+      route === routes.home ? 1 : route === legacyRoutes.mbaHome ? 0.9 : 0.7,
   }));
 }

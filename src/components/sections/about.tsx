@@ -4,6 +4,7 @@ import Link from "next/link";
 import { FadeUp } from "@/components/motion/fade-up";
 import { Section } from "@/components/section";
 import { about, aboutIntro } from "@/content/swe";
+import { RESUME_DOWNLOAD_NAME, routes } from "@/lib/routes";
 
 export function AboutSection() {
   return (
@@ -48,8 +49,8 @@ export function AboutSection() {
             <p className="text-pretty text-lg leading-relaxed text-muted-foreground">
               {about.cvLine.before}
               <Link
-                href="/resume.pdf"
-                download="Uzair-Vawda-CV.pdf"
+                href={routes.resume}
+                download={RESUME_DOWNLOAD_NAME}
                 className="text-foreground underline underline-offset-4 transition-colors hover:text-primary"
               >
                 {about.cvLine.label}

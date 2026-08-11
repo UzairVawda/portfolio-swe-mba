@@ -1,11 +1,12 @@
 import Link from "next/link";
 
 import { FadeUp } from "@/components/motion/fade-up";
+import { legacyRoutes } from "@/lib/routes";
 
 export function MbaEmptyState({
   title,
   body,
-  ctaHref = "/mba/about",
+  ctaHref = legacyRoutes.mbaAbout,
   ctaLabel = "Get in touch",
 }: {
   title: string;

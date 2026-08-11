@@ -13,6 +13,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { navItems } from "@/content/mba";
+import { routes } from "@/lib/routes";
 
 const triggerStyles =
   "inline-flex h-9 w-9 items-center justify-center rounded-md text-foreground transition-colors hover:bg-muted hover:text-primary sm:hidden";
@@ -52,7 +53,7 @@ export function MbaMobileNav() {
           ))}
         </nav>
         <SheetClose
-          render={<Link href="/" />}
+          render={<Link href={routes.home} />}
           className={footerLinkStyles}
         >
           ← SWE portfolio
