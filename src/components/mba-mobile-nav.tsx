@@ -19,7 +19,7 @@ const triggerStyles =
   "inline-flex h-9 w-9 items-center justify-center rounded-md text-foreground transition-colors hover:bg-muted hover:text-primary sm:hidden";
 
 const navLinkStyles =
-  "rounded-md px-3 py-3 font-serif text-2xl text-foreground transition-colors hover:bg-muted hover:text-primary";
+  "rounded-md px-3 py-3 text-2xl text-foreground transition-colors hover:bg-muted hover:text-primary";
 
 const footerLinkStyles =
   "mt-auto rounded-md px-3 py-3 font-mono text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground";

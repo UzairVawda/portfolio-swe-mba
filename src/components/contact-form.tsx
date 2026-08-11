@@ -91,7 +91,7 @@ export function ContactForm({
   if (state.status === "success") {
     return (
       <div className="rounded-2xl border border-primary/40 bg-primary/5 p-8 text-center md:text-left">
-        <h3 className="font-serif text-2xl font-light tracking-tight">
+        <h3 className="text-2xl font-light tracking-tight">
           Thanks — message received.
         </h3>
         <p className="mt-2 text-base text-muted-foreground">

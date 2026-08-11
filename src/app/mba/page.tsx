@@ -18,7 +18,7 @@ export default function MbaLandingPage() {
     <Section className="flex flex-1 flex-col justify-center py-12">
       <div className="flex flex-col items-center gap-10 text-center md:items-start md:text-left">
         <FadeUp className="flex items-baseline gap-4">
-          <span className="font-serif text-5xl font-light text-primary tabular-nums">
+          <span className="text-5xl font-light text-primary tabular-nums">
             {landing.number}
           </span>
           <span className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
@@ -28,7 +28,7 @@ export default function MbaLandingPage() {
 
         <Stagger className="flex flex-col items-center gap-6 md:items-start">
           <StaggerItem>
-            <h1 className="font-serif text-balance text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl md:text-7xl">
+            <h1 className="text-balance text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl md:text-7xl">
               {landing.headline}
             </h1>
           </StaggerItem>

@@ -2,7 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Analytics } from "@vercel/analytics/next";
 
 import { ThemeProvider } from "@/components/theme-provider";
-import { inter, jetbrainsMono, newsreader, satoshi } from "@/lib/fonts";
+import { jetbrainsMono, satoshi } from "@/lib/fonts";
+import { tokens } from "@/lib/theme/tokens";
 
 import "./globals.css";
 
@@ -44,8 +45,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#0c0c16" },
+    { media: "(prefers-color-scheme: light)", color: tokens.light.ground },
+    { media: "(prefers-color-scheme: dark)", color: tokens.dark.ground },
   ],
 };
 
@@ -94,7 +95,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${satoshi.variable} ${jetbrainsMono.variable} ${newsreader.variable} ${inter.variable} h-full antialiased`}
+      className={`${satoshi.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <body
         suppressHydrationWarning

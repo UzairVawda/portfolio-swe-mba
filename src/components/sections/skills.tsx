@@ -3,12 +3,10 @@ import { Stagger, StaggerItem } from "@/components/motion/stagger";
 import { Section } from "@/components/section";
 import { skills, skillsIntro } from "@/content/swe";
 
-const palette = [
-  "bg-primary/15 text-foreground dark:bg-primary/20",
-  "bg-periwinkle/30 text-foreground dark:bg-periwinkle/20",
-  "bg-columbia/40 text-foreground dark:bg-columbia/20",
-  "bg-celadon/40 text-foreground dark:bg-celadon/20",
-];
+// One accent, one chip. Colour-coding groups was a function of having three
+// pastels; with a single signal, differentiation comes from the group heading.
+const chip =
+  "rounded-full border border-signal/30 bg-tint px-4 py-1.5 text-sm font-medium text-ink";
 
 export function SkillsSection() {
   const groups = Object.entries(skills);
@@ -26,7 +24,7 @@ export function SkillsSection() {
         </FadeUp>
 
         <Stagger className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-          {groups.map(([group, items], index) => (
+          {groups.map(([group, items]) => (
             <StaggerItem
               key={group}
               className="flex flex-col items-center gap-4 rounded-2xl border border-border bg-card p-6 text-center transition-colors hover:border-primary/40 md:items-start md:text-left"
@@ -36,10 +34,7 @@ export function SkillsSection() {
               </h3>
               <ul className="flex flex-wrap justify-center gap-2 md:justify-start">
                 {items.map((item) => (
-                  <li
-                    key={item}
-                    className={`rounded-full px-4 py-1.5 text-sm font-medium ${palette[index % palette.length]}`}
-                  >
+                  <li key={item} className={chip}>
                     {item}
                   </li>
                 ))}

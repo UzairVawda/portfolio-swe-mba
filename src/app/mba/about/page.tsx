@@ -42,7 +42,7 @@ export default function MbaAboutPage() {
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
               Sections
             </p>
-            <h2 className="font-serif text-3xl font-light tracking-tight">
+            <h2 className="text-3xl font-light tracking-tight">
               What you&apos;ll find here.
             </h2>
           </FadeUp>
@@ -55,7 +55,7 @@ export default function MbaAboutPage() {
               >
                 <Link
                   href={section.route}
-                  className="font-serif text-2xl font-light tracking-tight transition-colors hover:text-primary"
+                  className="text-2xl font-light tracking-tight transition-colors hover:text-primary"
                 >
                   {section.label}
                 </Link>
@@ -109,7 +109,7 @@ export default function MbaAboutPage() {
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
               Contact
             </p>
-            <h2 className="font-serif text-3xl font-light tracking-tight">
+            <h2 className="text-3xl font-light tracking-tight">
               {about.contact.headline}
             </h2>
             <p className="max-w-xl text-pretty text-base leading-relaxed text-muted-foreground">

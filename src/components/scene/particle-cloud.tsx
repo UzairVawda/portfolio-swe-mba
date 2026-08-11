@@ -19,6 +19,7 @@ import {
   icosahedronPoints,
   spherePoints,
 } from "@/lib/scene/shapes";
+import { tokens } from "@/lib/theme/tokens";
 
 type Props = {
   count: number;
@@ -127,7 +128,7 @@ export function ParticleCloud({ count, scrollRef, pointerRef, reduced }: Props) 
         <lineBasicMaterial
           transparent
           opacity={LINE_OPACITY}
-          color="#9b9bff"
+          color={tokens.dark.signal}
           blending={AdditiveBlending}
           depthWrite={false}
         />
@@ -143,7 +144,7 @@ export function ParticleCloud({ count, scrollRef, pointerRef, reduced }: Props) 
           alphaMap={sprite}
           transparent
           opacity={0}
-          color="#9b9bff"
+          color={tokens.dark.signal}
           blending={AdditiveBlending}
           depthWrite={false}
         />

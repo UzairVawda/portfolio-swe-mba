@@ -12,12 +12,9 @@ const iconMap: Record<Interest["icon"], typeof Camera> = {
   plane: Plane,
 };
 
-const surfaces = [
-  "bg-primary/10 text-primary",
-  "bg-periwinkle/30 text-foreground dark:bg-periwinkle/20",
-  "bg-columbia/40 text-foreground dark:bg-columbia/20",
-  "bg-celadon/40 text-foreground dark:bg-celadon/20",
-];
+// One accent, one surface. Colour-coding the icons was a function of having
+// three pastels; with a single signal, the icon itself carries the meaning.
+const iconSurface = "border border-signal/30 bg-tint text-signal";
 
 export function InterestsSection() {
   return (
@@ -33,7 +30,7 @@ export function InterestsSection() {
         </FadeUp>
 
         <Stagger className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-          {interests.map((interest, index) => {
+          {interests.map((interest) => {
             const Icon = iconMap[interest.icon];
             return (
               <StaggerItem
@@ -41,7 +38,7 @@ export function InterestsSection() {
                 className="group flex flex-col items-center gap-6 rounded-3xl border border-border bg-card p-8 text-center transition-colors hover:border-primary/40 md:items-start md:p-10 md:text-left"
               >
                 <span
-                  className={`inline-flex h-14 w-14 items-center justify-center rounded-full ${surfaces[index % surfaces.length]}`}
+                  className={`inline-flex h-14 w-14 items-center justify-center rounded-full ${iconSurface}`}
                 >
                   <Icon className="h-6 w-6" aria-hidden />
                 </span>

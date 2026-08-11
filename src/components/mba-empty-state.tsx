@@ -20,7 +20,7 @@ export function MbaEmptyState({
         <span className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
           Empty for now
         </span>
-        <h2 className="font-serif text-3xl font-light tracking-tight">
+        <h2 className="text-3xl font-light tracking-tight">
           {title}
         </h2>
         <p className="text-pretty text-lg leading-relaxed text-muted-foreground">
