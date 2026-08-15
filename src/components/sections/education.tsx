@@ -5,7 +5,7 @@ import { certifications, education, educationIntro } from "@/content/swe";
 
 export function EducationSection() {
   return (
-    <Section id="education" className="py-24" scrim>
+    <Section id="education" className="py-24">
       <div className="flex flex-col gap-12">
         <FadeUp className="flex flex-col items-center gap-3 text-center md:items-start md:text-left">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">

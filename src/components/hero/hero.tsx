@@ -8,18 +8,8 @@ import { RESUME_DOWNLOAD_NAME, legacyRoutes, routes } from "@/lib/routes";
 
 export function Hero() {
   return (
-    <Section className="relative flex min-h-[calc(100svh-4rem)] flex-col justify-center overflow-hidden py-12">
-      {/* A soft, theme-aware scrim that seats the headline over the particle
-          field — keeps the copy crisp while the cloud glows around it. */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 z-0"
-        style={{
-          background:
-            "radial-gradient(ellipse 52% 60% at 50% 50%, color-mix(in srgb, var(--background) 92%, transparent) 0%, color-mix(in srgb, var(--background) 78%, transparent) 38%, color-mix(in srgb, var(--background) 30%, transparent) 60%, transparent 78%)",
-        }}
-      />
-      <div className="relative z-10 flex flex-col items-center gap-10 text-center">
+    <Section className="flex min-h-[calc(100svh-4rem)] flex-col justify-center py-12">
+      <div className="flex flex-col items-center gap-10 text-center">
         <FadeUp>
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
             uzair vawda · portfolio
