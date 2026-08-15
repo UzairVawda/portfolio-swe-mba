@@ -5,13 +5,12 @@ import { Hero } from "@/components/hero/hero";
 import { FadeUp } from "@/components/motion/fade-up";
 import { Section } from "@/components/section";
 import { AboutSection } from "@/components/sections/about";
-import { ArchiveSection } from "@/components/sections/archive";
 import { ContactSection } from "@/components/sections/contact";
 import { EducationSection } from "@/components/sections/education";
 import { ExperienceSection } from "@/components/sections/experience";
 import { InterestsSection } from "@/components/sections/interests";
-import { ProjectsSection } from "@/components/sections/projects";
 import { SkillsSection } from "@/components/sections/skills";
+import { WorkIndexSection } from "@/components/sections/work-index";
 import { eyebrow } from "@/content/sections";
 import { mbaTeaser, metaDescription } from "@/content/swe";
 import { legacyRoutes } from "@/lib/routes";
@@ -27,8 +26,7 @@ export default function SwePage() {
       <Hero />
       <AboutSection />
       <ExperienceSection />
-      <ProjectsSection />
-      <ArchiveSection />
+      <WorkIndexSection />
       <SkillsSection />
       <EducationSection />
       <InterestsSection />

@@ -11,6 +11,7 @@ import {
   interests,
   projects,
   skills,
+  workIntro,
 } from "./swe";
 
 // Figures the site must never carry — employer-internal financials.
@@ -115,6 +116,22 @@ describe("projects", () => {
     for (const project of projects) {
       expect(project.status.trim()).not.toBe("");
       expect(project.helpWanted.trim()).not.toBe("");
+    }
+  });
+
+  it("carries one intro covering both the projects and the archive", () => {
+    // The old projectsIntro and archiveIntro were merged when the two
+    // sections collapsed into the work index; every field both of them
+    // carried has to survive, or a label silently renders as undefined.
+    expect(Object.keys(workIntro).sort()).toEqual([
+      "archiveIntro",
+      "archiveLabel",
+      "conceptsLabel",
+      "helpWantedLabel",
+      "heading",
+    ].sort());
+    for (const [key, value] of Object.entries(workIntro)) {
+      expect(value.trim(), key).not.toBe("");
     }
   });
 

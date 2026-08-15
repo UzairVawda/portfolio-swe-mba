@@ -8,8 +8,7 @@
 export const sectionOrder = [
   "about",
   "experience",
-  "projects",
-  "archive",
+  "work",
   "skills",
   "education",
   "interests",
@@ -22,8 +21,7 @@ export type SectionId = (typeof sectionOrder)[number];
 export const sectionLabel: Record<SectionId, string> = {
   about: "About",
   experience: "Experience",
-  projects: "Projects",
-  archive: "Archive",
+  work: "Work",
   skills: "Skills",
   education: "Education & Certifications",
   interests: "Off-screen",

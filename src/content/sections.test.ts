@@ -12,7 +12,7 @@ describe("section manifest", () => {
 
   it("formats an eyebrow as NN · Label", () => {
     expect(eyebrow("about")).toBe("01 · About");
-    expect(eyebrow("contact")).toBe("08 · Let's talk");
+    expect(eyebrow("contact")).toBe("07 · Let's talk");
   });
 
   it("renders the whole ladder, in order, exactly as the page reads it", () => {
@@ -25,13 +25,12 @@ describe("section manifest", () => {
     expect(sectionOrder.map(eyebrow)).toEqual([
       "01 · About",
       "02 · Experience",
-      "03 · Projects",
-      "04 · Archive",
-      "05 · Skills",
-      "06 · Education & Certifications",
-      "07 · Off-screen",
-      "08 · Let's talk",
-      "09 · What's next",
+      "03 · Work",
+      "04 · Skills",
+      "05 · Education & Certifications",
+      "06 · Off-screen",
+      "07 · Let's talk",
+      "08 · What's next",
     ]);
   });
 

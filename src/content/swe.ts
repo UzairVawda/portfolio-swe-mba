@@ -199,10 +199,13 @@ export type ConceptProject = {
   stack: string[];
 };
 
-export const projectsIntro = {
-  heading: "Everything I'm building, at whatever stage it's at.",
-  conceptsLabel: "Earlier concepts",
+export const workIntro = {
+  heading: "Everything I'm building, and everything before it.",
   helpWantedLabel: "Want in? ",
+  conceptsLabel: "Earlier concepts",
+  archiveLabel: "Archive",
+  archiveIntro:
+    "Coursework, prototypes, and things I built to find out whether I could. Most of them taught me something that showed up later.",
 };
 
 export const projects: Project[] = [
@@ -310,12 +313,6 @@ export const certifications = [
 export type ArchiveGroup = {
   group: string;
   items: { name: string; description: string; stack: string }[];
-};
-
-export const archiveIntro = {
-  heading: "Everything before that.",
-  intro:
-    "Coursework, prototypes, and things I built to find out whether I could. Most of them taught me something that showed up later.",
 };
 
 export const archive: ArchiveGroup[] = [

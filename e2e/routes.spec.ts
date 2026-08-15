@@ -47,8 +47,7 @@ test.describe("route smoke tests", () => {
     expect(ids).toEqual([
       "section-about",
       "section-experience",
-      "section-projects",
-      "section-archive",
+      "section-work",
       "section-skills",
       "section-education",
       "section-interests",
