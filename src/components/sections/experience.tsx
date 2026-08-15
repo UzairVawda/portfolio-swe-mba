@@ -1,5 +1,4 @@
-import { FadeUp } from "@/components/motion/fade-up";
-import { Stagger, StaggerItem } from "@/components/motion/stagger";
+import { Reveal, UnmaskLines } from "@/components/motion/reveal";
 import { Section } from "@/components/section";
 import { eyebrow } from "@/content/sections";
 import { experience, experienceIntro } from "@/content/swe";
@@ -8,19 +7,28 @@ export function ExperienceSection() {
   return (
     <Section id="experience" className="py-24" data-testid="section-experience">
       <div className="flex flex-col gap-12">
-        <FadeUp className="flex flex-col items-center gap-3 text-center md:items-start md:text-left">
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-            {eyebrow("experience")}
-          </p>
+        <div className="flex flex-col items-center gap-3 text-center md:items-start md:text-left">
+          <Reveal>
+            <p
+              className="font-mono text-xs uppercase tracking-[0.2em] text-signal"
+              data-testid="eyebrow-experience"
+            >
+              {eyebrow("experience")}
+            </p>
+          </Reveal>
           <h2 className="text-balance text-3xl font-medium tracking-tight sm:text-4xl">
-            {experienceIntro.heading}
+            <UnmaskLines
+              lines={[experienceIntro.heading]}
+              data-testid="heading-experience"
+            />
           </h2>
-        </FadeUp>
+        </div>
 
-        <Stagger className="flex flex-col">
+        <div className="flex flex-col">
           {experience.map((role, index) => (
-            <StaggerItem
+            <Reveal
               key={`${role.company}-${role.title}`}
+              delay={index * 0.06}
               className="group grid grid-cols-1 gap-3 border-t border-border py-8 md:grid-cols-[180px_1fr] md:gap-8"
             >
               <div className="flex flex-col items-center md:items-start">
@@ -61,9 +69,9 @@ export function ExperienceSection() {
                   ))}
                 </ul>
               </div>
-            </StaggerItem>
+            </Reveal>
           ))}
-        </Stagger>
+        </div>
       </div>
     </Section>
   );

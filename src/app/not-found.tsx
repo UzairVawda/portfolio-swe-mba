@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { FadeUp } from "@/components/motion/fade-up";
+import { Reveal } from "@/components/motion/reveal";
 import { Section } from "@/components/section";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteNav } from "@/components/site-nav";
@@ -21,23 +21,23 @@ export default function NotFound() {
             className="flex flex-col items-center gap-6 text-center"
             data-testid="not-found"
           >
-            <FadeUp>
+            <Reveal>
               <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
                 404
               </p>
-            </FadeUp>
-            <FadeUp delay={0.1}>
+            </Reveal>
+            <Reveal delay={0.1}>
               <h1 className="text-balance text-5xl font-medium tracking-tight sm:text-6xl">
                 Not here.
               </h1>
-            </FadeUp>
-            <FadeUp delay={0.2}>
+            </Reveal>
+            <Reveal delay={0.2}>
               <p className="max-w-md text-pretty text-lg text-muted-foreground">
                 That page doesn&apos;t exist (yet). The site is small — try one
                 of these.
               </p>
-            </FadeUp>
-            <FadeUp
+            </Reveal>
+            <Reveal
               delay={0.3}
               className="flex flex-wrap items-center justify-center gap-3 pt-2"
             >
@@ -55,7 +55,7 @@ export default function NotFound() {
                 MBA section
                 <span aria-hidden>→</span>
               </Link>
-            </FadeUp>
+            </Reveal>
           </div>
         </Section>
       </main>

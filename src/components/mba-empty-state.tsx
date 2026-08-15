@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { FadeUp } from "@/components/motion/fade-up";
+import { Reveal } from "@/components/motion/reveal";
 import { legacyRoutes } from "@/lib/routes";
 
 export function MbaEmptyState({
@@ -15,7 +15,7 @@ export function MbaEmptyState({
   ctaLabel?: string;
 }) {
   return (
-    <FadeUp delay={0.2}>
+    <Reveal delay={0.2}>
       <div className="mx-auto flex w-full max-w-2xl flex-col items-center gap-6 rounded-3xl border border-dashed border-border bg-card/60 px-8 py-16 text-center md:items-start md:text-left">
         <span className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
           Empty for now
@@ -34,6 +34,6 @@ export function MbaEmptyState({
           <span aria-hidden>→</span>
         </Link>
       </div>
-    </FadeUp>
+    </Reveal>
   );
 }

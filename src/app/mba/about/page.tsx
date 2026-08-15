@@ -3,8 +3,7 @@ import Link from "next/link";
 
 import { ContactForm } from "@/components/contact-form";
 import { MbaPageHeader } from "@/components/mba-page-header";
-import { FadeUp } from "@/components/motion/fade-up";
-import { Stagger, StaggerItem } from "@/components/motion/stagger";
+import { Reveal } from "@/components/motion/reveal";
 import { Section } from "@/components/section";
 import { about } from "@/content/mba";
 
@@ -24,33 +23,34 @@ export default function MbaAboutPage() {
             headline={about.headline}
           />
 
-          <Stagger className="flex flex-col items-center gap-6 text-center md:items-start md:text-left">
+          <div className="flex flex-col items-center gap-6 text-center md:items-start md:text-left">
             {about.bio.map((paragraph, index) => (
-              <StaggerItem key={index}>
+              <Reveal key={index} delay={index * 0.06}>
                 <p className="max-w-2xl text-pretty text-lg leading-relaxed text-muted-foreground">
                   {paragraph}
                 </p>
-              </StaggerItem>
+              </Reveal>
             ))}
-          </Stagger>
+          </div>
         </div>
       </Section>
 
       <Section className="py-12">
         <div className="flex flex-col gap-10">
-          <FadeUp className="flex flex-col items-center gap-3 text-center md:items-start md:text-left">
+          <Reveal className="flex flex-col items-center gap-3 text-center md:items-start md:text-left">
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
               Sections
             </p>
             <h2 className="text-3xl font-light tracking-tight">
               What you&apos;ll find here.
             </h2>
-          </FadeUp>
+          </Reveal>
 
-          <Stagger className="grid grid-cols-1 gap-4 md:grid-cols-3">
-            {about.overview.map((section) => (
-              <StaggerItem
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+            {about.overview.map((section, index) => (
+              <Reveal
                 key={section.route}
+                delay={index * 0.06}
                 className="flex flex-col items-center gap-2 rounded-2xl border border-border bg-card p-6 text-center transition-colors hover:border-primary/40 md:items-start md:text-left"
               >
                 <Link
@@ -62,29 +62,29 @@ export default function MbaAboutPage() {
                 <p className="text-sm leading-relaxed text-muted-foreground">
                   {section.description}
                 </p>
-              </StaggerItem>
+              </Reveal>
             ))}
-          </Stagger>
+          </div>
         </div>
       </Section>
 
       <Section className="py-12">
         <div className="flex flex-col gap-6">
-          <FadeUp className="flex flex-col items-center gap-3 text-center md:items-start md:text-left">
+          <Reveal className="flex flex-col items-center gap-3 text-center md:items-start md:text-left">
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
               Links
             </p>
-          </FadeUp>
-          <Stagger className="flex flex-wrap items-center justify-center gap-3 md:justify-start">
-            {about.links.map((link) => {
+          </Reveal>
+          <div className="flex flex-wrap items-center justify-center gap-3 md:justify-start">
+            {about.links.map((link, index) => {
               // External links and the resume PDF open in a new tab so the
               // visitor never navigates away from the portfolio.
               const opensNewTab =
                 link.href.startsWith("http") || link.href.endsWith(".pdf");
               return (
-              <StaggerItem
+              <Reveal
                 key={link.href}
-                as="span"
+                delay={index * 0.06}
                 className="inline-flex"
               >
                 <Link
@@ -96,16 +96,16 @@ export default function MbaAboutPage() {
                   {link.label}
                   <span aria-hidden>↗</span>
                 </Link>
-              </StaggerItem>
+              </Reveal>
               );
             })}
-          </Stagger>
+          </div>
         </div>
       </Section>
 
       <Section className="py-12 pb-32">
         <div className="flex flex-col gap-10">
-          <FadeUp className="flex flex-col items-center gap-3 text-center md:items-start md:text-left">
+          <Reveal className="flex flex-col items-center gap-3 text-center md:items-start md:text-left">
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
               Contact
             </p>
@@ -115,12 +115,12 @@ export default function MbaAboutPage() {
             <p className="max-w-xl text-pretty text-base leading-relaxed text-muted-foreground">
               {about.contact.description}
             </p>
-          </FadeUp>
-          <FadeUp delay={0.1}>
+          </Reveal>
+          <Reveal delay={0.1}>
             <div className="rounded-3xl border border-border bg-card p-8 md:p-10">
               <ContactForm />
             </div>
-          </FadeUp>
+          </Reveal>
         </div>
       </Section>
     </>

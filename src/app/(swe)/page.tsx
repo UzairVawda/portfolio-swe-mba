@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { Hero } from "@/components/hero/hero";
-import { FadeUp } from "@/components/motion/fade-up";
+import { Reveal } from "@/components/motion/reveal";
 import { Section } from "@/components/section";
 import { AboutSection } from "@/components/sections/about";
 import { ContactSection } from "@/components/sections/contact";
@@ -32,7 +32,7 @@ export default function SwePage() {
       <InterestsSection />
       <ContactSection />
       <Section className="py-24" data-testid="section-track">
-        <FadeUp>
+        <Reveal>
           <div className="flex flex-col items-center gap-6 rounded-3xl border border-primary/30 bg-primary/5 p-10 text-center md:items-start md:p-14 md:text-left">
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-primary">
               {eyebrow("track")}
@@ -51,7 +51,7 @@ export default function SwePage() {
               <span aria-hidden>→</span>
             </Link>
           </div>
-        </FadeUp>
+        </Reveal>
       </Section>
     </>
   );

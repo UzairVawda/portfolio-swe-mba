@@ -138,5 +138,14 @@
     html {
       scroll-behavior: auto;
     }
+    /* Tier 2 reveals collapse to opacity alone. useReducedMotion cannot know
+       the answer on the server or on the first client render, so the rise is
+       already painted by the time JS could correct it — that correction is a
+       20px snap, which is exactly the motion this query is meant to remove.
+       The transform is killed in CSS instead, before the first paint. */
+    [data-reveal],
+    [data-unmask-line] {
+      transform: none !important;
+    }
   }
 }

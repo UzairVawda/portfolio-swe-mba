@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { FadeUp } from "@/components/motion/fade-up";
-import { Stagger, StaggerItem } from "@/components/motion/stagger";
+import { Reveal } from "@/components/motion/reveal";
 import { Section } from "@/components/section";
 import { landing } from "@/content/mba";
 import { legacyRoutes } from "@/lib/routes";
@@ -20,29 +19,29 @@ export default function MbaLandingPage() {
       data-testid="page-mba"
     >
       <div className="flex flex-col items-center gap-10 text-center md:items-start md:text-left">
-        <FadeUp className="flex items-baseline gap-4">
+        <Reveal className="flex items-baseline gap-4">
           <span className="text-5xl font-light text-primary tabular-nums">
             {landing.number}
           </span>
           <span className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
             {landing.eyebrow}
           </span>
-        </FadeUp>
+        </Reveal>
 
-        <Stagger className="flex flex-col items-center gap-6 md:items-start">
-          <StaggerItem>
+        <div className="flex flex-col items-center gap-6 md:items-start">
+          <Reveal delay={0.1}>
             <h1 className="text-balance text-5xl font-light leading-[1.05] tracking-tight sm:text-6xl md:text-7xl">
               {landing.headline}
             </h1>
-          </StaggerItem>
-          <StaggerItem>
+          </Reveal>
+          <Reveal delay={0.16}>
             <p className="max-w-2xl text-pretty text-xl font-light leading-relaxed text-muted-foreground sm:text-2xl">
               {landing.subhead}
             </p>
-          </StaggerItem>
-        </Stagger>
+          </Reveal>
+        </div>
 
-        <FadeUp
+        <Reveal
           delay={0.4}
           className="flex flex-wrap items-center justify-center gap-3 pt-2 md:justify-start"
         >
@@ -60,7 +59,7 @@ export default function MbaLandingPage() {
             Tools
             <span aria-hidden>→</span>
           </Link>
-        </FadeUp>
+        </Reveal>
       </div>
     </Section>
   );

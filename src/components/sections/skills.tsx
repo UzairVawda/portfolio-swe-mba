@@ -1,5 +1,4 @@
-import { FadeUp } from "@/components/motion/fade-up";
-import { Stagger, StaggerItem } from "@/components/motion/stagger";
+import { Reveal, UnmaskLines } from "@/components/motion/reveal";
 import { Section } from "@/components/section";
 import { eyebrow } from "@/content/sections";
 import { skills, skillsIntro } from "@/content/swe";
@@ -15,19 +14,28 @@ export function SkillsSection() {
   return (
     <Section id="skills" className="py-24" data-testid="section-skills">
       <div className="flex flex-col gap-12">
-        <FadeUp className="flex flex-col items-center gap-3 text-center md:items-start md:text-left">
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-            {eyebrow("skills")}
-          </p>
+        <div className="flex flex-col items-center gap-3 text-center md:items-start md:text-left">
+          <Reveal>
+            <p
+              className="font-mono text-xs uppercase tracking-[0.2em] text-signal"
+              data-testid="eyebrow-skills"
+            >
+              {eyebrow("skills")}
+            </p>
+          </Reveal>
           <h2 className="text-balance text-3xl font-medium tracking-tight sm:text-4xl">
-            {skillsIntro.heading}
+            <UnmaskLines
+              lines={[skillsIntro.heading]}
+              data-testid="heading-skills"
+            />
           </h2>
-        </FadeUp>
+        </div>
 
-        <Stagger className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-          {groups.map(([group, items]) => (
-            <StaggerItem
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+          {groups.map(([group, items], index) => (
+            <Reveal
               key={group}
+              delay={index * 0.06}
               className="flex flex-col items-center gap-4 rounded-2xl border border-border bg-card p-6 text-center transition-colors hover:border-primary/40 md:items-start md:text-left"
             >
               <h3 className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
@@ -40,9 +48,9 @@ export function SkillsSection() {
                   </li>
                 ))}
               </ul>
-            </StaggerItem>
+            </Reveal>
           ))}
-        </Stagger>
+        </div>
       </div>
     </Section>
   );
