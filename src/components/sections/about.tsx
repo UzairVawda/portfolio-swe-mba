@@ -9,7 +9,7 @@ import { RESUME_DOWNLOAD_NAME, routes } from "@/lib/routes";
 
 export function AboutSection() {
   return (
-    <Section id="about" className="py-24">
+    <Section id="about" className="py-24" data-testid="section-about">
       <div className="grid grid-cols-1 items-start gap-12 md:grid-cols-[0.9fr_1.1fr]">
         <FadeUp className="flex justify-center md:sticky md:top-28 md:block">
           <div className="relative aspect-[4/5] w-full max-w-xs overflow-hidden rounded-2xl border border-border bg-muted">
@@ -52,6 +52,7 @@ export function AboutSection() {
               <Link
                 href={routes.resume}
                 download={RESUME_DOWNLOAD_NAME}
+                data-testid="about-cv-link"
                 className="text-foreground underline underline-offset-4 transition-colors hover:text-primary"
               >
                 {about.cvLine.label}

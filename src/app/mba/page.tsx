@@ -15,7 +15,10 @@ export const metadata: Metadata = {
 
 export default function MbaLandingPage() {
   return (
-    <Section className="flex flex-1 flex-col justify-center py-12">
+    <Section
+      className="flex flex-1 flex-col justify-center py-12"
+      data-testid="page-mba"
+    >
       <div className="flex flex-col items-center gap-10 text-center md:items-start md:text-left">
         <FadeUp className="flex items-baseline gap-4">
           <span className="text-5xl font-light text-primary tabular-nums">

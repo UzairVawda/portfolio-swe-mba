@@ -13,7 +13,7 @@ export function SkillsSection() {
   const groups = Object.entries(skills);
 
   return (
-    <Section id="skills" className="py-24">
+    <Section id="skills" className="py-24" data-testid="section-skills">
       <div className="flex flex-col gap-12">
         <FadeUp className="flex flex-col items-center gap-3 text-center md:items-start md:text-left">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">

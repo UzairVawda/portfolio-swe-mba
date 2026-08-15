@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export default function MbaAboutPage() {
   return (
     <>
-      <Section className="pt-20 pb-12 sm:pt-28">
+      <Section className="pt-20 pb-12 sm:pt-28" data-testid="page-mba-about">
         <div className="flex flex-col gap-16">
           <MbaPageHeader
             number={about.number}

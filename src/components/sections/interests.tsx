@@ -19,7 +19,7 @@ const iconSurface = "border border-signal/30 bg-tint text-signal";
 
 export function InterestsSection() {
   return (
-    <Section id="off-screen" className="py-24">
+    <Section id="off-screen" className="py-24" data-testid="section-interests">
       <div className="flex flex-col gap-12">
         <FadeUp className="flex flex-col items-center gap-3 text-center md:items-start md:text-left">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function SpeakingPage() {
   return (
-    <Section className="pt-20 pb-32 sm:pt-28">
+    <Section className="pt-20 pb-32 sm:pt-28" data-testid="page-mba-speaking">
       <div className="flex flex-col gap-16">
         <MbaPageHeader
           number={speaking.number}

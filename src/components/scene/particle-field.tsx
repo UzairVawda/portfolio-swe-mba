@@ -45,7 +45,11 @@ export function ParticleField() {
   const frameloop = reduced || !visible ? "demand" : "always";
 
   return (
-    <div className="pointer-events-none fixed inset-0 -z-10" aria-hidden>
+    <div
+      className="pointer-events-none fixed inset-0 -z-10"
+      aria-hidden
+      data-testid="particle-field"
+    >
       <Canvas
         frameloop={frameloop}
         dpr={[1, 2]}

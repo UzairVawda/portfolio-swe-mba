@@ -8,7 +8,10 @@ import { RESUME_DOWNLOAD_NAME, legacyRoutes, routes } from "@/lib/routes";
 
 export function Hero() {
   return (
-    <Section className="flex min-h-[calc(100svh-4rem)] flex-col justify-center py-12">
+    <Section
+      className="flex min-h-[calc(100svh-4rem)] flex-col justify-center py-12"
+      data-testid="hero"
+    >
       <div className="flex flex-col items-center gap-10 text-center">
         <FadeUp>
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
@@ -33,6 +36,7 @@ export function Hero() {
           <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
             <Link
               href="#projects"
+              data-testid="hero-cta-work"
               className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-base font-medium text-primary-foreground transition-transform hover:-translate-y-px"
             >
               See work
@@ -41,6 +45,7 @@ export function Hero() {
             <Link
               href={routes.resume}
               download={RESUME_DOWNLOAD_NAME}
+              data-testid="hero-cta-resume"
               className="inline-flex items-center gap-2 rounded-full border border-border px-7 py-3.5 text-base text-foreground transition-colors hover:border-primary hover:text-primary"
             >
               Resume

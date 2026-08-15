@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function ToolsPage() {
   return (
-    <Section className="pt-20 pb-32 sm:pt-28">
+    <Section className="pt-20 pb-32 sm:pt-28" data-testid="page-mba-tools">
       <div className="flex flex-col gap-16">
         <MbaPageHeader
           number={tools.number}

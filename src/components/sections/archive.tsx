@@ -11,7 +11,7 @@ import { archive, archiveIntro } from "@/content/swe";
 
 export function ArchiveSection() {
   return (
-    <Section id="archive" className="py-24">
+    <Section id="archive" className="py-24" data-testid="section-archive">
       <div className="flex flex-col gap-12">
         <FadeUp className="flex flex-col items-center gap-3 text-center md:items-start md:text-left">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">

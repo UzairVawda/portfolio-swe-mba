@@ -23,6 +23,7 @@ export function SiteNav({ variant }: { variant: Variant }) {
           <Link
             href={routes.resume}
             download={RESUME_DOWNLOAD_NAME}
+            data-testid="nav-resume"
             className="hidden text-sm text-muted-foreground transition-colors hover:text-foreground sm:inline-flex"
           >
             Resume

@@ -13,6 +13,7 @@ export function SiteFooter({ variant }: { variant: "swe" | "mba" }) {
           <Link
             href={routes.resume}
             download={RESUME_DOWNLOAD_NAME}
+            data-testid="footer-resume"
             className="transition-colors hover:text-foreground"
           >
             Resume

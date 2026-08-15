@@ -17,7 +17,10 @@ export default function NotFound() {
       <SiteNav variant="swe" />
       <main className="flex-1">
         <Section className="flex min-h-[60vh] items-center justify-center py-24">
-          <div className="flex flex-col items-center gap-6 text-center">
+          <div
+            className="flex flex-col items-center gap-6 text-center"
+            data-testid="not-found"
+          >
             <FadeUp>
               <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
                 404
