@@ -1,5 +1,15 @@
 // Single source of truth for the SWE portfolio content.
 
+export const hero = {
+  name: "Uzair Vawda.",
+  positioning:
+    "Software engineer and MBA candidate in NYC, building AI-era product tooling and the case for it.",
+  actions: {
+    resume: "Résumé",
+    work: "See work",
+  },
+};
+
 export const aboutIntro = {
   heading: "I build things, then figure out what they're worth.",
 };
