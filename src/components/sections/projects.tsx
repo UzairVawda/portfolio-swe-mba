@@ -3,6 +3,7 @@ import Link from "next/link";
 import { FadeUp } from "@/components/motion/fade-up";
 import { Stagger, StaggerItem } from "@/components/motion/stagger";
 import { Section } from "@/components/section";
+import { eyebrow } from "@/content/sections";
 import { conceptProjects, projects, projectsIntro } from "@/content/swe";
 
 export function ProjectsSection() {
@@ -11,7 +12,7 @@ export function ProjectsSection() {
       <div className="flex flex-col gap-12">
         <FadeUp className="flex flex-col items-center gap-3 text-center md:items-start md:text-left">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-            {projectsIntro.eyebrow}
+            {eyebrow("projects")}
           </p>
           <h2 className="text-balance text-3xl font-medium tracking-tight sm:text-4xl">
             {projectsIntro.heading}

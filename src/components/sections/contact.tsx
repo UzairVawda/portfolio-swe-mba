@@ -1,6 +1,7 @@
 import { ContactForm } from "@/components/contact-form";
 import { FadeUp } from "@/components/motion/fade-up";
 import { Section } from "@/components/section";
+import { eyebrow } from "@/content/sections";
 import { contact } from "@/content/swe";
 
 export function ContactSection() {
@@ -9,7 +10,7 @@ export function ContactSection() {
       <div className="flex flex-col gap-10">
         <FadeUp className="flex flex-col items-center gap-3 text-center md:items-start md:text-left">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-            {contact.eyebrow}
+            {eyebrow("contact")}
           </p>
           <h2 className="text-balance text-3xl font-medium tracking-tight sm:text-4xl">
             {contact.headline}

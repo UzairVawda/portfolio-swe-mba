@@ -1,6 +1,7 @@
 import { FadeUp } from "@/components/motion/fade-up";
 import { Stagger, StaggerItem } from "@/components/motion/stagger";
 import { Section } from "@/components/section";
+import { eyebrow } from "@/content/sections";
 import { experience, experienceIntro } from "@/content/swe";
 
 export function ExperienceSection() {
@@ -9,7 +10,7 @@ export function ExperienceSection() {
       <div className="flex flex-col gap-12">
         <FadeUp className="flex flex-col items-center gap-3 text-center md:items-start md:text-left">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-            {experienceIntro.eyebrow}
+            {eyebrow("experience")}
           </p>
           <h2 className="text-balance text-3xl font-medium tracking-tight sm:text-4xl">
             {experienceIntro.heading}

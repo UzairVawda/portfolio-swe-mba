@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { FadeUp } from "@/components/motion/fade-up";
 import { Section } from "@/components/section";
+import { eyebrow } from "@/content/sections";
 import { about, aboutIntro } from "@/content/swe";
 import { RESUME_DOWNLOAD_NAME, routes } from "@/lib/routes";
 
@@ -25,7 +26,7 @@ export function AboutSection() {
         <div className="flex flex-col items-center gap-6 text-center md:items-start md:text-left">
           <FadeUp>
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-              {aboutIntro.eyebrow}
+              {eyebrow("about")}
             </p>
           </FadeUp>
 

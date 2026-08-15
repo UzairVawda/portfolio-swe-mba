@@ -1,7 +1,6 @@
 // Single source of truth for the SWE portfolio content.
 
 export const aboutIntro = {
-  eyebrow: "01 · About",
   heading: "I build things, then figure out what they're worth.",
 };
 
@@ -19,7 +18,6 @@ export const about = {
 };
 
 export const experienceIntro = {
-  eyebrow: "02 · Experience",
   heading: "Five-plus years across aerospace, finance, and legal tech.",
 };
 
@@ -116,7 +114,6 @@ export const experience: Role[] = [
 ];
 
 export const skillsIntro = {
-  eyebrow: "05 · Skills",
   heading: "What I bring to the table.",
 };
 
@@ -193,7 +190,6 @@ export type ConceptProject = {
 };
 
 export const projectsIntro = {
-  eyebrow: "03 · Projects",
   heading: "Everything I'm building, at whatever stage it's at.",
   conceptsLabel: "Earlier concepts",
   helpWantedLabel: "Want in? ",
@@ -269,7 +265,6 @@ export type EducationEntry = {
 };
 
 export const educationIntro = {
-  eyebrow: "06 · Education & Certifications",
   heading: "Formal training, in progress.",
 };
 
@@ -308,7 +303,6 @@ export type ArchiveGroup = {
 };
 
 export const archiveIntro = {
-  eyebrow: "04 · Archive",
   heading: "Everything before that.",
   intro:
     "Coursework, prototypes, and things I built to find out whether I could. Most of them taught me something that showed up later.",
@@ -398,7 +392,6 @@ export const archive: ArchiveGroup[] = [
 ];
 
 export const interestsIntro = {
-  eyebrow: "07 · Off-screen",
   heading: "What I'm doing when I'm not at the keyboard.",
 };
 
@@ -435,7 +428,6 @@ export const interests: Interest[] = [
 ];
 
 export const contact = {
-  eyebrow: "08 · Let's talk",
   headline: "Any of this sound interesting?",
   paragraphs: [
     "Every project up there is open. If you want to write code on one, poke holes in the idea, test an early build, or just talk it through over coffee — I'd genuinely like to hear from you.",
@@ -444,7 +436,6 @@ export const contact = {
 };
 
 export const mbaTeaser = {
-  eyebrow: "09 · What's next",
   heading: "Building a portfolio of consulting tools, one per MBA class.",
   body: "The MBA section is a separate, evolving project — shippable tools tied to each class, written up as case studies.",
   cta: "Visit MBA section",

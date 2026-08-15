@@ -3,6 +3,7 @@ import { Camera, Coffee, Plane, Swords } from "lucide-react";
 import { FadeUp } from "@/components/motion/fade-up";
 import { Stagger, StaggerItem } from "@/components/motion/stagger";
 import { Section } from "@/components/section";
+import { eyebrow } from "@/content/sections";
 import { interests, interestsIntro, type Interest } from "@/content/swe";
 
 const iconMap: Record<Interest["icon"], typeof Camera> = {
@@ -22,7 +23,7 @@ export function InterestsSection() {
       <div className="flex flex-col gap-12">
         <FadeUp className="flex flex-col items-center gap-3 text-center md:items-start md:text-left">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-            {interestsIntro.eyebrow}
+            {eyebrow("interests")}
           </p>
           <h2 className="text-balance text-3xl font-medium tracking-tight sm:text-4xl">
             {interestsIntro.heading}

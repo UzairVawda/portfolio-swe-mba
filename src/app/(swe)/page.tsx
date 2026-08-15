@@ -12,6 +12,7 @@ import { ExperienceSection } from "@/components/sections/experience";
 import { InterestsSection } from "@/components/sections/interests";
 import { ProjectsSection } from "@/components/sections/projects";
 import { SkillsSection } from "@/components/sections/skills";
+import { eyebrow } from "@/content/sections";
 import { mbaTeaser, metaDescription } from "@/content/swe";
 import { legacyRoutes } from "@/lib/routes";
 
@@ -36,7 +37,7 @@ export default function SwePage() {
         <FadeUp>
           <div className="flex flex-col items-center gap-6 rounded-3xl border border-primary/30 bg-primary/5 p-10 text-center md:items-start md:p-14 md:text-left">
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-primary">
-              {mbaTeaser.eyebrow}
+              {eyebrow("track")}
             </p>
             <h2 className="text-balance text-3xl font-medium tracking-tight sm:text-4xl">
               {mbaTeaser.heading}
