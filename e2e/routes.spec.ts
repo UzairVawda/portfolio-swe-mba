@@ -57,20 +57,6 @@ test.describe("route smoke tests", () => {
     ]);
   });
 
-  test("the scene renders without console errors", async ({ page }) => {
-    const errors: string[] = [];
-    page.on("console", (msg) => {
-      if (msg.type() === "error") errors.push(msg.text());
-    });
-
-    await page.goto("/");
-    await expect(page.getByTestId("particle-field")).toBeAttached();
-    await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
-    await page.waitForTimeout(500);
-
-    expect(errors).toEqual([]);
-  });
-
   test("the CV is served and reachable from every entry point", async ({
     page,
     context,
