@@ -86,3 +86,40 @@ test.describe("track galleries", () => {
     }
   }
 });
+
+// The permalinks. Both collections are empty today, so the only thing a live
+// request can prove here is that an unresolvable slug is a real 404 and not a
+// blank 200. The populated path — the detail page rendering an item and
+// linking back — is proved against fixtures in
+// src/components/track/track-item-pages.test.tsx, and the loop below turns
+// itself on for real the day the first item ships.
+test.describe("item permalinks", () => {
+  for (const { path, testId, items } of GALLERIES) {
+    test(`${path} 404s a slug that is not published`, async ({ page }) => {
+      const response = await page.goto(`${path}/not-a-real-item`);
+
+      expect(response?.status()).toBe(404);
+      await expect(page.getByTestId("not-found")).toBeVisible();
+      await expect(page.getByTestId("page-track-item")).toHaveCount(0);
+    });
+
+    for (const item of items) {
+      test(`${path}/${item.slug} is reachable from its gallery`, async ({
+        page,
+      }) => {
+        await page.goto(path);
+        await page.getByTestId("gallery-item").filter({ hasText: item.title }).click();
+
+        await expect(page).toHaveURL(new RegExp(`${path}/${item.slug}$`));
+        await expect(page.getByTestId("page-track-item")).toBeVisible();
+        await expect(page.locator("h1")).toHaveText(item.title);
+        await expect(page.getByTestId("page-track-item")).toContainText(
+          item.blurb,
+        );
+
+        await page.getByTestId("track-item-back").click();
+        await expect(page.getByTestId(testId)).toBeVisible();
+      });
+    }
+  }
+});
