@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Analytics } from "@vercel/analytics/next";
 
+import { SiteShell } from "@/components/site-shell";
 import { ThemeProvider } from "@/components/theme-provider";
 import { jetbrainsMono, satoshi } from "@/lib/fonts";
 import { tokens } from "@/lib/theme/tokens";
@@ -111,7 +112,10 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
-          {children}
+          {/* The nav and footer live here, not in per-segment layouts: the
+              nav is flat now, so every route wears the same chrome and there
+              is no variant left for a nested layout to choose. */}
+          <SiteShell>{children}</SiteShell>
         </ThemeProvider>
         {/* Only on Vercel: the insights script is served by Vercel's edge, so
             mounting it elsewhere (local prod, CI, self-host) just 404s. */}

@@ -3,8 +3,6 @@ import Link from "next/link";
 
 import { Reveal } from "@/components/motion/reveal";
 import { Section } from "@/components/section";
-import { SiteFooter } from "@/components/site-footer";
-import { SiteNav } from "@/components/site-nav";
 import { legacyRoutes, routes } from "@/lib/routes";
 
 export const metadata: Metadata = {
@@ -12,11 +10,10 @@ export const metadata: Metadata = {
 };
 
 export default function NotFound() {
+  // No nav or footer here: the root layout wraps this in the site shell.
   return (
-    <div className="flex min-h-full flex-1 flex-col">
-      <SiteNav variant="swe" />
-      <main className="flex-1">
-        <Section className="flex min-h-[60vh] items-center justify-center py-24">
+    <div className="flex flex-1 flex-col justify-center">
+      <Section className="flex min-h-[60vh] items-center justify-center py-24">
           <div
             className="flex flex-col items-center gap-6 text-center"
             data-testid="not-found"
@@ -57,9 +54,7 @@ export default function NotFound() {
               </Link>
             </Reveal>
           </div>
-        </Section>
-      </main>
-      <SiteFooter variant="swe" />
+      </Section>
     </div>
   );
 }

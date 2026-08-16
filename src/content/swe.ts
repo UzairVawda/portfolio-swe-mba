@@ -18,7 +18,7 @@ export const about = {
   paragraphs: [
     "JHParking started out of sheer frustration. During COVID more people on my block bought cars while the number of street spots stayed exactly where it was, and the choice became parking up to a mile from home or circling the same blocks for up to an hour at peak times. What it does today is let a friends group share where they parked and when they are leaving; the paid marketplace is where it is going. I had taken a run at this years ago as ParkForLess and put it down; the idea kept looking right, so I picked it back up. MatAI and CoachMe both came out of the jiu jitsu gym.",
     "By day I'm a software engineer at Collins Aerospace. Most of my time there has gone into a design system, which exists because so much of UI development is building the same generic components over and over, each one re-themed and restyled in company colors. A handful of teams now build on it, and — more recently — an AI agent writes components against it. That second part has changed how I work more than anything else in the last few years.",
-    "Evenings are an MBA at Baruch's Zicklin School, concentrating in AI and product development. The point isn't to stop engineering. It's to be the person who can write the business case and then go build the thing it argues for.",
+    "Evenings are an MBA at Baruch's Zicklin School, concentrating in AI and product development. The point isn't to stop engineering. The thing I'm after is the overlap — building AI-era products and being able to argue for them in business terms, rather than handing that part to someone else. Each class ends in something shippable, and those land further down this page.",
   ],
   cvLine: {
     before: "I'm in NYC. If you want the long version, ",
@@ -440,12 +440,6 @@ export const contact = {
     "Every project up there is open. If you want to write code on one, poke holes in the idea, test an early build, or just talk it through over coffee — I'd genuinely like to hear from you.",
     "Recruiting, collaboration, or a plain hello all land in the same inbox, and I read every message.",
   ],
-};
-
-export const mbaTeaser = {
-  heading: "Building a portfolio of consulting tools, one per MBA class.",
-  body: "The MBA section is a separate, evolving project — shippable tools tied to each class, written up as case studies.",
-  cta: "Visit MBA section",
 };
 
 // Page-level <meta description> for the SWE page. Kept in content so the

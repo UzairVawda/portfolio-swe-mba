@@ -1,9 +1,0 @@
-import { SiteShell } from "@/components/site-shell";
-
-export default function SweLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return <SiteShell>{children}</SiteShell>;
-}

@@ -1,5 +1,7 @@
 import { expect, test } from "@playwright/test";
 
+import { speaking, tools } from "../src/content/track";
+
 // Locators are testids, never prose. Copy changes in every stage of this
 // redesign; the structure these tests care about does not.
 const routes: Array<{ path: string; testId: string }> = [
@@ -54,6 +56,96 @@ test.describe("route smoke tests", () => {
       "section-contact",
       "section-track",
     ]);
+  });
+
+  test("every nav link resolves to something that exists", async ({ page }) => {
+    await page.goto("/");
+    const links = page.locator("header a[data-testid^='nav-']");
+    const entries = await links.evaluateAll((els) =>
+      els.map((el) => ({
+        testId: el.getAttribute("data-testid"),
+        href: el.getAttribute("href"),
+      })),
+    );
+
+    // Order and membership, not "a link with this label exists somewhere".
+    // Tools and Speaking join the list the day their collections do.
+    expect(entries.map((e) => e.testId)).toEqual([
+      "nav-work",
+      ...(tools.length > 0 ? ["nav-tools"] : []),
+      ...(speaking.length > 0 ? ["nav-speaking"] : []),
+      "nav-about",
+      "nav-contact",
+      "nav-resume",
+    ]);
+
+    for (const { testId, href } of entries) {
+      expect(href, testId!).toBeTruthy();
+      if (href!.startsWith("/#")) {
+        // The anchor has to land on a real element. The DOM ids and the
+        // testids deliberately diverge in places, so resolve against the id.
+        await expect(page.locator(`[id="${href!.slice(2)}"]`), testId!).toHaveCount(1);
+      } else {
+        const response = await page.request.get(href!);
+        expect(response.ok(), `${testId} → ${href}`).toBe(true);
+      }
+    }
+  });
+
+  test("nav hides gallery routes until they have content", async ({ page }) => {
+    await page.goto("/");
+    // A nav entry leading to nothing is worse than no nav entry. These
+    // assertions follow the real collections rather than asserting zero
+    // forever, so they stay honest the day the first item ships.
+    await expect(page.getByTestId("nav-tools")).toHaveCount(
+      tools.length > 0 ? 1 : 0,
+    );
+    await expect(page.getByTestId("nav-speaking")).toHaveCount(
+      speaking.length > 0 ? 1 : 0,
+    );
+
+    // The track section links into both galleries regardless: a reader who
+    // got that far has the context for an empty page; a nav click does not.
+    await expect(page.getByTestId("track-link-tools")).toHaveAttribute(
+      "href",
+      "/tools",
+    );
+    await expect(page.getByTestId("track-link-speaking")).toHaveAttribute(
+      "href",
+      "/speaking",
+    );
+  });
+
+  test("the site chrome is mounted exactly once on every route", async ({
+    page,
+  }) => {
+    // The nav and footer moved into the root layout; a nested layout that
+    // still mounts its own would render two of each and no test above would
+    // notice. /does-not-exist covers the 404, which used to carry its own.
+    for (const path of [
+      "/",
+      "/tools",
+      "/speaking",
+      "/mba",
+      "/mba/about",
+      "/does-not-exist-12345",
+    ]) {
+      await page.goto(path);
+      await expect(page.locator("header"), path).toHaveCount(1);
+      await expect(page.locator("footer"), path).toHaveCount(1);
+      await expect(page.locator("main"), path).toHaveCount(1);
+      await expect(page.getByTestId("nav-resume"), path).toHaveCount(1);
+    }
+  });
+
+  test("no surviving link points into the retired MBA nav", async ({
+    page,
+  }) => {
+    await page.goto("/");
+    const hrefs = await page
+      .locator("header a, footer a")
+      .evaluateAll((els) => els.map((el) => el.getAttribute("href")));
+    expect(hrefs.filter((href) => href?.startsWith("/mba"))).toEqual([]);
   });
 
   test("the CV is served and reachable from every entry point", async ({
