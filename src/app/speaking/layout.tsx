@@ -1,6 +1,6 @@
 import { SiteShell } from "@/components/site-shell";
 
-export default function SweLayout({
+export default function SpeakingLayout({
   children,
 }: {
   children: React.ReactNode;
