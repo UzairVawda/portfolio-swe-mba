@@ -20,6 +20,17 @@ function slugify(name: string): string {
     .replace(/^-|-$/g, "");
 }
 
+// Exported so a test can assert the whole set is collision-free. The three
+// arrays render as siblings in one Accordion, so their slugs share a namespace
+// whether or not the content authors realise it.
+export function workRowSlugs(): string[] {
+  return [
+    ...projects.map((p) => `project-${slugify(p.name)}`),
+    ...conceptProjects.map((c) => `concept-${slugify(c.name)}`),
+    ...archive.map((g) => `archive-${slugify(g.group)}`),
+  ];
+}
+
 // One row shell, three callers. The shell owns the numbered trigger and the
 // expanding panel; each caller fills the panel with whatever its own content
 // shape actually is. Flattening three different shapes into one type with
@@ -104,9 +115,9 @@ export function WorkIndexSection() {
         <Accordion className="border-t border-rule">
           {projects.map((project, index) => (
             <Row
-              key={project.name}
+              key={`project-${slugify(project.name)}`}
               index={index}
-              slug={slugify(project.name)}
+              slug={`project-${slugify(project.name)}`}
               name={project.name}
               meta={`${project.role} · ${project.period}`}
             >
@@ -136,9 +147,9 @@ export function WorkIndexSection() {
 
           {conceptProjects.map((concept, index) => (
             <Row
-              key={concept.name}
+              key={`concept-${slugify(concept.name)}`}
               index={conceptOffset + index}
-              slug={slugify(concept.name)}
+              slug={`concept-${slugify(concept.name)}`}
               name={concept.name}
               meta={`${workIntro.conceptsLabel} · ${concept.status}`}
             >
@@ -149,9 +160,9 @@ export function WorkIndexSection() {
 
           {archive.map((group, index) => (
             <Row
-              key={group.group}
+              key={`archive-${slugify(group.group)}`}
               index={archiveOffset + index}
-              slug={slugify(group.group)}
+              slug={`archive-${slugify(group.group)}`}
               name={group.group}
               meta={workIntro.archiveLabel}
             >

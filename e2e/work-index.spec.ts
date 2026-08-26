@@ -12,15 +12,15 @@ type Scheme = keyof typeof SIGNAL;
 // Projects, then earlier concepts, then the archive groups — one continuous
 // ladder, which is the whole point of merging the two old sections.
 const ROWS = [
-  "jhparking",
-  "matai",
-  "coachme",
-  "pagekeeper",
-  "mba-engineered",
-  "connect",
-  "marketplaces-products",
-  "web-full-stack",
-  "automation-data",
+  "project-jhparking",
+  "project-matai",
+  "project-coachme",
+  "concept-pagekeeper",
+  "concept-mba-engineered",
+  "concept-connect",
+  "archive-marketplaces-products",
+  "archive-web-full-stack",
+  "archive-automation-data",
 ];
 
 test.describe("the work index", () => {
@@ -75,8 +75,8 @@ test.describe("the work index", () => {
       ? "dark"
       : "light";
 
-    const row = page.getByTestId("work-row-matai");
-    const panel = page.getByTestId("work-panel-matai");
+    const row = page.getByTestId("work-row-project-matai");
+    const panel = page.getByTestId("work-panel-project-matai");
 
     await expect(panel).toBeHidden();
     // Nothing above the index moves when a row opens. Measured in document
@@ -107,15 +107,15 @@ test.describe("the work index", () => {
     // A closed neighbour is not signal-coloured — proves the colour tracks
     // the open state rather than being painted on every row.
     const closed = await page
-      .getByTestId("work-row-coachme")
+      .getByTestId("work-row-project-coachme")
       .evaluate((el) => getComputedStyle(el).color);
     expect(closed).not.toBe(SIGNAL[scheme]);
     expect(closed).not.toBe("");
   });
 
   test("opens a row from the keyboard", async ({ page }) => {
-    const row = page.getByTestId("work-row-jhparking");
-    const panel = page.getByTestId("work-panel-jhparking");
+    const row = page.getByTestId("work-row-project-jhparking");
+    const panel = page.getByTestId("work-panel-project-jhparking");
 
     await row.focus();
     await expect(row).toBeFocused();
@@ -126,8 +126,8 @@ test.describe("the work index", () => {
   test("carries the archive lead paragraph into the first archive row", async ({
     page,
   }) => {
-    await page.getByTestId("work-row-marketplaces-products").click();
-    const panel = page.getByTestId("work-panel-marketplaces-products");
+    await page.getByTestId("work-row-archive-marketplaces-products").click();
+    const panel = page.getByTestId("work-panel-archive-marketplaces-products");
     await expect(panel).toContainText(
       "Coursework, prototypes, and things I built to find out whether I could.",
     );
