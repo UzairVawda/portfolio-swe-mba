@@ -174,3 +174,59 @@ test.describe("the section reveals", () => {
     }
   });
 });
+
+// A section heading is unmasked by translating it up from behind an
+// overflow-hidden clip box. The regression this guards: the observer used to
+// live on the line itself, which starts at y:110% — entirely outside that clip
+// box. IntersectionObserver clips against ancestor overflow, so a fully
+// clipped element never reports as intersecting, whileInView never fired, and
+// every heading on the site stayed permanently invisible while still taking up
+// its full height. Nothing caught it because innerText returns the text of a
+// visually clipped element just fine — so this asserts geometry, not text.
+test.describe("section headings actually unmask", () => {
+  test("every heading is visible, not clipped, once scrolled to", async ({
+    page,
+  }) => {
+    await page.goto("/");
+    await page.keyboard.press("Escape");
+    await expect(page.getByTestId("overture")).toHaveCount(0, {
+      timeout: 8000,
+    });
+
+    for (const id of [
+      "heading-about",
+      "heading-experience",
+      "heading-work",
+      "heading-skills",
+      "heading-education",
+    ]) {
+      const heading = page.getByTestId(id);
+      if ((await heading.count()) === 0) continue;
+
+      await heading.scrollIntoViewIfNeeded();
+      // The unmask runs 700ms; poll rather than sleep a fixed amount.
+      await expect
+        .poll(
+          async () =>
+            heading.evaluate((el) => {
+              const line = el.querySelector("[data-unmask-line]");
+              if (!line) return -1;
+              const l = line.getBoundingClientRect();
+              const clip = line.parentElement!.getBoundingClientRect();
+              // How much of the line is inside its own clip box.
+              return Math.round(
+                Math.max(
+                  0,
+                  Math.min(l.bottom, clip.bottom) - Math.max(l.top, clip.top),
+                ),
+              );
+            }),
+          {
+            message: `${id} stayed clipped behind its unmask box`,
+            timeout: 6000,
+          },
+        )
+        .toBeGreaterThan(10);
+    }
+  });
+});

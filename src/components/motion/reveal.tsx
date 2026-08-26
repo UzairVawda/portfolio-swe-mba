@@ -81,22 +81,33 @@ export function UnmaskLines({
     );
   }
 
+  // The observer lives on the OUTER span and the lines animate as variants.
+  // It cannot go on the line itself: a line starts at y:110%, which puts it
+  // entirely outside its overflow-hidden parent, and IntersectionObserver
+  // clips against ancestor overflow. A fully clipped element never reports as
+  // intersecting, so whileInView on the line deadlocks — it stays hidden
+  // because it never animates, and never animates because it is hidden. The
+  // wrapper is never clipped, so its observer always fires.
   return (
-    <span className={className} data-testid={testId}>
+    <motion.span
+      className={className}
+      data-testid={testId}
+      initial="masked"
+      whileInView="unmasked"
+      viewport={VIEWPORT}
+    >
       {lines.map((line, index) => (
         <span key={line} className="block overflow-hidden">
           <motion.span
             className="block"
             data-unmask-line=""
-            initial={{ y: "110%" }}
-            whileInView={{ y: "0%" }}
-            viewport={VIEWPORT}
+            variants={{ masked: { y: "110%" }, unmasked: { y: "0%" } }}
             transition={{ duration: 0.7, delay: index * 0.06, ease: EASE }}
           >
             {line}
           </motion.span>
         </span>
       ))}
-    </span>
+    </motion.span>
   );
 }
