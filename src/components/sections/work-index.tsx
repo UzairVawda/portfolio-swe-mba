@@ -110,7 +110,7 @@ export function WorkIndexSection() {
   const archiveOffset = conceptOffset + conceptProjects.length;
 
   return (
-    <Section id="work" className="py-24" data-testid="section-work">
+    <Section id="work" data-testid="section-work">
       <div className="flex flex-col gap-12">
         <div className="flex flex-col items-center gap-3 text-center md:items-start md:text-left">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-signal">

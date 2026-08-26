@@ -9,15 +9,15 @@ import { RESUME_DOWNLOAD_NAME, routes } from "@/lib/routes";
 
 export function AboutSection() {
   return (
-    <Section id="about" className="py-24" data-testid="section-about">
+    <Section id="about" data-testid="section-about">
       <div className="grid grid-cols-1 items-start gap-12 md:grid-cols-[0.9fr_1.1fr]">
         <Reveal className="flex justify-center md:sticky md:top-28 md:block">
-          <div className="relative aspect-[4/5] w-full max-w-xs overflow-hidden rounded-2xl border border-border bg-muted">
+          <div className="relative aspect-[4/5] w-full max-w-sm overflow-hidden rounded-2xl border border-border bg-muted">
             <Image
               src="/me.jpeg"
               alt="Portrait of Uzair Vawda"
               fill
-              sizes="(max-width: 768px) 80vw, 400px"
+              sizes="(max-width: 768px) 80vw, 384px"
               className="object-cover"
             />
           </div>

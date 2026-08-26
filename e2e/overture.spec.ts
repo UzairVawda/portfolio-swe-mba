@@ -73,10 +73,43 @@ test.describe("the overture", () => {
     await expect(page.getByTestId("hero-cta-resume")).toBeAttached();
     await expect(page.getByTestId("hero-cta-work")).toBeAttached();
 
-    // "See work" must land somewhere: the anchor it points at has to exist on
-    // this page, not just be a well-formed href.
-    const href = await page.getByTestId("hero-cta-work").getAttribute("href");
-    expect(href).toBe("/#work");
-    expect(await page.locator("#work").count()).toBe(1);
+    await expect(page.getByTestId("hero-cta-about")).toBeAttached();
+
+    // The on-page CTAs are bare fragments, not "/#work". A next/link to the
+    // full path scrolls to the top of the page when the URL already carries
+    // that hash — see the regression test below.
+    for (const [id, hash] of [
+      ["hero-cta-work", "#work"],
+      ["hero-cta-about", "#about"],
+    ] as const) {
+      expect(await page.getByTestId(id).getAttribute("href")).toBe(hash);
+      expect(await page.locator(hash).count()).toBe(1);
+    }
+  });
+
+  // The reported bug: "See work" worked once, then stopped. Once the URL
+  // already said #work — which happens the moment you use the nav — clicking
+  // it again jumped to the top of the page instead of the work section.
+  test("hero CTAs still scroll when the URL already carries their hash", async ({
+    page,
+  }) => {
+    await page.goto("/");
+    await page.keyboard.press("Escape");
+    await expect(page.getByTestId("overture")).toHaveCount(0, {
+      timeout: 8000,
+    });
+
+    const scrollY = () => page.evaluate(() => Math.round(window.scrollY));
+
+    await page.getByTestId("hero-cta-work").click();
+    await expect.poll(scrollY).toBeGreaterThan(500);
+    expect(page.url()).toContain("#work");
+
+    // Back to the top with the hash still set — the exact state that broke.
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await expect.poll(scrollY).toBe(0);
+
+    await page.getByTestId("hero-cta-work").click();
+    await expect.poll(scrollY).toBeGreaterThan(500);
   });
 });

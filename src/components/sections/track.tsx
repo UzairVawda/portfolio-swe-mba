@@ -30,7 +30,7 @@ export function TrackSection() {
   const recent = recentItems(tools, speaking, 4);
 
   return (
-    <Section id="track" className="py-24" data-testid="section-track">
+    <Section id="track" data-testid="section-track">
       <div className="flex flex-col gap-8 border-l-2 border-signal bg-tint px-8 py-10 md:px-12 md:py-14">
         <Reveal className="flex flex-col gap-3">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-signal">

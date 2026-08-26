@@ -3,7 +3,15 @@ import Link from "next/link";
 import { OvertureMount } from "@/components/scene/overture-mount";
 import { Section } from "@/components/section";
 import { hero } from "@/content/swe";
-import { RESUME_DOWNLOAD_NAME, routes } from "@/lib/routes";
+import { RESUME_DOWNLOAD_NAME, fragment, routes } from "@/lib/routes";
+
+// The two on-page CTAs are plain <a> elements, not next/link. A <Link> to
+// "/#work" clicked while the URL is already "/#work" is treated as a route
+// navigation and lands you at the top of the page — which is exactly what a
+// visitor hits after using the nav once. A bare fragment anchor re-resolves
+// against the element every time.
+const onPageCta =
+  "inline-flex items-center gap-2 rounded-full border border-rule-strong px-7 py-3.5 text-base text-foreground transition-colors hover:border-signal hover:text-signal";
 
 export function Hero() {
   return (
@@ -28,14 +36,22 @@ export function Hero() {
             {hero.actions.resume}
             <span aria-hidden>↓</span>
           </Link>
-          <Link
+          <a
             data-testid="hero-cta-work"
-            href={routes.work}
-            className="inline-flex items-center gap-2 rounded-full border border-rule-strong px-7 py-3.5 text-base text-foreground transition-colors hover:border-signal hover:text-signal"
+            href={fragment(routes.work)}
+            className={onPageCta}
           >
             {hero.actions.work}
             <span aria-hidden>→</span>
-          </Link>
+          </a>
+          <a
+            data-testid="hero-cta-about"
+            href={fragment(routes.about)}
+            className={onPageCta}
+          >
+            {hero.actions.about}
+            <span aria-hidden>→</span>
+          </a>
         </div>
       </OvertureMount>
     </Section>

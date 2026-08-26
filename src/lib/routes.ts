@@ -37,3 +37,13 @@ export function toolItem(slug: string): string {
 export function speakingItem(slug: string): string {
   return `${routes.speaking}/${slug}`;
 }
+
+// Same-page anchors need the bare fragment, not the full "/#work". A Next
+// <Link> pointing at "/#work" while the URL is ALREADY "/#work" is treated as
+// a route navigation and scrolls to the top of the page instead of the anchor
+// — so on-page CTAs use a plain <a> with this. Derived from the manifest so a
+// renamed route still can't drift.
+export function fragment(route: string): string {
+  const hash = route.indexOf("#");
+  return hash === -1 ? route : route.slice(hash);
+}

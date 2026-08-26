@@ -18,7 +18,7 @@ const iconSurface = "border border-signal/30 bg-tint text-signal";
 
 export function InterestsSection() {
   return (
-    <Section id="off-screen" className="py-24" data-testid="section-interests">
+    <Section id="off-screen" data-testid="section-interests">
       <div className="flex flex-col gap-12">
         <div className="flex flex-col items-center gap-3 text-center md:items-start md:text-left">
           <Reveal>

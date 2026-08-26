@@ -6,7 +6,7 @@ import { contact } from "@/content/swe";
 
 export function ContactSection() {
   return (
-    <Section id="contact" className="py-24" data-testid="section-contact">
+    <Section id="contact" data-testid="section-contact">
       <div className="flex flex-col gap-10">
         <div className="flex flex-col items-center gap-3 text-center md:items-start md:text-left">
           <Reveal>

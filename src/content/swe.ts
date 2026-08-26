@@ -3,10 +3,11 @@
 export const hero = {
   name: "Uzair Vawda.",
   positioning:
-    "Software engineer and MBA candidate in NYC, building AI-era product tooling and the case for it.",
+    "Software engineer and MBA candidate in NYC. I build AI-era product tooling, and spend the rest of it on the mats, in airports, and over coffee.",
   actions: {
     resume: "Résumé",
     work: "See work",
+    about: "About me",
   },
 };
 
@@ -16,9 +17,10 @@ export const aboutIntro = {
 
 export const about = {
   paragraphs: [
-    "JHParking started out of sheer frustration. During COVID more people on my block bought cars while the number of street spots stayed exactly where it was, and the choice became parking up to a mile from home or circling the same blocks for up to an hour at peak times. What it does today is let a friends group share where they parked and when they are leaving; the paid marketplace is where it is going. I had taken a run at this years ago as ParkForLess and put it down; the idea kept looking right, so I picked it back up. MatAI and CoachMe both came out of the jiu jitsu gym.",
+    "The pattern is always the same: something irritates me, I build a fix for it, and then I spend a while working out whether it was worth building. That is what a parking problem on my block turned into, what two problems at the jiu jitsu gym turned into, and eventually the reason I went back to school for the half of this I could not argue on my own. NYC, mats most evenings, an airport when I can manage it, and more coffee than I will defend here.",
     "By day I'm a software engineer at Collins Aerospace. Most of my time there has gone into a design system, which exists because so much of UI development is building the same generic components over and over, each one re-themed and restyled in company colors. A handful of teams now build on it, and — more recently — an AI agent writes components against it. That second part has changed how I work more than anything else in the last few years.",
     "Evenings are an MBA at Baruch's Zicklin School, concentrating in AI and product development. The point isn't to stop engineering. The thing I'm after is the overlap — building AI-era products and being able to argue for them in business terms, rather than handing that part to someone else. Each class ends in something shippable, and those land further down this page.",
+    "JHParking started out of sheer frustration. During COVID more people on my block bought cars while the number of street spots stayed exactly where it was, and the choice became parking up to a mile from home or circling the same blocks for up to an hour at peak times. What it does today is let a friends group share where they parked and when they are leaving; the paid marketplace is where it is going. I had taken a run at this years ago as ParkForLess and put it down; the idea kept looking right, so I picked it back up. MatAI and CoachMe both came out of the jiu jitsu gym.",
   ],
   cvLine: {
     before: "I'm in NYC. If you want the long version, ",

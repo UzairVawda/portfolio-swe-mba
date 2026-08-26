@@ -5,7 +5,7 @@ import { experience, experienceIntro } from "@/content/swe";
 
 export function ExperienceSection() {
   return (
-    <Section id="experience" className="py-24" data-testid="section-experience">
+    <Section id="experience" data-testid="section-experience">
       <div className="flex flex-col gap-12">
         <div className="flex flex-col items-center gap-3 text-center md:items-start md:text-left">
           <Reveal>
@@ -29,7 +29,7 @@ export function ExperienceSection() {
             <Reveal
               key={`${role.company}-${role.title}`}
               delay={index * 0.06}
-              className="group grid grid-cols-1 gap-3 border-t border-border py-8 md:grid-cols-[180px_1fr] md:gap-8"
+              className="group grid grid-cols-1 gap-3 border-t border-border py-8 md:grid-cols-[140px_1fr] md:gap-10"
             >
               <div className="flex flex-col items-center md:items-start">
                 <span className="font-mono text-xs text-muted-foreground">
@@ -50,7 +50,7 @@ export function ExperienceSection() {
                     {role.company}
                   </span>
                 </div>
-                <p className="max-w-2xl text-pretty text-base text-muted-foreground">
+                <p className="max-w-4xl text-pretty text-lg leading-relaxed text-muted-foreground">
                   {role.description}
                 </p>
                 {role.note ? (
@@ -58,7 +58,7 @@ export function ExperienceSection() {
                     {role.note}
                   </span>
                 ) : null}
-                <ul className="mt-2 flex max-w-2xl flex-col gap-2.5 text-left">
+                <ul className="mt-2 flex max-w-4xl flex-col gap-2.5 text-left">
                   {role.highlights.map((highlight) => (
                     <li
                       key={highlight}
