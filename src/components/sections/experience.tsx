@@ -62,7 +62,7 @@ export function ExperienceSection() {
                   {role.highlights.map((highlight) => (
                     <li
                       key={highlight}
-                      className="relative pl-5 text-pretty text-sm leading-relaxed text-muted-foreground before:absolute before:left-0 before:top-2.5 before:h-1 before:w-1 before:rounded-full before:bg-primary/60"
+                      className="relative pl-5 text-pretty text-base leading-relaxed text-muted-foreground before:absolute before:left-0 before:top-3 before:h-1.5 before:w-1.5 before:rounded-full before:bg-primary/60"
                     >
                       {highlight}
                     </li>
