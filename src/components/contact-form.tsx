@@ -90,7 +90,10 @@ export function ContactForm({
 
   if (state.status === "success") {
     return (
-      <div className="rounded-2xl border border-primary/40 bg-primary/5 p-8 text-center md:text-left">
+      <div
+        className="rounded-2xl border border-primary/40 bg-primary/5 p-8 text-center md:text-left"
+        data-testid="contact-success"
+      >
         <h3 className="text-2xl font-light tracking-tight">
           Thanks — message received.
         </h3>
@@ -162,12 +165,15 @@ export function ContactForm({
         size="lg"
         className="self-center rounded-full px-7 md:self-start"
         disabled={state.status === "submitting"}
+        data-testid="contact-submit"
       >
         {state.status === "submitting" ? "Sending…" : "Send message"}
       </Button>
 
       {state.status === "error" ? (
-        <p className="text-sm text-destructive">{state.message}</p>
+        <p className="text-sm text-destructive" data-testid="contact-error">
+          {state.message}
+        </p>
       ) : null}
     </form>
   );

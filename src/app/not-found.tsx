@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { Reveal } from "@/components/motion/reveal";
 import { Section } from "@/components/section";
-import { legacyRoutes, routes } from "@/lib/routes";
+import { routes } from "@/lib/routes";
 
 export const metadata: Metadata = {
   title: "404 — Not found",
@@ -41,15 +41,17 @@ export default function NotFound() {
               <Link
                 href={routes.home}
                 className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-transform hover:-translate-y-px"
+                data-testid="not-found-home"
               >
                 Home
                 <span aria-hidden>→</span>
               </Link>
               <Link
-                href={legacyRoutes.mbaHome}
+                href={routes.work}
                 className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm text-foreground transition-colors hover:border-primary hover:text-primary"
+                data-testid="not-found-work"
               >
-                MBA section
+                Recent work
                 <span aria-hidden>→</span>
               </Link>
             </Reveal>

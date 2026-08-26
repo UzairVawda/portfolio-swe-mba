@@ -1,6 +1,7 @@
 // Every internal URL on the site, in one place. Nothing else may hardcode a
-// path — renaming a route should be a one-file change, and the stage-5 move
-// off /mba depends on that being true.
+// path — renaming a route should be a one-file change. The redirect table
+// below is the receipt: the move off /mba was one edit here plus one in
+// next.config.ts.
 
 export const routes = {
   home: "/",
@@ -12,15 +13,20 @@ export const routes = {
   resume: "/resume.pdf",
 } as const;
 
-// The pre-redesign MBA tree. Still linked while those pages exist; deleted in
-// the same commit that adds the 308 redirects.
-export const legacyRoutes = {
-  mbaHome: "/mba",
-  mbaAbout: "/mba/about",
-  mbaTools: "/mba/tools",
-  mbaJournal: "/mba/journal",
-  mbaSpeaking: "/mba/speaking",
-} as const;
+// The pre-redesign /mba tree. Config redirects run before the filesystem, so
+// no page renders at all. `permanent: true` issues a 308, which preserves the
+// request method and passes link equity to the new URL.
+export const legacyRedirects = [
+  { source: "/mba", destination: routes.home, permanent: true },
+  { source: "/mba/about", destination: routes.about, permanent: true },
+  { source: "/mba/tools", destination: routes.tools, permanent: true },
+  { source: "/mba/speaking", destination: routes.speaking, permanent: true },
+  { source: "/mba/journal", destination: routes.home, permanent: true },
+] as const satisfies ReadonlyArray<{
+  source: string;
+  destination: string;
+  permanent: true;
+}>;
 
 export const RESUME_DOWNLOAD_NAME = "Uzair-Vawda-CV.pdf";
 

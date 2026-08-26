@@ -1,16 +1,14 @@
 import { expect, test } from "@playwright/test";
 
 import { speaking, tools } from "../src/content/track";
+import { legacyRedirects } from "../src/lib/routes";
 
 // Locators are testids, never prose. Copy changes in every stage of this
 // redesign; the structure these tests care about does not.
 const routes: Array<{ path: string; testId: string }> = [
   { path: "/", testId: "hero" },
-  { path: "/mba", testId: "page-mba" },
-  { path: "/mba/tools", testId: "page-mba-tools" },
-  { path: "/mba/journal", testId: "page-mba-journal" },
-  { path: "/mba/speaking", testId: "page-mba-speaking" },
-  { path: "/mba/about", testId: "page-mba-about" },
+  { path: "/tools", testId: "page-tools" },
+  { path: "/speaking", testId: "page-speaking" },
 ];
 
 test.describe("route smoke tests", () => {
@@ -26,6 +24,68 @@ test.describe("route smoke tests", () => {
     const response = await page.goto("/does-not-exist-12345");
     expect(response?.status()).toBe(404);
     await expect(page.getByTestId("not-found")).toBeVisible();
+
+    // Both escape hatches must lead somewhere that exists — a 404 that offers
+    // a dead link is worse than a 404 that offers nothing.
+    await expect(page.getByTestId("not-found-home")).toHaveAttribute(
+      "href",
+      "/",
+    );
+    await expect(page.getByTestId("not-found-work")).toHaveAttribute(
+      "href",
+      "/#work",
+    );
+    const hrefs = await page
+      .getByTestId("not-found")
+      .locator("a")
+      .evaluateAll((els) => els.map((el) => el.getAttribute("href")));
+    expect(hrefs.filter((href) => href?.startsWith("/mba"))).toEqual([]);
+  });
+
+  test("every legacy mba path 308s to a live new home", async ({
+    page,
+    request,
+  }) => {
+    // The redirect table is data; this asserts the behaviour it is supposed to
+    // produce — the real status line, the real Location header, and a 200 at
+    // the far end. Asserting the array only proves the array.
+    const expected = [
+      ["/mba", "/"],
+      ["/mba/about", "/#about"],
+      ["/mba/tools", "/tools"],
+      ["/mba/speaking", "/speaking"],
+      ["/mba/journal", "/"],
+    ] as const;
+
+    // Keeps this list and the config from drifting apart in either direction.
+    expect(expected.map(([from]) => from).sort()).toEqual(
+      [...legacyRedirects].map((r) => r.source).sort(),
+    );
+
+    for (const [from, to] of expected) {
+      const redirect = await request.get(from, { maxRedirects: 0 });
+      expect(redirect.status(), from).toBe(308);
+      expect(redirect.headers()["location"], from).toBe(to);
+
+      // The destination is live, not merely well-formed.
+      const landing = await request.get(to.split("#")[0]);
+      expect(landing.status(), `${from} → ${to}`).toBe(200);
+
+      // And a browser following the chain ends up on the new document. A
+      // fragment is resolved client-side, so only the pathname is assertable.
+      const response = await page.goto(from);
+      expect(response?.status(), from).toBe(200);
+      expect(new URL(page.url()).pathname, from).toBe(to.split("#")[0]);
+    }
+  });
+
+  test("nothing renders under /mba any more", async ({ request }) => {
+    // The tree is deleted, so an unmapped path below it must 404 rather than
+    // quietly resolve — a catch-all redirect would hide a broken deep link.
+    const response = await request.get("/mba/not-a-page", {
+      maxRedirects: 0,
+    });
+    expect(response.status()).toBe(404);
   });
 
   test("sitemap is served", async ({ page }) => {
@@ -122,14 +182,9 @@ test.describe("route smoke tests", () => {
     // The nav and footer moved into the root layout; a nested layout that
     // still mounts its own would render two of each and no test above would
     // notice. /does-not-exist covers the 404, which used to carry its own.
-    for (const path of [
-      "/",
-      "/tools",
-      "/speaking",
-      "/mba",
-      "/mba/about",
-      "/does-not-exist-12345",
-    ]) {
+    // The /mba paths that used to be checked here now 308 onto "/" and
+    // "/#about"; the redirect test above covers them.
+    for (const path of ["/", "/tools", "/speaking", "/does-not-exist-12345"]) {
       await page.goto(path);
       await expect(page.locator("header"), path).toHaveCount(1);
       await expect(page.locator("footer"), path).toHaveCount(1);
