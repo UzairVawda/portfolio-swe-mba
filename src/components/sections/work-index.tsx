@@ -20,14 +20,23 @@ function slugify(name: string): string {
     .replace(/^-|-$/g, "");
 }
 
+type WorkSection = "project" | "concept" | "archive";
+
+// The one place a row slug is constructed. The exported helper below and the
+// three <Row> call sites both go through here, so the uniqueness test cannot
+// drift away from what the component actually renders.
+function rowSlug(section: WorkSection, name: string): string {
+  return `${section}-${slugify(name)}`;
+}
+
 // Exported so a test can assert the whole set is collision-free. The three
 // arrays render as siblings in one Accordion, so their slugs share a namespace
 // whether or not the content authors realise it.
 export function workRowSlugs(): string[] {
   return [
-    ...projects.map((p) => `project-${slugify(p.name)}`),
-    ...conceptProjects.map((c) => `concept-${slugify(c.name)}`),
-    ...archive.map((g) => `archive-${slugify(g.group)}`),
+    ...projects.map((p) => rowSlug("project", p.name)),
+    ...conceptProjects.map((c) => rowSlug("concept", c.name)),
+    ...archive.map((g) => rowSlug("archive", g.group)),
   ];
 }
 
@@ -115,9 +124,9 @@ export function WorkIndexSection() {
         <Accordion className="border-t border-rule">
           {projects.map((project, index) => (
             <Row
-              key={`project-${slugify(project.name)}`}
+              key={rowSlug("project", project.name)}
               index={index}
-              slug={`project-${slugify(project.name)}`}
+              slug={rowSlug("project", project.name)}
               name={project.name}
               meta={`${project.role} · ${project.period}`}
             >
@@ -147,9 +156,9 @@ export function WorkIndexSection() {
 
           {conceptProjects.map((concept, index) => (
             <Row
-              key={`concept-${slugify(concept.name)}`}
+              key={rowSlug("concept", concept.name)}
               index={conceptOffset + index}
-              slug={`concept-${slugify(concept.name)}`}
+              slug={rowSlug("concept", concept.name)}
               name={concept.name}
               meta={`${workIntro.conceptsLabel} · ${concept.status}`}
             >
@@ -160,9 +169,9 @@ export function WorkIndexSection() {
 
           {archive.map((group, index) => (
             <Row
-              key={`archive-${slugify(group.group)}`}
+              key={rowSlug("archive", group.group)}
               index={archiveOffset + index}
-              slug={`archive-${slugify(group.group)}`}
+              slug={rowSlug("archive", group.group)}
               name={group.group}
               meta={workIntro.archiveLabel}
             >
