@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { MobileNav } from "@/components/mobile-nav";
 import { ThemeToggleWithHint } from "@/components/theme-toggle-with-hint";
 import { speaking, tools } from "@/content/track";
 import { RESUME_DOWNLOAD_NAME, routes } from "@/lib/routes";
@@ -77,6 +78,7 @@ export function SiteNav() {
             Résumé
           </Link>
           <ThemeToggleWithHint />
+          <MobileNav links={links} />
         </div>
       </nav>
     </header>
