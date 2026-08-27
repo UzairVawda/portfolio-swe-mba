@@ -1,4 +1,4 @@
-import { Inter, JetBrains_Mono, Newsreader } from "next/font/google";
+import { JetBrains_Mono } from "next/font/google";
 import localFont from "next/font/local";
 
 export const satoshi = localFont({
@@ -20,19 +20,6 @@ export const satoshi = localFont({
 
 export const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-export const newsreader = Newsreader({
-  variable: "--font-newsreader",
-  subsets: ["latin"],
-  display: "swap",
-  axes: ["opsz"],
-});
-
-export const inter = Inter({
-  variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
 });

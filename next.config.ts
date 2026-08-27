@@ -1,5 +1,7 @@
 import type { NextConfig } from "next";
 
+import { legacyRedirects } from "./src/lib/routes";
+
 // Security headers applied to every route.
 //
 // CSP is intentionally conservative but allows the inline scripts/styles
@@ -47,6 +49,10 @@ const nextConfig: NextConfig = {
     // best format the requesting browser supports and resizes to the
     // displayed dimensions, so the profile photo ships as ~20-40KB.
     formats: ["image/avif", "image/webp"],
+  },
+  // Checked before the filesystem, so the deleted /mba tree never 404s.
+  async redirects() {
+    return [...legacyRedirects];
   },
   async headers() {
     return [

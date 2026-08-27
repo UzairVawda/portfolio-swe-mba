@@ -1,8 +1,8 @@
 import { Camera, Coffee, Plane, Swords } from "lucide-react";
 
-import { FadeUp } from "@/components/motion/fade-up";
-import { Stagger, StaggerItem } from "@/components/motion/stagger";
+import { Reveal, UnmaskLines } from "@/components/motion/reveal";
 import { Section } from "@/components/section";
+import { eyebrow } from "@/content/sections";
 import { interests, interestsIntro, type Interest } from "@/content/swe";
 
 const iconMap: Record<Interest["icon"], typeof Camera> = {
@@ -12,36 +12,42 @@ const iconMap: Record<Interest["icon"], typeof Camera> = {
   plane: Plane,
 };
 
-const surfaces = [
-  "bg-primary/10 text-primary",
-  "bg-periwinkle/30 text-foreground dark:bg-periwinkle/20",
-  "bg-columbia/40 text-foreground dark:bg-columbia/20",
-  "bg-celadon/40 text-foreground dark:bg-celadon/20",
-];
+// One accent, one surface. Colour-coding the icons was a function of having
+// three pastels; with a single signal, the icon itself carries the meaning.
+const iconSurface = "border border-signal/30 bg-tint text-signal";
 
 export function InterestsSection() {
   return (
-    <Section id="off-screen" className="py-24">
+    <Section id="off-screen" data-testid="section-interests">
       <div className="flex flex-col gap-12">
-        <FadeUp className="flex flex-col items-center gap-3 text-center md:items-start md:text-left">
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-            {interestsIntro.eyebrow}
-          </p>
+        <div className="flex flex-col items-center gap-3 text-center md:items-start md:text-left">
+          <Reveal>
+            <p
+              className="font-mono text-xs uppercase tracking-[0.2em] text-signal"
+              data-testid="eyebrow-interests"
+            >
+              {eyebrow("interests")}
+            </p>
+          </Reveal>
           <h2 className="text-balance text-3xl font-medium tracking-tight sm:text-4xl">
-            {interestsIntro.heading}
+            <UnmaskLines
+              lines={[interestsIntro.heading]}
+              data-testid="heading-interests"
+            />
           </h2>
-        </FadeUp>
+        </div>
 
-        <Stagger className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           {interests.map((interest, index) => {
             const Icon = iconMap[interest.icon];
             return (
-              <StaggerItem
+              <Reveal
                 key={interest.label}
+                delay={index * 0.06}
                 className="group flex flex-col items-center gap-6 rounded-3xl border border-border bg-card p-8 text-center transition-colors hover:border-primary/40 md:items-start md:p-10 md:text-left"
               >
                 <span
-                  className={`inline-flex h-14 w-14 items-center justify-center rounded-full ${surfaces[index % surfaces.length]}`}
+                  className={`inline-flex h-14 w-14 items-center justify-center rounded-full ${iconSurface}`}
                 >
                   <Icon className="h-6 w-6" aria-hidden />
                 </span>
@@ -53,10 +59,10 @@ export function InterestsSection() {
                     {interest.blurb}
                   </p>
                 </div>
-              </StaggerItem>
+              </Reveal>
             );
           })}
-        </Stagger>
+        </div>
       </div>
     </Section>
   );

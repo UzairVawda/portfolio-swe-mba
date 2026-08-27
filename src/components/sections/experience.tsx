@@ -1,26 +1,35 @@
-import { FadeUp } from "@/components/motion/fade-up";
-import { Stagger, StaggerItem } from "@/components/motion/stagger";
+import { Reveal, UnmaskLines } from "@/components/motion/reveal";
 import { Section } from "@/components/section";
+import { eyebrow } from "@/content/sections";
 import { experience, experienceIntro } from "@/content/swe";
 
 export function ExperienceSection() {
   return (
-    <Section id="experience" className="py-24" scrim>
+    <Section id="experience" data-testid="section-experience">
       <div className="flex flex-col gap-12">
-        <FadeUp className="flex flex-col items-center gap-3 text-center md:items-start md:text-left">
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-            {experienceIntro.eyebrow}
-          </p>
+        <div className="flex flex-col items-center gap-3 text-center md:items-start md:text-left">
+          <Reveal>
+            <p
+              className="font-mono text-xs uppercase tracking-[0.2em] text-signal"
+              data-testid="eyebrow-experience"
+            >
+              {eyebrow("experience")}
+            </p>
+          </Reveal>
           <h2 className="text-balance text-3xl font-medium tracking-tight sm:text-4xl">
-            {experienceIntro.heading}
+            <UnmaskLines
+              lines={[experienceIntro.heading]}
+              data-testid="heading-experience"
+            />
           </h2>
-        </FadeUp>
+        </div>
 
-        <Stagger className="flex flex-col">
+        <div className="flex flex-col">
           {experience.map((role, index) => (
-            <StaggerItem
+            <Reveal
               key={`${role.company}-${role.title}`}
-              className="group grid grid-cols-1 gap-3 border-t border-border py-8 md:grid-cols-[180px_1fr] md:gap-8"
+              delay={index * 0.06}
+              className="group grid grid-cols-1 gap-3 border-t border-border py-8 md:grid-cols-[140px_1fr] md:gap-10"
             >
               <div className="flex flex-col items-center md:items-start">
                 <span className="font-mono text-xs text-muted-foreground">
@@ -41,7 +50,7 @@ export function ExperienceSection() {
                     {role.company}
                   </span>
                 </div>
-                <p className="max-w-2xl text-pretty text-base text-muted-foreground">
+                <p className="max-w-4xl text-pretty text-lg leading-relaxed text-muted-foreground">
                   {role.description}
                 </p>
                 {role.note ? (
@@ -49,20 +58,20 @@ export function ExperienceSection() {
                     {role.note}
                   </span>
                 ) : null}
-                <ul className="mt-2 flex max-w-2xl flex-col gap-2.5 text-left">
+                <ul className="mt-2 flex max-w-4xl flex-col gap-2.5 text-left">
                   {role.highlights.map((highlight) => (
                     <li
                       key={highlight}
-                      className="relative pl-5 text-pretty text-sm leading-relaxed text-muted-foreground before:absolute before:left-0 before:top-2.5 before:h-1 before:w-1 before:rounded-full before:bg-primary/60"
+                      className="relative pl-5 text-pretty text-base leading-relaxed text-muted-foreground before:absolute before:left-0 before:top-3 before:h-1.5 before:w-1.5 before:rounded-full before:bg-primary/60"
                     >
                       {highlight}
                     </li>
                   ))}
                 </ul>
               </div>
-            </StaggerItem>
+            </Reveal>
           ))}
-        </Stagger>
+        </div>
       </div>
     </Section>
   );

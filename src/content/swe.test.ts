@@ -3,23 +3,15 @@ import { describe, expect, it } from "vitest";
 import * as sweContent from "./swe";
 import {
   about,
-  aboutIntro,
   archive,
-  archiveIntro,
   certifications,
   conceptProjects,
-  contact,
   education,
-  educationIntro,
   experience,
-  experienceIntro,
   interests,
-  interestsIntro,
-  mbaTeaser,
   projects,
-  projectsIntro,
   skills,
-  skillsIntro,
+  workIntro,
 } from "./swe";
 
 // Figures the site must never carry — employer-internal financials.
@@ -76,34 +68,9 @@ describe("swe content", () => {
     }
   });
 
-  it("numbers every section eyebrow 01 through 09 in page order with no gaps or duplicates", () => {
-    // The page renders nine numbered blocks in this order. This has broken
-    // once already during this plan, so lock the sequence rather than just
-    // the individual strings.
-    const eyebrows = [
-      aboutIntro.eyebrow,
-      experienceIntro.eyebrow,
-      projectsIntro.eyebrow,
-      archiveIntro.eyebrow,
-      skillsIntro.eyebrow,
-      educationIntro.eyebrow,
-      interestsIntro.eyebrow,
-      contact.eyebrow,
-      mbaTeaser.eyebrow,
-    ];
-    const numbers = eyebrows.map((eyebrow) => eyebrow.match(/^(\d{2}) · /)?.[1]);
-    expect(numbers).toEqual([
-      "01",
-      "02",
-      "03",
-      "04",
-      "05",
-      "06",
-      "07",
-      "08",
-      "09",
-    ]);
-  });
+  // The eyebrow ladder used to be asserted here against nine literals in
+  // swe.ts. It now lives in src/content/sections.ts and is locked by
+  // sections.test.ts — see "renders the whole ladder, in order".
 
   it("sweeps in copy the old, narrower scan missed", () => {
     // Guards against a future narrowing of allCopy() back down to only
@@ -149,6 +116,22 @@ describe("projects", () => {
     for (const project of projects) {
       expect(project.status.trim()).not.toBe("");
       expect(project.helpWanted.trim()).not.toBe("");
+    }
+  });
+
+  it("carries one intro covering both the projects and the archive", () => {
+    // The old projectsIntro and archiveIntro were merged when the two
+    // sections collapsed into the work index; every field both of them
+    // carried has to survive, or a label silently renders as undefined.
+    expect(Object.keys(workIntro).sort()).toEqual([
+      "archiveIntro",
+      "archiveLabel",
+      "conceptsLabel",
+      "helpWantedLabel",
+      "heading",
+    ].sort());
+    for (const [key, value] of Object.entries(workIntro)) {
+      expect(value.trim(), key).not.toBe("");
     }
   });
 
@@ -221,13 +204,5 @@ describe("about and interests", () => {
       "coffee",
       "plane",
     ]);
-  });
-
-  it("gives the about section its eyebrow and heading", () => {
-    expect(aboutIntro.eyebrow).toBe("01 · About");
-  });
-
-  it("gives the off-screen section its eyebrow and heading", () => {
-    expect(interestsIntro.eyebrow).toBe("07 · Off-screen");
   });
 });

@@ -1,62 +1,69 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { FadeUp } from "@/components/motion/fade-up";
+import { Reveal, UnmaskLines } from "@/components/motion/reveal";
 import { Section } from "@/components/section";
+import { eyebrow } from "@/content/sections";
 import { about, aboutIntro } from "@/content/swe";
+import { RESUME_DOWNLOAD_NAME, routes } from "@/lib/routes";
 
 export function AboutSection() {
   return (
-    <Section id="about" className="py-24">
+    <Section id="about" data-testid="section-about">
       <div className="grid grid-cols-1 items-start gap-12 md:grid-cols-[0.9fr_1.1fr]">
-        <FadeUp className="flex justify-center md:sticky md:top-28 md:block">
-          <div className="relative aspect-[4/5] w-full max-w-xs overflow-hidden rounded-2xl border border-border bg-muted">
+        <Reveal className="flex justify-center md:sticky md:top-28 md:block">
+          <div className="relative aspect-[4/5] w-full max-w-sm overflow-hidden rounded-2xl border border-border bg-muted">
             <Image
               src="/me.jpeg"
               alt="Portrait of Uzair Vawda"
               fill
-              sizes="(max-width: 768px) 80vw, 400px"
+              sizes="(max-width: 768px) 80vw, 384px"
               className="object-cover"
             />
           </div>
-        </FadeUp>
+        </Reveal>
 
         <div className="flex flex-col items-center gap-6 text-center md:items-start md:text-left">
-          <FadeUp>
-            <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-              {aboutIntro.eyebrow}
+          <Reveal>
+            <p
+              className="font-mono text-xs uppercase tracking-[0.2em] text-signal"
+              data-testid="eyebrow-about"
+            >
+              {eyebrow("about")}
             </p>
-          </FadeUp>
+          </Reveal>
 
-          <FadeUp delay={0.1}>
-            <h2 className="text-balance text-3xl font-medium tracking-tight sm:text-4xl">
-              {aboutIntro.heading}
-            </h2>
-          </FadeUp>
+          <h2 className="text-balance text-3xl font-medium tracking-tight sm:text-4xl">
+            <UnmaskLines
+              lines={[aboutIntro.heading]}
+              data-testid="heading-about"
+            />
+          </h2>
 
           <div className="flex flex-col gap-5">
             {about.paragraphs.map((paragraph, index) => (
-              <FadeUp key={index} delay={0.15 + index * 0.05}>
+              <Reveal key={index} delay={0.15 + index * 0.05}>
                 <p className="text-pretty text-lg leading-relaxed text-muted-foreground">
                   {paragraph}
                 </p>
-              </FadeUp>
+              </Reveal>
             ))}
           </div>
 
-          <FadeUp delay={0.35}>
+          <Reveal delay={0.35}>
             <p className="text-pretty text-lg leading-relaxed text-muted-foreground">
               {about.cvLine.before}
               <Link
-                href="/resume.pdf"
-                download="Uzair-Vawda-CV.pdf"
+                href={routes.resume}
+                download={RESUME_DOWNLOAD_NAME}
+                data-testid="about-cv-link"
                 className="text-foreground underline underline-offset-4 transition-colors hover:text-primary"
               >
                 {about.cvLine.label}
               </Link>
               {about.cvLine.after}
             </p>
-          </FadeUp>
+          </Reveal>
         </div>
       </div>
     </Section>

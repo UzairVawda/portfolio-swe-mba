@@ -24,14 +24,19 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  /* SWE-only decorative colors (used in 3D hero gradient stops) */
-  --color-periwinkle: var(--periwinkle);
-  --color-columbia: var(--columbia);
-  --color-celadon: var(--celadon);
+  /* Pine tokens exposed to Tailwind as utilities: bg-ground, text-ink,
+     border-rule, text-signal, bg-tint. */
+  --color-ground: var(--ground);
+  --color-surface: var(--surface);
+  --color-tint: var(--tint);
+  --color-ink: var(--ink);
+  --color-muted-ink: var(--muted-ink);
+  --color-rule: var(--rule);
+  --color-rule-strong: var(--rule-strong);
+  --color-signal: var(--signal);
 
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
-  --font-serif: var(--font-serif);
 
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
@@ -40,122 +45,82 @@
 }
 
 /* ------------------------------------------------------------ */
-/* Default = SWE LIGHT                                            */
-/* Palette: white bg, rich-black ink, medium-slate-blue accent,   */
-/*          periwinkle / columbia blue / celadon pastels.         */
+/* Pine, tinted — LIGHT                                          */
+/* Every neutral carries a green bias derived from the accent,    */
+/* including the near-black. Values mirrored in                   */
+/* src/lib/theme/tokens.ts, which the OG cards and the scene read. */
 /* ------------------------------------------------------------ */
 :root {
-  --background: #f4f5fa;
-  --foreground: #0c0c16;
-  --card: #ffffff;
-  --card-foreground: #0c0c16;
-  --popover: #ffffff;
-  --popover-foreground: #0c0c16;
+  --ground: #eff3ef;
+  --surface: #f7faf7;
+  --tint: #deeae2;
+  --ink: #0c1310;
+  --muted-ink: #566159;
+  --rule: #d6e0d8;
+  --rule-strong: #b9ccc0;
+  --signal: #1b6b4a;
 
-  --primary: #6666ff;
-  --primary-foreground: #ffffff;
-  --secondary: #ebebf7;
-  --secondary-foreground: #0c0c16;
-  --muted: #eceef5;
-  --muted-foreground: #5b5b73;
-  --accent: #c9e8ff;
-  --accent-foreground: #0c0c16;
+  /* shadcn aliases, remapped onto the pine tokens. */
+  --background: var(--ground);
+  --foreground: var(--ink);
+  --card: var(--surface);
+  --card-foreground: var(--ink);
+  --popover: var(--surface);
+  --popover-foreground: var(--ink);
 
-  --destructive: #e11d48;
-  --border: #e5e7ef;
-  --input: #e5e7ef;
-  --ring: #6666ff;
+  --primary: var(--signal);
+  --primary-foreground: var(--ground);
+  --secondary: var(--tint);
+  --secondary-foreground: var(--ink);
+  --muted: var(--tint);
+  --muted-foreground: var(--muted-ink);
+  --accent: var(--tint);
+  --accent-foreground: var(--ink);
 
-  --periwinkle: #b8baff;
-  --columbia: #c9e8ff;
-  --celadon: #b9f0d7;
+  /* Darkened from #e11d48, which measures 4.19:1 on the pine ground
+     and fails AA. #b3123a measures 6.11:1. */
+  --destructive: #b3123a;
+  --border: var(--rule);
+  --input: var(--rule);
+  --ring: var(--signal);
 
   --font-sans: var(--font-satoshi);
   --font-mono: var(--font-jetbrains-mono);
-  --font-serif: var(--font-newsreader);
 
   --radius: 0.625rem;
 }
 
-/* SWE DARK */
+/* Pine, tinted — DARK */
 .dark {
-  --background: #0c0c16;
-  --foreground: #f4f4f8;
-  --card: #14141f;
-  --card-foreground: #f4f4f8;
-  --popover: #14141f;
-  --popover-foreground: #f4f4f8;
+  --ground: #0b0f0d;
+  --surface: #131a16;
+  --tint: #16241c;
+  --ink: #eff3ef;
+  --muted-ink: #8e9a92;
+  --rule: #222e28;
+  --rule-strong: #33443b;
+  --signal: #4fbf8b;
 
-  --primary: #8a8aff;
-  --primary-foreground: #0c0c16;
-  --secondary: #1e1b3a;
-  --secondary-foreground: #f4f4f8;
-  --muted: #181821;
-  --muted-foreground: #a1a1b8;
-  --accent: #1f2937;
-  --accent-foreground: #f4f4f8;
+  --background: var(--ground);
+  --foreground: var(--ink);
+  --card: var(--surface);
+  --card-foreground: var(--ink);
+  --popover: var(--surface);
+  --popover-foreground: var(--ink);
+
+  --primary: var(--signal);
+  --primary-foreground: var(--ground);
+  --secondary: var(--tint);
+  --secondary-foreground: var(--ink);
+  --muted: var(--tint);
+  --muted-foreground: var(--muted-ink);
+  --accent: var(--tint);
+  --accent-foreground: var(--ink);
 
   --destructive: #f43f5e;
-  --border: #2a2a3a;
-  --input: #2a2a3a;
-  --ring: #8a8aff;
-
-  --periwinkle: #8688ff;
-  --columbia: #4ea7e3;
-  --celadon: #6ec4a0;
-}
-
-/* ------------------------------------------------------------ */
-/* MBA LIGHT                                                      */
-/* Palette: warm cream bg, espresso ink, burnt-sienna accent.     */
-/* ------------------------------------------------------------ */
-[data-section="mba"] {
-  --background: #fbf8f3;
-  --foreground: #292524;
-  --card: #fbf8f3;
-  --card-foreground: #292524;
-  --popover: #fbf8f3;
-  --popover-foreground: #292524;
-
-  --primary: #9a3412;
-  --primary-foreground: #fbf8f3;
-  --secondary: #f0ebe0;
-  --secondary-foreground: #292524;
-  --muted: #f5f1eb;
-  --muted-foreground: #78716c;
-  --accent: #e7e5e4;
-  --accent-foreground: #292524;
-
-  --destructive: #b91c1c;
-  --border: #e7e5e4;
-  --input: #e7e5e4;
-  --ring: #9a3412;
-
-  --font-sans: var(--font-inter);
-}
-
-/* MBA DARK */
-.dark [data-section="mba"] {
-  --background: #1f1812;
-  --foreground: #f5f1eb;
-  --card: #2a201a;
-  --card-foreground: #f5f1eb;
-  --popover: #2a201a;
-  --popover-foreground: #f5f1eb;
-
-  --primary: #c2410c;
-  --primary-foreground: #f5f1eb;
-  --secondary: #2a201a;
-  --secondary-foreground: #f5f1eb;
-  --muted: #2a201a;
-  --muted-foreground: #a8a29e;
-  --accent: #3d2f26;
-  --accent-foreground: #f5f1eb;
-
-  --destructive: #ef4444;
-  --border: #3d2f26;
-  --input: #3d2f26;
-  --ring: #c2410c;
+  --border: var(--rule);
+  --input: var(--rule);
+  --ring: var(--signal);
 }
 
 @layer base {
@@ -173,29 +138,14 @@
     html {
       scroll-behavior: auto;
     }
-  }
-}
-
-@layer components {
-  /* Text-dense sections sit directly over the fixed particle canvas, which
-     competes with the copy — worst on the dimmest text. `.section-scrim`
-     nudges muted copy toward the foreground; `.section-scrim-layer` is the
-     wash of page background that goes between the canvas and the text. Both
-     read from the theme tokens, so they follow light, dark, and sepia. */
-  .section-scrim {
-    --color-muted-foreground: color-mix(
-      in oklab,
-      var(--muted-foreground) 65%,
-      var(--foreground)
-    );
-  }
-
-  .section-scrim-layer {
-    background: radial-gradient(
-      ellipse 85% 70% at 50% 50%,
-      var(--background) 0%,
-      color-mix(in oklab, var(--background) 88%, transparent) 45%,
-      color-mix(in oklab, var(--background) 0%, transparent) 100%
-    );
+    /* Tier 2 reveals collapse to opacity alone. useReducedMotion cannot know
+       the answer on the server or on the first client render, so the rise is
+       already painted by the time JS could correct it — that correction is a
+       20px snap, which is exactly the motion this query is meant to remove.
+       The transform is killed in CSS instead, before the first paint. */
+    [data-reveal],
+    [data-unmask-line] {
+      transform: none !important;
+    }
   }
 }
