@@ -25,11 +25,11 @@ export function OvertureScene({ onResolved }: { onResolved: () => void }) {
   const reduced = useReducedMotion() ?? false;
   // three.js materials take a literal colour — they cannot read CSS
   // variables, so the hex comes from the token module. The root layout pins
-  // defaultTheme="dark" with enableSystem={false}, which makes the dark
+  // defaultTheme="light" with enableSystem={false}, which makes the light
   // signal the correct pre-hydration value rather than a guess.
   const { resolvedTheme } = useTheme();
   const color =
-    resolvedTheme === "light" ? tokens.light.signal : tokens.dark.signal;
+    resolvedTheme === "dark" ? tokens.dark.signal : tokens.light.signal;
   // The budget is sampled once, at mount: it sizes the geometry buffers, and
   // a mid-sequence resize must not reallocate them for a 4s one-shot.
   const [budget] = useState(() =>
