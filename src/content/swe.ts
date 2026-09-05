@@ -1,9 +1,9 @@
 // Single source of truth for the SWE portfolio content.
 
 export const hero = {
-  name: "Uzair Vawda.",
+  name: "Hi, I'm Uzair Vawda.",
   positioning:
-    "Software engineer and MBA candidate in NYC. I build AI-era product tooling, and spend the rest of it on the mats, in airports, and over coffee.",
+    "Software engineer and MBA candidate in NYC. I spend my time building cool things with software, on the jiu-jitsu mats, in airports traveling, and over coffee.",
   actions: {
     resume: "Résumé",
     work: "See work",
@@ -17,15 +17,16 @@ export const aboutIntro = {
 
 export const about = {
   paragraphs: [
-    "The pattern is always the same: something irritates me, I build a fix for it, and then I spend a while working out whether it was worth building. That is what a parking problem on my block turned into, what two problems at the jiu jitsu gym turned into, and eventually the reason I went back to school for the half of this I could not argue on my own. NYC, mats most evenings, an airport when I can manage it, and more coffee than I will defend here.",
-    "By day I'm a software engineer at Collins Aerospace. Most of my time there has gone into a design system, which exists because so much of UI development is building the same generic components over and over, each one re-themed and restyled in company colors. A handful of teams now build on it, and — more recently — an AI agent writes components against it. That second part has changed how I work more than anything else in the last few years.",
-    "Evenings are an MBA at Baruch's Zicklin School, concentrating in AI and product development. The point isn't to stop engineering. The thing I'm after is the overlap — building AI-era products and being able to argue for them in business terms, rather than handing that part to someone else. Each class ends in something shippable, and those land further down this page.",
-    "JHParking started out of sheer frustration. During COVID more people on my block bought cars while the number of street spots stayed exactly where it was, and the choice became parking up to a mile from home or circling the same blocks for up to an hour at peak times. What it does today is let a friends group share where they parked and when they are leaving; the paid marketplace is where it is going. I had taken a run at this years ago as ParkForLess and put it down; the idea kept looking right, so I picked it back up. MatAI and CoachMe both came out of the jiu jitsu gym.",
+    "By day, I'm a software engineer at Collins Aerospace, where I built and led the adoption of RFCC. This shared React component library consisted of 27 accessible, reusable components that let engineering teams create UI faster. Within a month of shipping, we rewrote 3 existing applications and onboarded 5 new projects onto the library, moving them off Bootstrap. We're now creating a Poolside AI agent to build new components and develop UI templates that will cut build time even further.",
+    "My evenings are spent at Baruch's Zicklin School, where I'm pursuing an MBA with a concentration in AI and Product Development. As I shift from a software development mindset to a product-first mindset, I'm building the strategic and analytical toolkit to make the business case for features and product decisions, not just build them. I am excited to create relevant human-centered products that are engaging and usable.",
   ],
-  cvLine: {
-    before: "I'm in NYC. If you want the long version, ",
-    label: "my CV has it",
-    after: " — otherwise, keep scrolling.",
+  // The closing paragraph carries an inline link, so it lives here as three
+  // pieces rather than in `paragraphs` — the label is what gets wrapped.
+  connectLine: {
+    before:
+      "When I can squeeze it in, I love to travel to new places and explore nature. I just got back from Banff, Canada, where I found myself exploring a new hiking trail every day. I also train at Queens Jiu Jitsu and am a blue belt under Ryan Quinn. Here you'll find a list of my projects at various stages, my MBA experience, and a few other highlights. If any of them pique your interest, ",
+    label: "I'd love to connect",
+    after: ".",
   },
 };
 

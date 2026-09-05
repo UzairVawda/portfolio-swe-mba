@@ -112,4 +112,22 @@ test.describe("the overture", () => {
     await page.getByTestId("hero-cta-work").click();
     await expect.poll(scrollY).toBeGreaterThan(500);
   });
+
+  // The About copy closes on "I'd love to connect", which has to land on the
+  // contact form. Same bare-fragment rule as the hero CTAs.
+  test("the about copy links through to the contact section", async ({
+    page,
+  }) => {
+    await page.goto("/");
+    await page.keyboard.press("Escape");
+    await expect(page.getByTestId("overture")).toHaveCount(0, {
+      timeout: 8000,
+    });
+
+    const link = page.getByTestId("about-contact-link");
+    expect(await link.getAttribute("href")).toBe("#contact");
+
+    await link.click();
+    await expect(page.getByTestId("section-contact")).toBeInViewport();
+  });
 });

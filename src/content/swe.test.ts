@@ -193,8 +193,8 @@ describe("education", () => {
 });
 
 describe("about and interests", () => {
-  it("offers the CV inline", () => {
-    expect(about.cvLine.label.trim()).not.toBe("");
+  it("closes with an inline invitation to the contact form", () => {
+    expect(about.connectLine.label.trim()).not.toBe("");
   });
 
   it("keeps all four off-screen cards", () => {
