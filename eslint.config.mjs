@@ -12,6 +12,10 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Vitest writes an HTML coverage report here. It is gitignored, but ESLint
+    // still walked into it and reported on generated vendor scripts — a
+    // permanent warning in every `npm run lint` that no source change can fix.
+    "coverage/**",
   ]),
 ]);
 
