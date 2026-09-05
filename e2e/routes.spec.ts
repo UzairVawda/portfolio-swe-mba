@@ -217,7 +217,6 @@ test.describe("route smoke tests", () => {
     for (const id of [
       "hero-cta-resume",
       "nav-resume",
-      "about-cv-link",
       "footer-resume",
     ]) {
       await expect(page.getByTestId(id)).toHaveAttribute("href", "/resume.pdf");

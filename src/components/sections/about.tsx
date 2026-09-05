@@ -1,11 +1,10 @@
 import Image from "next/image";
-import Link from "next/link";
 
 import { Reveal, UnmaskLines } from "@/components/motion/reveal";
 import { Section } from "@/components/section";
 import { eyebrow } from "@/content/sections";
 import { about, aboutIntro } from "@/content/swe";
-import { RESUME_DOWNLOAD_NAME, routes } from "@/lib/routes";
+import { fragment, routes } from "@/lib/routes";
 
 export function AboutSection() {
   return (
@@ -52,16 +51,18 @@ export function AboutSection() {
 
           <Reveal delay={0.35}>
             <p className="text-pretty text-lg leading-relaxed text-muted-foreground">
-              {about.cvLine.before}
-              <Link
-                href={routes.resume}
-                download={RESUME_DOWNLOAD_NAME}
-                data-testid="about-cv-link"
+              {about.connectLine.before}
+              {/* Same-page anchor, so a bare fragment and a plain <a> — a
+                  <Link href="/#contact"> clicked while the URL already carries
+                  that hash scrolls to the top instead of the section. */}
+              <a
+                href={fragment(routes.contact)}
+                data-testid="about-contact-link"
                 className="text-foreground underline underline-offset-4 transition-colors hover:text-primary"
               >
-                {about.cvLine.label}
-              </Link>
-              {about.cvLine.after}
+                {about.connectLine.label}
+              </a>
+              {about.connectLine.after}
             </p>
           </Reveal>
         </div>
